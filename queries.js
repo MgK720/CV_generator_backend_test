@@ -8,8 +8,15 @@ const pool = new Pool({
 })
 
 
+//do wrzucenia w inny plik
+function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  }
 
-const createCv = (request, response) => {
+
+const createCv = async (request, response) => {
     let addedCvId = 0;
     //const username = req.body.username; //dane z formularza name
     //const password = req.body.password; //dane z formularza name
@@ -24,9 +31,11 @@ const createCv = (request, response) => {
         }
         addedCvId = parseInt(results.rows[0].cv_id);
         console.log(addedCvId);
-        response.write(`Cv added with ID: ${addedCvId}`)
+        //output.push(`Cv added with ID: ${addedCvId}`);
+        response.write(`Cv added with ID: ${addedCvId}\n`)
     })
-
+    await sleep(1000);
+    console.log(addedCvId);
     const firstname = request.body.firstname;
     const lastname = request.body.lastname;
     const email = request.body.myemail;
@@ -39,10 +48,11 @@ const createCv = (request, response) => {
         if (error){
             throw error
         }
-        response.write(`PersonalData added with ID: ${results.rows[0].personaldata_id}`)
+        //output.push(`PersonalData added with ID: ${results.rows[0].personaldata_id}`);
+        response.write(`PersonalData added with ID: ${results.rows[0].personaldata_id}\n`)
     })
-
-    response.end();
+    await sleep(1000);
+    response.status(201).send();
 
   }
 
