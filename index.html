@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <title>Form</title>
+</head>
+
+<body>
+    <header>
+        <h1>CV Generator</h1>
+    </header>
+    <main>
+        <form action="/cv" method="POST">
+            <section id="myform">
+                <section id="name">
+                    <ul>
+                        <li>
+                            <label for="firstname">Firstname:</label>
+                            <input type="text" name="firstname" id="firstname" minlength="1" maxlength="30" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="lastname">Lastname:</label>
+                            <input type="text" name="lastname" id="lastname" minlength="1" maxlength="30" required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
+                <section id="contact">
+                    <ul>
+                        <li>
+                            <label for="myimage">Your image:</label>
+                            <input type="file" name="myimage" id="myimage" accept=".png, .jpg, .jpeg" />
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="myemail">Email:</label>
+                            <input type="email" id="myemail" name="myemail" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="calling-code">Calling code:</label>
+                            <span>+</span>
+                            <input type="number" id="calling-code" name="calling_code" min="1" max="999"
+                                placeholder="48" required>
+                            <span class="validity"></span>
+                            <label for="myphone-number">Phone</label>
+                            <input type="tel" id="myphone-number" name="myphone_number" pattern="[0-9]{9}" required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
+                <input type="submit" value="submit">
+              </section>  
+        </form>
+    </main>
+    <footer>
+        <p>Copyright &copy Igor Ciesielski 2023</p>
+    </footer>
+    <script src="actions.js"></script>
+
+</body>
+
+</html>
