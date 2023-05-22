@@ -44,14 +44,59 @@
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="calling-code">Calling code:</label>
+                            <label for="calling_code">Calling code:</label>
                             <span>+</span>
                             <input type="number" id="calling-code" name="calling_code" min="1" max="999"
                                 placeholder="48" required>
                             <span class="validity"></span>
-                            <label for="myphone-number">Phone</label>
+                            <label for="myphone_number">Phone</label>
                             <input type="tel" id="myphone-number" name="myphone_number" pattern="[0-9]{9}" required>
                             <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
+                <section id="education0" class="education">
+                    <ul>
+                        <li>
+                            <label for="school0">Knowledge:</label>
+                            <input type="text" name="school0" id="school0" class="school" minlength="1" maxlength="45"
+                                required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="knowledge_type0" class="knowledge-type">Type: </label>
+                            <select name="knowledge_type0" id="knowledge-type0" required>
+                                <option value="">--option--</option>
+                                <!--WAZNE ODWROTNIE W MOIM GLOWNYM REPO 1 ORAZ 0-->
+                                <option value="1">School</option>
+                                <option value="0">Course</option>
+                            </select>
+                            <span class="validity"></span>
+                            <div id="school-type-select0" class="school-type-select">
+                                <!--<label for="school-type0" class="school-type">School:</label>-->
+                                <select name="school_type0" id="school-type0">
+                                    <option value="">--option--</option>
+                                    <option value="0">Primary</option>
+                                    <option value="1">MidSchool</option>
+                                    <option value="2">HighSchool</option>
+                                </select>
+                                <span class="validity"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="startyear0" class="startyear">From:</label>
+                            <input type="date" name="startyear0" id="startyear0" min="1900-01-01" value="2100-01-01"
+                                onload="max='today()'" required>
+                            <span class="validity"></span>
+                            <label for="endyear0" class="endyear">To:</label>
+                            <input type="date" name="endyear0" id="endyear0" min="1900-01-01" max="2023-03-27"
+                                value="2100-01-01" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="education_description0">Description:</label>
+                            <input type="text" name="education_description0" id="education-description0"
+                                class="education-description" maxlength="100" placeholder="---Write something---">
                         </li>
                     </ul>
                 </section>
