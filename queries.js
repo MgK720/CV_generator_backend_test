@@ -17,17 +17,7 @@ const createCv = async (request, response) => {
          phone_country : request.body.calling_code,
          phone : request.body.myphone_number,
          img_destination : `/img/`
-    }
-    // const knowledgeArray = [
-    //   {
-    //       knowledge_name: request.body.school0, 
-    //       knowledgetype_id: request.body.knowledge_type0,
-    //       schooltype_id: request.body.school_type0,
-    //       start_date_knowledge: request.body.startyear0, 
-    //       end_date_knowledge: request.body.endyear0, 
-    //       description: request.body.education_description0
-    //   }
-    // ]
+    };
     try{
       console.log(request.body);
         const cvID = await addCv(cv_url);
