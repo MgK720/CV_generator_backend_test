@@ -31,11 +31,11 @@ const createCv = async (request, response) => {
     try{
       console.log(request.body);
         const cvID = await addCv(cv_url);
-        outputMessage += `Cv added with ID: ${cvID}` + '\n';
+        outputMessage += `Cv added with ID: ${cvID} <br>\n`;
 
         personaldata.img_destination += cvID; // do zmiany (rozszerzenie itp)
         const personalDataID = await addPersonalData(cvID, personaldata.firstname, personaldata.lastname, personaldata.email, personaldata.phone_country, personaldata.phone, personaldata.img_destination);
-        outputMessage += `PersonalData added with ID: ${personalDataID}\n`;
+        outputMessage += `PersonalData added with ID: ${personalDataID} <br>\n`;
 
         let numberOfKnowledge = 0;
         let knowledgeWithNumber = "school" + numberOfKnowledge;
@@ -49,7 +49,7 @@ const createCv = async (request, response) => {
 
             let knowledgeID = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
 
-            outputMessage += `Knowledge added with ID: ${knowledgeID}\n`;
+            outputMessage += `Knowledge added with ID: ${knowledgeID} <br>\n`;
 
             numberOfKnowledge +=1;
             knowledgeWithNumber = "school" + numberOfKnowledge;
@@ -79,9 +79,7 @@ const addPersonalData = async (cvID, firstname, lastname, email, phone_country, 
 }
 
 const addKnowledge = async (cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) =>{
-    console.log("schooltypeid = " + schooltype_id);
-    if(schooltype_id === undefined) {schooltype_id = null};
-    console.log("PARSED schooltypeid = " + schooltype_id);
+    if(schooltype_id == false) {schooltype_id = null};
     const knowledgeResult = await pool.query(`INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)
           VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *`,
           [cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description]);
