@@ -100,6 +100,51 @@
                         </li>
                     </ul>
                 </section>
+                <section id="education1" class="education">
+                    <ul>
+                        <li>
+                            <label for="school1">Knowledge:</label>
+                            <input type="text" name="school1" id="school1" class="school" minlength="1" maxlength="45"
+                                required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="knowledge_type1" class="knowledge-type">Type: </label>
+                            <select name="knowledge_type1" id="knowledge-type1" required>
+                                <option value="">--option--</option>
+                                <!--WAZNE ODWROTNIE W MOIM GLOWNYM REPO 1 ORAZ 0-->
+                                <option value="1">School</option>
+                                <option value="0">Course</option>
+                            </select>
+                            <span class="validity"></span>
+                            <div id="school-type-select1" class="school-type-select">
+                                <!--<label for="school-type0" class="school-type">School:</label>-->
+                                <select name="school_type1" id="school-type1">
+                                    <option value="">--option--</option>
+                                    <option value="0">Primary</option>
+                                    <option value="1">MidSchool</option>
+                                    <option value="2">HighSchool</option>
+                                </select>
+                                <span class="validity"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="startyear1" class="startyear">From:</label>
+                            <input type="date" name="startyear1" id="startyear1" min="1900-01-01" value="2100-01-01"
+                                onload="max='today()'" required>
+                            <span class="validity"></span>
+                            <label for="endyear1" class="endyear">To:</label>
+                            <input type="date" name="endyear1" id="endyear1" min="1900-01-01" max="2023-03-27"
+                                value="2100-01-01" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="education_description1">Description:</label>
+                            <input type="text" name="education_description1" id="education-description1"
+                                class="education-description" maxlength="100" placeholder="---Write something---">
+                        </li>
+                    </ul>
+                </section>
                 <input type="submit" value="submit">
               </section>  
         </form>

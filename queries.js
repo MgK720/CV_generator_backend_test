@@ -18,29 +18,42 @@ const createCv = async (request, response) => {
          phone : request.body.myphone_number,
          img_destination : `/img/`
     }
-    const knowledgeArray = [
-      {
-          knowledge_name: request.body.school0, 
-          knowledgetype_id: request.body.knowledge_type0,
-          schooltype_id: request.body.school_type0,
-          start_date_knowledge: request.body.startyear0, 
-          end_date_knowledge: request.body.endyear0, 
-          description: request.body.education_description0
-      }
-    ]
+    // const knowledgeArray = [
+    //   {
+    //       knowledge_name: request.body.school0, 
+    //       knowledgetype_id: request.body.knowledge_type0,
+    //       schooltype_id: request.body.school_type0,
+    //       start_date_knowledge: request.body.startyear0, 
+    //       end_date_knowledge: request.body.endyear0, 
+    //       description: request.body.education_description0
+    //   }
+    // ]
     try{
       console.log(request.body);
         const cvID = await addCv(cv_url);
-        outputMessage += `Cv added with ID: ${cvID}\n`;
+        outputMessage += `Cv added with ID: ${cvID}` + '\n';
 
         personaldata.img_destination += cvID; // do zmiany (rozszerzenie itp)
         const personalDataID = await addPersonalData(cvID, personaldata.firstname, personaldata.lastname, personaldata.email, personaldata.phone_country, personaldata.phone, personaldata.img_destination);
         outputMessage += `PersonalData added with ID: ${personalDataID}\n`;
-        console.log(`AAAAAAAAAAAAAAAA${knowledgeArray[0].knowledgetype_id}`);
-        let knowledgeID = await addKnowledge(cvID, knowledgeArray[0].knowledge_name, knowledgeArray[0].knowledgetype_id, 
-                                            knowledgeArray[0].schooltype_id, knowledgeArray[0].start_date_knowledge, 
-                                            knowledgeArray[0].end_date_knowledge, knowledgeArray[0].description);
-        outputMessage += `Knowledge added with ID: ${knowledgeID}\n`;
+
+        let numberOfKnowledge = 0;
+        let knowledgeWithNumber = "school" + numberOfKnowledge;
+        while(request.body[knowledgeWithNumber]){
+            let knowledge_name = request.body["school" + numberOfKnowledge];
+            let knowledgetype_id = request.body["knowledge_type" + numberOfKnowledge];
+            let schooltype_id = request.body["school_type" + numberOfKnowledge];
+            let start_date_knowledge = request.body["startyear" + numberOfKnowledge];
+            let end_date_knowledge = request.body["endyear" + numberOfKnowledge];
+            let description = request.body["education_description" + numberOfKnowledge];
+
+            let knowledgeID = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
+
+            outputMessage += `Knowledge added with ID: ${knowledgeID}\n`;
+
+            numberOfKnowledge +=1;
+            knowledgeWithNumber = "school" + numberOfKnowledge;
+        };
 
         console.log(outputMessage);
         response.status(201).send(outputMessage);
@@ -66,7 +79,9 @@ const addPersonalData = async (cvID, firstname, lastname, email, phone_country, 
 }
 
 const addKnowledge = async (cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) =>{
-    if(schooltype_id === undefined) schooltype_id = null;
+    console.log("schooltypeid = " + schooltype_id);
+    if(schooltype_id === undefined) {schooltype_id = null};
+    console.log("PARSED schooltypeid = " + schooltype_id);
     const knowledgeResult = await pool.query(`INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)
           VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *`,
           [cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description]);
