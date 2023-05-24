@@ -145,8 +145,71 @@
                         </li>
                     </ul>
                 </section>
+                <section id="experience0" class="experience">
+                    <ul>
+                        <li>
+                            <label for="job0">Job:</label>
+                            <input type="text" name="job0" id="job0" minlength="1" maxlength="40" required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="startyear_job0" class="startyear">From:</label>
+                            <input type="date" name="startyear_job0" id="startyear_job0" min="1900-01-01"
+                                max="2023-03-27" value="2100-01-01" required>
+                            <span class="validity"></span>
+                            <label for="endyear_job0" class="endyear">To:</label>
+                            <input type="date" name="endyear_job0" id="endyear_job0" min="1900-01-01" max="2023-03-27"
+                                value="2100-01-01" required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
+                <section id="skill0" class="skill">
+                    <ul>
+                        <li>
+                            <label for="skill_name0">Skill:</label>
+                            <input type="text" name="skill_name0" id="skill-name0" minlength="1" maxlength="25"
+                                required>
+                            <span class="validity"></span>
+                        </li>
+                        <li>
+                            <label for="skill_level0"></label>
+                            <input type="range" id="skill-level0" name="skill_level0" min="1" max="5" value="3"
+                                step="1">
+                            <p id="skill-level-value0">Medium</p>
+                        </li>
+                    </ul>
+                </section>
+                <section id="hobby0" class="hobby">
+                    <ul>
+                        <li>
+                            <label for="hobby_name0">Hobby:</label>
+                            <input type="text" name="hobby_name0" id="hobby-name0" minlength="1" maxlength="25"
+                                required>
+                            <span class="validity"></span>
+                        </li>
+                    </ul>
+                </section>
                 <input type="submit" value="submit">
-              </section>  
+              </section> 
+              <section id="link0" class="link">
+                <ul>
+                    <li>
+                        <label for="link_url0">Link(URL):</label>
+                        <!--db schemat do zmiany-->
+                        <input type="url" name="link_url0" id="link-url0"
+                            placeholder="https://pl.linkedin.com/in/(profile)" pattern="https://.*" maxlength="100"
+                            required>
+                        <span class="validity"></span>
+                    </li>
+                    <li>
+                        <label for="link_name0">Display as:</label>
+                        <input type="text" name="link_name0" id="link-name0" placeholder="linkedin" minlength="1"
+                            maxlength="25" required>
+                        <span class="validity"></span>
+                    </li>
+                </ul>
+            </section> 
         </form>
     </main>
     <footer>
