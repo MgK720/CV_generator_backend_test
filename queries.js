@@ -106,6 +106,7 @@ const createCv = async (request, response) => {
         };
 
         console.log(outputMessage);
+        //console.log(request.body);
         response.status(201).send(outputMessage);
     }catch (error){
         console.error(error);
