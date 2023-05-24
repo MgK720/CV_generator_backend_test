@@ -1,0 +1,619 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+@font-face {
+    font-family: mainFontMedium;
+    src: url(fonts/Roboto/Roboto-Medium.ttf);
+}
+
+h1{
+  font-size:3em;
+  text-align: center;
+}
+*{
+  box-sizing: border-box;
+}
+#myform > *{
+  box-sizing: border-box;
+  /*border:1px solid red;*/
+  padding:0.7em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+body{
+    background-color: #061735;
+    color:#F9F5EB;
+    font-family: mainFontMedium;
+}
+*::selection{
+  color:black;
+  background-color: white;
+}
+/*https://pl.pinterest.com/pin/597852919284156707/*/
+/*https://colorhunt.co/palette/1c3879607eaaeae3d2f9f5eb*/
+/*STYLE SECTION*/
+input[type=button], input[type=submit]{
+  font-family: mainFontMedium;
+  font-size:1.4em;
+  background-color: #061735;
+  color:white;
+  /*background-color: white;
+  color:black;*/
+  border:3px solid white;
+  margin-right:2px;
+  width:49%;
+  height:50px;
+  transition: all 0.25s;
+}
+/*TODO hover doesnt work prop*/
+input[type=button]:hover, input[type=submit]:hover{
+  background-color: #07264e;
+  /*background-color: #AF0000;*/
+  color:#F9F5EB;
+  border-color: #AF0000;
+  box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+  transform: translateY(-0.24em);
+  cursor:pointer;
+}
+
+input:not(input[type=range], input[type=date]){
+  font-family: mainFontMedium;
+  letter-spacing: 1px;
+  padding-left:10px;
+  transition: all 0.25s;
+}
+input:focus:not(input[type=range], input[type=date]){
+  border-width: 2px;
+  background-color: #07264e;
+  color:#F9F5EB;
+  border-color: #AF0000;
+  box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+  transform: translateY(-0.24em);
+  outline:none;
+}
+input[type=date]{
+  font-family: mainFontMedium;
+  letter-spacing: 1px;
+  padding-left:10px;
+}
+input[type="file"]::file-selector-button {
+  border: 1.7px solid white;
+  color:white;
+  font-family: mainFontMedium;
+  min-height: 40px;
+  font-size:1.2em;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all 0.25s;
+}
+input[type="file"]::file-selector-button:hover, select:hover{
+  background-color: transparent;
+  border-color:orangered;
+}
+
+
+.functionButtons input:nth-of-type(1):hover, .functionButtons input:nth-of-type(1):focus{
+  border-color:green;
+  box-shadow: 0 0.5em 0.5em -0.4em green;
+}
+
+input[type=submit]{
+  border:3px solid orangered;
+}
+input[type=submit]:hover{
+  box-shadow: 0 0.5em 0.5em -0.4em orangered;
+  border-color: orangered;
+}
+
+@keyframes append-animate {
+	from {
+    /*height:0px;*/
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+    /*height:auto;*/
+		transform: scale(1);
+		opacity: 1;	
+	}
+}
+
+@keyframes del-animate {
+	from {
+		transform: scale(1);
+		opacity: 1;
+	}
+	to {
+		transform: scale(0);
+		opacity: 0;	
+	}
+}
+
+.added_element {
+	animation: append-animate .3s linear;
+}
+
+.deleted_element{
+  animation: del-animate .3s linear;
+  background-color: red;
+}
+/*END STYLE SECTION */
+aside{
+  display:none;
+  text-align: center;
+  position:fixed;
+  margin-left:85%;
+  color:rgba(0, 0, 0, 0.4);
+  border:1px solid rgba(0, 0, 0, 0.4);
+  max-width:10%;
+  border-radius:15%;
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: 1;
+}
+@keyframes slidein {
+  from {
+    color:rgba(157, 255, 0, 0.9);
+    border:1px solid rgba(157, 255, 0, 0.9);
+    margin-left: 100%;
+    width:80%;
+
+  }
+  to {
+    margin-left: 85%;
+    width:100%;
+  }
+}
+
+
+aside:hover{
+  color:rgba(0, 0, 0);
+  border:1px solid rgba(0, 0, 0);
+}
+aside button{
+  position:absolute;
+  margin-left:30%;
+  background-color: crimson;
+  border-radius:50%;
+  width:2em;
+  height:2em;
+  padding:0.3em;
+}
+aside p{
+  margin:2em;
+}
+#myform{
+  display:flex;
+  justify-content: center;
+  width:100%;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+/* TODO WAZNE do przerobienia */
+.education, .experience, .contact, #experience-buttons, #education-buttons,#submit-div, #name, #contact, .skill, #skill-buttons, .hobby,.hobby-buttons,.link,.link-buttons{
+  background-color: #07264e;
+  border-radius: 10px;
+  border:1px solid #F9F5EB;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap:wrap;
+  margin:1rem;
+  flex:1 1200px;
+}
+#education-buttons, #experience-buttons, #skill-buttons, #submit-div, .hobby-buttons, .link-buttons{
+  background-color: transparent;
+  border:none;
+}
+#name{
+  min-width: none;
+  max-width: 500px;
+}
+#contact{
+  min-width: none;
+  max-width: 700px;
+}
+.education, .experience, .skill, .hobby, .link{
+  min-width: none;
+  max-width: 700px;
+}
+.skill{
+  min-width:none;
+  max-width:700px;
+}
+.hobby{
+  min-width:none;
+  max-width:700px;
+}
+/*TEMP-----------------------------*/
+/*input[type=range]{
+  position:absolute;
+}*/
+.skill ul li p{
+  color:#ffa300;
+}
+footer{
+  text-align: center;
+  margin-bottom:0.5em;
+}
+footer p{
+  margin-top:1em;
+  margin-bottom:2em;
+}
+header h1{
+  margin:0.5em 0;
+}
+select{
+  background-color: #061735;
+  color:#F9F5EB;
+  border:2px solid#F9F5EB;
+  transition: all 0.25s;
+}
+
+input[type=text],input[type=email],input[type=tel],input[type=email],input[type=url], select{
+  min-height: 50px;
+  font-size: 1.1em;
+  font-family: mainFontMedium;
+  /*border: none;*/
+}
+input[type=date]{
+  min-height: 50px;
+  letter-spacing: 0px;
+  font-size: 0.9em;
+  font-family: mainFontMedium;
+}
+select{
+  margin:0;
+  padding:0.6em;
+  text-align:center;
+}
+p[id="skill-level-value"]{
+  margin:auto;
+}
+li{
+  display:flex;
+  margin-bottom:10px;
+}
+label{
+  font-size: 1em;
+  text-align: right;
+  padding-right: 1px;
+  margin:auto; 
+}
+span{
+  margin:auto;
+}
+/*.education *{
+  border:1px solid pink;
+}*/
+/*
+#name *{
+  border:1px solid pink;
+}*/
+#name li{
+  display:flex;
+  margin-bottom:10px;
+}
+#name ul{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 600px;
+}
+#name ul li{
+  flex:1 1 200px;
+}
+#name ul li label{
+  width:105px;
+}
+#name ul li input{
+  flex:1;
+}
+/*
+#contact *{
+  border:1px solid pink;
+}*/
+#contact li{
+  display:flex;
+}
+#contact ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+#contact ul li{
+  flex:1 1 200px;
+}
+#contact ul li label{
+  width:120px;
+}
+#contact ul li input{
+  flex-shrink: 1;
+  flex:1;
+}
+input[type=file]{
+  min-width: 150px;
+
+}
+label[for=myemail]{
+  max-width:60px;
+}
+input[id=myemail]{
+  min-width: 210px;
+}
+label[for=calling-code]{
+  max-width: 70px;
+}
+input[id=calling-code]{
+  max-width: 50px;
+}
+label[for=myphone-number]{
+  max-width: 60px;
+}
+input[id=calling-code]{
+  min-width: 20px;
+}
+input[type=tel]{
+  min-width: 60px;
+  max-width: 300px;
+}
+.education li{
+  display:flex;
+}
+.education ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.education ul li{
+  flex:1 1 200px;
+  width:100%;
+}
+.education ul li label{
+  width:120px;
+}
+.education ul li input{
+  flex:1;
+}
+.education ul li select{
+  flex-shrink: 1;
+  flex:1;
+  flex-basis:150px;
+}
+.education ul li select, .education ul li .school-type-select{
+  flex-shrink: 1;
+  flex:1;
+  flex-basis:200px;
+}
+.education ul li select{
+  max-width:300px;
+}
+.knowledge-type{
+  max-width:50px;
+}
+.school{
+  min-width:150px;
+}
+input[type=date]{
+  flex-shrink:1;
+  min-width:50px;
+  max-width:160px;
+}
+
+.startyear{
+  max-width:60px;
+}
+.endyear{
+  max-width:30px;
+}
+.experience li{
+  display:flex;
+}
+.experience ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.experience ul li{
+  flex:1 1 200px;
+  width:100%;
+}
+.experience ul li input{
+  flex:1;
+}
+
+.skill li{
+  display:flex;
+}
+.skill ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.skill ul li{
+  flex:1 1 400px;
+  width:100%;
+}
+.skill ul li input{
+  flex:1;
+}
+.skill ul li input[type=range]{
+  flex:1;
+  margin-top:10px;
+  min-width:200px;
+}
+.skill ul li p{
+  margin-top:0.8em;
+  margin-left:10px;
+  min-width:100px;
+  max-width:100px;
+}
+
+.hobby ul li{
+  display:flex;
+}
+.hobby ul li input{
+  flex:1;
+  min-width:80px;
+}
+.link li{
+  display:flex;
+}
+
+.link ul{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:0.5rem;
+  flex:1 1200px;
+  max-width: 700px;
+}
+.link ul li{
+  flex:1 1 400px;
+  width:100%;
+}
+.link ul li input{
+  flex:1;
+}
+.link ul li label{
+  min-width:105px;
+  max-width:105px;
+}
+
+@media (max-width:540px){
+  section, div[class='education-buttons']{
+    width:99%;
+  }
+  input,select{
+    width:100%;
+  }
+}
+@media (max-width:410px){
+  input[type=text],input[type=email],input[type=number],input[type="tel"],input[type=url], select {
+    min-height: 50px;
+    font-size: 0.75em;
+    padding-left:5px;
+  }
+  input[type="range"]{
+    padding-left:5px;
+  }
+  input[type=date]{
+    font-size: 0.6em;
+  }
+  label{
+    font-size: 0.9em;
+    margin:auto 0;
+  }
+  .education-description{
+    max-width:180px;
+  }
+}
+@media (min-width:1440px){
+  .functionButtons{
+    min-width:100%;
+  }
+}
+
+input:invalid + span::after {
+    
+    content: "✖";
+    color:crimson;
+    padding-left: 5px;
+    padding-right:1px;
+  }
+  
+input:valid + span::after {
+    content: "✓";
+    /*color:green;*/
+    font-weight: 900;
+    padding-left: 5px;
+    padding-right:1px;
+  }
+.school-type-select{
+    display:none;
+    /*display:inline-block*/;
+}
+select:invalid + span::after {
+    content: "✖";
+    color:crimson;
+    padding-left: 5px;
+    padding-right:1px;
+  }
+  
+select:valid + span::after {
+    content: "✓";
+    /*color:green;*/
+    font-weight: 900;
+    padding-left: 5px;
+    padding-right:1px;
+  }
