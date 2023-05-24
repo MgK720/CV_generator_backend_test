@@ -13,8 +13,8 @@ const createCv = async (request, response) => {
     const personaldata = {
          firstname : request.body.firstname,
          lastname : request.body.lastname,
-         email : request.body.myemail,
-         phone_country : request.body.calling_code,
+         email : request.body.email,
+         phone_country : request.body.phone_country,
          phone : request.body.myphone_number,
          img_destination : `/img/`
     };
@@ -29,13 +29,13 @@ const createCv = async (request, response) => {
         outputMessage += `PersonalData added with ID: ${personalDataID} <br>\n`;
         //take data (mulltiple) and insert into knowledge table
         let numberOfKnowledge = 0;
-        let knowledgeWithNumber = "school" + numberOfKnowledge;
+        let knowledgeWithNumber = "knowledge_name" + numberOfKnowledge;
         while(request.body[knowledgeWithNumber]){
-            let knowledge_name = request.body["school" + numberOfKnowledge];
+            let knowledge_name = request.body["knowledge_name" + numberOfKnowledge];
             let knowledgetype_id = request.body["knowledge_type" + numberOfKnowledge];
             let schooltype_id = request.body["school_type" + numberOfKnowledge];
-            let start_date_knowledge = request.body["startyear" + numberOfKnowledge];
-            let end_date_knowledge = request.body["endyear" + numberOfKnowledge];
+            let start_date_knowledge = request.body["start_date_knowledge" + numberOfKnowledge];
+            let end_date_knowledge = request.body["end_date_knowledge" + numberOfKnowledge];
             let description = request.body["education_description" + numberOfKnowledge];
 
             let knowledgeID = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
@@ -43,22 +43,22 @@ const createCv = async (request, response) => {
             outputMessage += `Knowledge added with ID: ${knowledgeID} <br>\n`;
 
             numberOfKnowledge +=1;
-            knowledgeWithNumber = "school" + numberOfKnowledge;
+            knowledgeWithNumber = "knowledge_name" + numberOfKnowledge;
         };
         //take data (multiple) and insert into experience table
         let numberOfExperience = 0;
-        let experienceWithNumber = "job" + numberOfExperience;
+        let experienceWithNumber = "job_name" + numberOfExperience;
         while(request.body[experienceWithNumber]){
-            let job_name = request.body["job" + numberOfExperience];
-            let start_date_job = request.body["startyear_job" + numberOfExperience];
-            let end_date_job = request.body["endyear_job" + numberOfExperience];
+            let job_name = request.body["job_name" + numberOfExperience];
+            let start_date_job = request.body["start_date_job" + numberOfExperience];
+            let end_date_job = request.body["end_date_job" + numberOfExperience];
 
             let experienceID = await addExperience(cvID, job_name, start_date_job, end_date_job);
 
             outputMessage += `Experience added with ID: ${experienceID} <br>\n`;
 
             numberOfExperience +=1;
-            experienceWithNumber = "job" + numberOfExperience;
+            experienceWithNumber = "job_name" + numberOfExperience;
         };
         //take data (multiple) and insert into skill table
         let numberOfSkill = 0;
