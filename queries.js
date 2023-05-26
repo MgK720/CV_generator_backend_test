@@ -39,6 +39,7 @@ const createCv = async (request, response) => {
             let description = request.body["education_description" + numberOfKnowledge];
 
             let knowledgeID = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
+            console.log("hahshahahaha", knowledgeID, knowledge_name);
 
             outputMessage += `Knowledge added with ID: ${knowledgeID} <br>\n`;
 

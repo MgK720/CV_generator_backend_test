@@ -281,11 +281,11 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
     var educationDescriptionLabel = document.createElement("label");
-    setAttributes(educationDescriptionLabel, {"for": "education-description" + addEducationCount});
+    setAttributes(educationDescriptionLabel, {"for": "education_description" + addEducationCount});
     educationDescriptionLabel.textContent = "Description:";
 
     var educationDescription = document.createElement("input");
-    setAttributes(educationDescription, {"type": "text", "name": "education-description" + addEducationCount,"class": "education-description", "id": "education-description" + addEducationCount, "maxlength": "100", "placeholder": "---Write something---"});
+    setAttributes(educationDescription, {"type": "text", "name": "education_description" + addEducationCount,"class": "education-description", "id": "education_description" + addEducationCount, "maxlength": "100", "placeholder": "---Write something---"});
 
     knowledgeLi.appendChild(knowledgeLabel);
     knowledgeLi.appendChild(knowledge);
