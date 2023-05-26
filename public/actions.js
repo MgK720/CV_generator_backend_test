@@ -9,7 +9,6 @@ var addExperienceCount = 0;
 var addSkillCount = 0;
 var addHobbyCount = 0;
 var addLinkCount = 0;
-
 window.addEventListener("load", (event) => {
     maxDate();
   });
@@ -18,6 +17,10 @@ function setAttributes(attrib, values){
         attrib.setAttribute(key,values[key]);
     }
 }
+
+window.addEventListener("DOMContentLoaded", (event) =>{
+    schoolTypeShowOnRefresh();
+})
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -145,6 +148,17 @@ function schoolTypeShow(addEducationCount) {
     }
 }
 };
+
+function schoolTypeShowOnRefresh(){
+    //Miałem problem z sessionStorage tego elementu podczas odswiezania strony zostawała wybrana przed refreshem wartość
+    //nie działało to prawidłowo z funkcją schoolTypeShow, dlatego teraz po refreshu jesli uzytkownik wybral opcje "school"
+    //to prawidłowo wyświetli sie select wyboru school_type
+    if(document.getElementById("knowledge_type0").value == 1){
+        document.getElementById("school_type0").required = true
+        document.getElementById("school-type-select0").style.display = "flex";
+    }
+}
+
 function createSpanValidity(){
     var spanValidity = document.createElement("span");
     spanValidity.setAttribute("class","validity");
