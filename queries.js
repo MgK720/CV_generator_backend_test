@@ -30,6 +30,7 @@ const createCv = async (request, response) => {
         //take data (mulltiple) and insert into knowledge table
         let numberOfKnowledge = 0;
         let knowledgeWithNumber = "knowledge_name" + numberOfKnowledge;
+        console.log("knowledgewithnumber:" + knowledgeWithNumber);
         while(request.body[knowledgeWithNumber]){
             let knowledge_name = request.body["knowledge_name" + numberOfKnowledge];
             let knowledgetype_id = request.body["knowledge_type" + numberOfKnowledge];
@@ -39,13 +40,13 @@ const createCv = async (request, response) => {
             let description = request.body["education_description" + numberOfKnowledge];
 
             let knowledgeID = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
-            console.log("hahshahahaha", knowledgeID, knowledge_name);
 
             outputMessage += `Knowledge added with ID: ${knowledgeID} <br>\n`;
 
             numberOfKnowledge +=1;
             knowledgeWithNumber = "knowledge_name" + numberOfKnowledge;
         };
+        console.log("witam" + numberOfKnowledge);
         //take data (multiple) and insert into experience table
         let numberOfExperience = 0;
         let experienceWithNumber = "job_name" + numberOfExperience;
