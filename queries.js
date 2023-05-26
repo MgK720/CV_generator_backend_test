@@ -15,7 +15,7 @@ const createCv = async (request, response) => {
          lastname : request.body.lastname,
          email : request.body.email,
          phone_country : request.body.phone_country,
-         phone : request.body.myphone_number,
+         phone : request.body.phone,
          img_destination : `/img/`
     };
     try{

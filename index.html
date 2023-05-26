@@ -20,7 +20,7 @@
         <p id="log">My log</p>
     </aside>-->
     <main>
-        <form action="done.html">
+        <form action="/cv" method="POST">
             <section id="myform">
                 <section id="name">
                     <ul>
@@ -78,6 +78,7 @@
                                 <option value="0">Course</option>
                             </select>
                             <span class="validity"></span>
+                            <!--TODO !!! Przy odświezaniu strony dzieja sie dziwne rzeczy - po kazdym restarcie musi wrocic na "--option--"-->
                             <div id="school-type-select0" class="school-type-select">
                                 <!--<label for="school-type0" class="school-type">School:</label>-->
                                 <select name="school_type0" id="school_type0">
@@ -100,8 +101,8 @@
                             <span class="validity"></span>
                         </li>
                         <li>
-                            <label for="education-description0">Description:</label>
-                            <input type="text" name="education-description0" id="education-description0"
+                            <label for="education_description0">Description:</label>
+                            <input type="text" name="education_description0" id="education_description0"
                                 class="education-description" maxlength="100" placeholder="---Write something---">
                         </li>
                     </ul>
@@ -122,8 +123,8 @@
                             <input type="date" name="start_date_job0" id="start_date_job0" min="1900-01-01"
                                 max="2023-03-27" value="2100-01-01" required>
                             <span class="validity"></span>
-                            <label for="start_date_job0" class="endyear">To:</label>
-                            <input type="date" name="start_date_job0" id="start_date_job0" min="1900-01-01" max="2023-03-27"
+                            <label for="end_date_job0" class="endyear">To:</label>
+                            <input type="date" name="end_date_job0" id="end_date_job0" min="1900-01-01" max="2023-03-27"
                                 value="2100-01-01" required>
                             <span class="validity"></span>
                         </li>
@@ -202,7 +203,7 @@
     <footer>
         <p>Copyright &copy Igor Ciesielski 2023</p>
     </footer>
-    <script src="actions.js"></script>
+    <script src="/actions.js"></script>
 
 </body>
 

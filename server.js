@@ -6,6 +6,7 @@ const port = 3000
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: true})); 
+app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
