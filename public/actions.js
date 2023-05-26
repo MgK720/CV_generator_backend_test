@@ -18,6 +18,7 @@ function setAttributes(attrib, values){
     }
 }
 
+//lepiej korzystać z tego zamiast - event dziala jeszcze przed pelnym zaladowaniem jsa cssa/ reszty dodatkowych plikow
 window.addEventListener("DOMContentLoaded", (event) =>{
     schoolTypeShowOnRefresh();
 })
@@ -78,6 +79,7 @@ $( document ).on( "click", "input[type='date']",function(event){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
+//input and load
 $( document ).on("input", "input[type='range']", function(event){
         var idOfClickedElement = event.target.id;
         var valueOfClickedElement = event.target.value;
