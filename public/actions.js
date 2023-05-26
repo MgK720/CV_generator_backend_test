@@ -20,7 +20,8 @@ function setAttributes(attrib, values){
 
 //lepiej korzystać z tego zamiast - event dziala jeszcze przed pelnym zaladowaniem jsa cssa/ reszty dodatkowych plikow
 window.addEventListener("DOMContentLoaded", (event) =>{
-    schoolTypeShowOnRefresh();
+    SchoolTypeShowOnRefresh();
+    SkillLevelOnRefresh();
 })
 function sleep(milliseconds) {
     const date = Date.now();
@@ -80,7 +81,7 @@ $( document ).on( "click", "input[type='date']",function(event){
         })
     })
 //input and load
-$( document ).on("input", "input[type='range']", function(event){
+$( document ).on("input","input[type='range']", function(event){
         var idOfClickedElement = event.target.id;
         var valueOfClickedElement = event.target.value;
         console.log("my value = " + valueOfClickedElement);
@@ -94,28 +95,37 @@ $( document ).on("input", "input[type='range']", function(event){
 
         var idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
 
-        if(valueOfClickedElement == 1){
-            idOfParagraphSelector.text("Very Low");
-            idOfParagraphSelector.css("color", "#ff0000")
-        }else if(valueOfClickedElement == 2){
-            idOfParagraphSelector.text("Low");
-            idOfParagraphSelector.css("color", "#ff4d00")
-        }else if(valueOfClickedElement == 3){
-            idOfParagraphSelector.text("Medium");
-            idOfParagraphSelector.css("color", "#ffa300")
-        }else if(valueOfClickedElement == 4){
-            idOfParagraphSelector.text("High");
-            idOfParagraphSelector.css("color", "#e3ff00")
-        }else if(valueOfClickedElement == 5){
-            idOfParagraphSelector.text("Very High");
-            idOfParagraphSelector.css("color", "#a3ff00")
-        }else{
-            return;
-        }
-
-
+        SkillLevelParagraphSet(valueOfClickedElement, idOfParagraphSelector);
 
 })
+
+function SkillLevelOnRefresh(){
+    let skillLevelValue = document.getElementById("skill_level0").value;
+    var paragraphSelector = $("p[id='skill-level-value0']");
+    SkillLevelParagraphSet(skillLevelValue, paragraphSelector);
+    
+}
+
+function SkillLevelParagraphSet(skillLevelValue, paragraphSelector){
+    if(skillLevelValue == 1){
+        paragraphSelector.text("Very Low");
+        paragraphSelector.css("color", "#ff0000")
+    }else if(skillLevelValue == 2){
+        paragraphSelector.text("Low");
+        paragraphSelector.css("color", "#ff4d00")
+    }else if(skillLevelValue == 3){
+        paragraphSelector.text("Medium");
+        paragraphSelector.css("color", "#ffa300")
+    }else if(skillLevelValue == 4){
+        paragraphSelector.text("High");
+        paragraphSelector.css("color", "#e3ff00")
+    }else if(skillLevelValue == 5){
+        paragraphSelector.text("Very High");
+        paragraphSelector.css("color", "#a3ff00")
+    }else{
+        return;
+    }
+}
 /*
 --------------------LEGACY-----------------------------
 function showLogMsg(message){
@@ -151,7 +161,7 @@ function schoolTypeShow(addEducationCount) {
 }
 };
 
-function schoolTypeShowOnRefresh(){
+function SchoolTypeShowOnRefresh(){
     //Miałem problem z sessionStorage tego elementu podczas odswiezania strony zostawała wybrana przed refreshem wartość
     //nie działało to prawidłowo z funkcją schoolTypeShow, dlatego teraz po refreshu jesli uzytkownik wybral opcje "school"
     //to prawidłowo wyświetli sie select wyboru school_type
