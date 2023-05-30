@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 
 app.get("/cv/:id", getCv);
 
-app.post('/cv', upload_img.upload, db.createCv)
+app.post('/cv', upload_img.uploadFile, db.createCv)
 
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)
