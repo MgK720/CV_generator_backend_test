@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const upload_img = require('./upload_img')
+const upload_img = require('./api/upload_img')
 const app = express()
 const db = require('./api/create')
 const { getCv } = require('./api/get');

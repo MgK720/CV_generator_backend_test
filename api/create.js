@@ -1,4 +1,4 @@
-const {upload, getFileDetails} = require('../upload_img.js')
+const {upload, getFileDetails} = require('./upload_img.js')
 const Pool = require('pg').Pool
 const pool = new Pool({
     user: 'me',
