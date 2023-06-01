@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/get_cv/reset.css">
+    <title>myCv</title>
+</head>
+<body style="display:flex">
+    <% var personalData = JSON.parse(outputData).personaldata; %>
+    <% if (personalData && personalData.length > 0) { %>
+    <div id="personaldata" style="border:1px solid black; padding:1rem;">
+        <ul>
+            <% personalData.forEach(function(personal) { %>
+                <li>
+                    <img src="<%= '/' + personal.img_destination %>" alt="" style="width:150px; height:200px">
+                </li>
+                <li>
+                    <p>firstname: <%= personal.firstname %></p>
+                    <p>lastname: <%= personal.lastname %></p>
+                </li>
+                <li>
+                    <p>Email: <%= personal.email %></p>
+                </li>
+            <% }) %>
+            <% } else { %>
+                <p>No personal data available.</p>
+            <% } %>
+        </ul>
+    </div>
+</body>
+</html>
