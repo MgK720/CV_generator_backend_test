@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const upload_img = require('./upload_img')
 const app = express()
-const db = require('./queries')
-const { getCv } = require('./get');
+const db = require('./api/create')
+const { getCv } = require('./api/get');
 const port = 3000
 
 
