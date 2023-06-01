@@ -23,11 +23,42 @@
                 <li>
                     <p>Email: <%= personal.email %></p>
                 </li>
+                <li>
+                    <p>Phone: +<%= personal.phone_country  %> <%= personal.phone %></p>
+                </li>
             <% }) %>
             <% } else { %>
                 <p>No personal data available.</p>
             <% } %>
         </ul>
     </div>
+    <section>
+    <% var knowledge = JSON.parse(outputData).knowledge; %>
+    <% if (knowledge && knowledge.length > 0) { %>
+        <% knowledge.forEach(function(knowledgeRecord) { %>
+        <div id="knowledge" style="border:1px solid black; padding:1rem;">
+            <ul>
+                    <li>
+                        <p>knowledge_name: <%= knowledgeRecord.knowledge_name %></p>
+                    </li>
+                    <li>
+                        <p>knowledge_type: <%= knowledgeRecord.knowledgetype_id %></p>
+                        <p>knowledge_name: <%= knowledgeRecord.schooltype_id %></p>
+                    </li>
+                    <li>
+                        <p>start_date_knowledge: <%= knowledgeRecord.start_date_knowledge %></p>
+                        <p>end_date_knowledge: <%= knowledgeRecord.end_date_knowledge %></p>
+                    </li>
+                    <li>
+                        <p>description: <%= knowledgeRecord.description %></p>
+                    </li>
+            </ul>
+        </div>
+            <% }) %>
+    <% } else { %>
+                <p>No knowledge data available.</p>
+    <% } %>
+        
+    </section>
 </body>
 </html>
