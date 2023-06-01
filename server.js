@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+  res.render('index');
   });
 
 app.get("/cv/:id", getCv);
