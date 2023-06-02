@@ -9,7 +9,7 @@ const pool = new Pool({
 })
 const createCv = async (request, response) => {
     let outputMessage = '';
-    const cv_url = `http://cv/${Math.floor(Math.random() * 100000)}.cv`
+    const cv_url = `http://cv.com/${Math.floor(Math.random() * 100000)}.cv`
     const personaldata = {
         firstname : request.body.firstname,
         lastname : request.body.lastname,
@@ -19,7 +19,7 @@ const createCv = async (request, response) => {
     };
     let img_destination = '';
     getFileDetails(async (fileDir, fileName) => {
-        img_destination = `${fileDir}/${fileName}`;
+        img_destination = `imgs/${fileName}`;
         console.log("my img dest:" + img_destination)});
     try{
         console.log(request.body);
