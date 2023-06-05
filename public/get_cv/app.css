@@ -1,0 +1,23 @@
+@font-face {
+    font-family: mainFontMedium;
+    src: url(/fonts/Roboto/Roboto-Medium.ttf);
+}
+body{
+    background-color: #061735;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: mainFontMedium;
+    color:#F9F5EB;
+    font-size: 1.2rem;
+}
+section{
+    background-color: #07264e;
+    border-radius: 10px;
+    border:1px solid #F9F5EB;
+    margin:1rem;
+    padding:1.2rem;
+    letter-spacing: 1px;
+}
+p{
+    padding:0.5rem 0;
+}
