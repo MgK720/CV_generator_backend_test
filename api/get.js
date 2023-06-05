@@ -1,11 +1,12 @@
 const Pool = require('pg').Pool
+require('dotenv').config({ debug: process.env.DEBUG });
 const pool = new Pool({
-    user: 'me',
-    host: 'localhost',
-    database: 'cvgen_test',
-    password: 'password',
-    port: 5432,
-})
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+  })
 
 const getCv = async (request, response) => {
     const id = request.params.id;
