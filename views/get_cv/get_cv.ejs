@@ -137,11 +137,8 @@
             <div class="link">
                 <ul>
                         <li>
-                            <p>link_url: <%= linkRecord.link_url %></p>
-                        </li>
+                            <button class="link_button" href="<%= linkRecord.link_url %>"><%= linkRecord.link_name%></button>
                         <li>
-                            <p>link_name: <%= linkRecord.link_name%></p>
-                        </li>
                 </ul>
             </div>
                 <% }) %>
