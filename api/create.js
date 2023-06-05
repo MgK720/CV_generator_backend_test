@@ -42,10 +42,19 @@ const createCv = async (request, response) => {
         outputMessage += await addLinkEntries(cvID, request.body);
     
         console.log(outputMessage);
-        response.status(201).send(outputMessage);
+
+        response.render('confirm_generation/confirm', {
+            cvID: cvID,
+            msg: '',
+        })
+        //response.status(201).send(outputMessage);
     }catch (error){
         console.error(error);
-        response.status(500).send("Error while creating CV");
+        //response.status(500).send("Error while creating CV");
+        response.render('confirm_generation/confirm', {
+            cvID: -1,
+            msg: 'Some inputs not valid',
+        });
     }
 
   }
