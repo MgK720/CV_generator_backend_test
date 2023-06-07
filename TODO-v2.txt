@@ -2,7 +2,7 @@
 2.delete
 3.register
 4.login
-4.search 
+5.search 
     (najprawdopodobniej wszystko w jednym ejs - input i pod lista wszystkich skilli ktora sie generuje dynamicznie jesli wyszukamy frazy)
     A | skill input ejs + get route
     B | in route ---> select * from skill 
@@ -11,3 +11,5 @@
             print(cvID, allSKills)
         }
     })
+6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search)
+7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete)
