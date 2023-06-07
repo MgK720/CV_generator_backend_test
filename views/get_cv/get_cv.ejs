@@ -20,18 +20,20 @@
         <ul>
             <% personalData.forEach(function(personal) { %>
                 <li>
-                    <img src="<%= '/' + personal.img_destination %>" alt="" >
+                    <img src="<%= '/' + personal.img_destination %>" alt="no img" >
+                </li>
+                <div class="personaldata_text">
+                <li>
+                    <p>firstname: <span><%= personal.firstname %></span></p>
+                    <p>lastname: <span><%= personal.lastname %></span></p>
                 </li>
                 <li>
-                    <p>firstname: <%= personal.firstname %></p>
-                    <p>lastname: <%= personal.lastname %></p>
+                    <p>Email: <span><a href="mailto:<%= personal.email %>" class="email_and_phone_href"><%= personal.email %></a></span></p>
                 </li>
                 <li>
-                    <p>Email: <%= personal.email %></p>
+                    <p>Phone: <span><a href="<%= 'tel:+' + personal.phone_country + personal.phone %>" class="email_and_phone_href">+<%= personal.phone_country  %> <%= personal.phone %></a></span></p>
                 </li>
-                <li>
-                    <p>Phone: +<%= personal.phone_country  %> <%= personal.phone %></p>
-                </li>
+            </div>
             <% }) %>
             <% } else { %>
                 <p>No personal data available.</p>
@@ -47,18 +49,21 @@
         <div class="knowledge">
             <ul>
                     <li>
-                        <p>knowledge_name: <%= knowledgeRecord.knowledge_name %></p>
+                        <p>Name: <span><%= knowledgeRecord.knowledge_name %></span></p>
                     </li>
                     <li>
-                        <p>knowledge_type: <%= knowledgeRecord.knowledgetype_id %></p>
-                        <p>knowledge_name: <%= knowledgeRecord.schooltype_id %></p>
+                        <% const schooltype = ['primary', 'middleSchool', 'highSchool'] %>
+                        <% if(knowledgeRecord.knowledgetype_id == 0){ %>
+                        <p>Type: <span>Course</span></p>
+                        <% }else if(knowledgeRecord.knowledgetype_id == 1){ %>
+                        <p>Type: <span>School - <%= schooltype[knowledgeRecord.schooltype_id] %></span></p>
+                        <% } %>
                     </li>
                     <li>
-                        <p>start_date_knowledge: <%= knowledgeRecord.start_date_knowledge.slice(0,10) %></p>
-                        <p>end_date_knowledge: <%= knowledgeRecord.end_date_knowledge.slice(0,10) %></p>
+                        <p>From: <%= knowledgeRecord.start_date_knowledge.slice(0,10) %> To: <%= knowledgeRecord.end_date_knowledge.slice(0,10) %></p>
                     </li>
                     <li>
-                        <p>description: <%= knowledgeRecord.description %></p>
+                        <p>description: <span><%= knowledgeRecord.description %></span></p>
                     </li>
             </ul>
         </div>
@@ -76,11 +81,10 @@
             <div class="job">
                 <ul>
                         <li>
-                            <p>job_name: <%= jobRecord.job_name %></p>
+                            <p>Name: <span><%= jobRecord.job_name %></span></p>
                         </li>
                         <li>
-                            <p>job_start_date: <%= jobRecord.start_date_job.slice(0,10) %></p>
-                            <p>job_end_date: <%= jobRecord.end_date_job.slice(0,10) %></p>
+                            <p>From: <%= jobRecord.start_date_job.slice(0,10) %> To: <%= jobRecord.end_date_job.slice(0,10) %> </p>
                         </li>
                 </ul>
             </div>
@@ -98,10 +102,10 @@
             <div class="skill">
                 <ul>
                         <li>
-                            <p>skill_name: <%= skillRecord.skill_name %></p>
+                            <p>Name: <span><%= skillRecord.skill_name %></span></p>
                         </li>
                         <li>
-                            <p>skill_level: <%= skillRecord.level %></p>
+                            <p>Level: <%= skillRecord.level %></p>
                         </li>
                 </ul>
             </div>
@@ -119,7 +123,7 @@
             <div class="hobby">
                 <ul>
                         <li>
-                            <p>hobby_name: <%= hobbyRecorrd.hobby_name %></p>
+                            <p>Name: <span><%= hobbyRecorrd.hobby_name %></span></p>
                         </li>
                 </ul>
             </div>
@@ -138,7 +142,7 @@
                 <ul>
                         <li>
                             <button class="link_button" href="<%= linkRecord.link_url %>"><%= linkRecord.link_name%></button>
-                        <li>
+                        </li>
                 </ul>
             </div>
                 <% }) %>
