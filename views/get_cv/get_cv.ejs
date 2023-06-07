@@ -105,7 +105,14 @@
                             <p>Name: <span><%= skillRecord.skill_name %></span></p>
                         </li>
                         <li>
-                            <p>Level: <%= skillRecord.level %></p>
+                            <p class="levelValue"><%= skillRecord.level %></p>
+                            <div class="level_bar">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
                         </li>
                 </ul>
             </div>
@@ -155,5 +162,6 @@
 <footer>
     <p>Copyright &copy Igor Ciesielski 2023</p>
 </footer>
+    <script src="/get_cv/actions.js"></script>
 </body>
 </html>
