@@ -13,7 +13,7 @@
         <h1>CV Generator</h1>
     </header>
     <main>
-    <% var personalData = JSON.parse(outputData).personaldata; %>
+    <% const personalData = JSON.parse(outputData).personaldata; %>
     <% if (personalData && personalData.length > 0) { %>
     <section id="personaldata_section">
     <div class="personaldata">
@@ -43,7 +43,7 @@
     </section>
     <section id="education_section">
         <h2>education</h2>
-    <% var knowledge = JSON.parse(outputData).knowledge; %>
+    <% const knowledge = JSON.parse(outputData).knowledge; %>
     <% if (knowledge && knowledge.length > 0) { %>
         <% knowledge.forEach(function(knowledgeRecord) { %>
         <div class="knowledge">
@@ -75,7 +75,7 @@
     </section>
     <section id="experience_section">
         <h2>experience</h2>
-        <% var experience = JSON.parse(outputData).experience; %>
+        <% const experience = JSON.parse(outputData).experience; %>
         <% if (experience && experience.length > 0) { %>
             <% experience.forEach(function(jobRecord) { %>
             <div class="job">
@@ -96,7 +96,7 @@
     </section>
     <section id="skill_section">
         <h2>skills</h2>
-        <% var skill = JSON.parse(outputData).skill; %>
+        <% const skill = JSON.parse(outputData).skill; %>
         <% if (skill && skill.length > 0) { %>
             <% skill.forEach(function(skillRecord) { %>
             <div class="skill">
@@ -117,7 +117,7 @@
     </section>
     <section id="hobby_section">
         <h2>hobby</h2>
-        <% var hobby = JSON.parse(outputData).hobby; %>
+        <% const hobby = JSON.parse(outputData).hobby; %>
         <% if (hobby && hobby.length > 0) { %>
             <% hobby.forEach(function(hobbyRecorrd) { %>
             <div class="hobby">
@@ -135,7 +135,7 @@
     </section>
     <section id="link_section">
         <h2>links</h2>
-        <% var link = JSON.parse(outputData).link; %>
+        <% const link = JSON.parse(outputData).link; %>
         <% if (link && link.length > 0) { %>
             <% link.forEach(function(linkRecord) { %>
             <div class="link">

@@ -1,0 +1,13 @@
+1.update
+2.delete
+3.register
+4.login
+4.search 
+    (najprawdopodobniej wszystko w jednym ejs - input i pod lista wszystkich skilli ktora sie generuje dynamicznie jesli wyszukamy frazy)
+    A | skill input ejs + get route
+    B | in route ---> select * from skill 
+    C | allSkills.forEach( skillRecord => {
+        if(skillRecord.tolower().contains('input')){ 
+            print(cvID, allSKills)
+        }
+    })
