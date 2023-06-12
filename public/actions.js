@@ -10,6 +10,26 @@ let addSkillCount = 0;
 let addHobbyCount = 0;
 let addLinkCount = 0;
 
+//for create form all variables = 0
+const educationDataFromDbCount = 0;
+const experienceDataFromDbCount = 0;
+const skillDataFromDbCount = 0;
+const hobbyDataFromDbCount = 0;
+const linkDataFromDbCount = 0;
+//for update form all variables = tableDataCount
+if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w another js file (fetched in update template)
+    educationDataFromDbCount = 1; //imported data from another js file (fetched in update template)
+    experienceDataFromDbCount = 0;
+    skillDataFromDbCount = 0;
+    hobbyDataFromDbCount = 0;
+    linkDataFromDbCount = 0;
+}
+
+function checkFormStatus(){ 
+    return document.querySelector('form').getAttribute('formStatus');
+}
+
+
 window.addEventListener("DOMContentLoaded", (event) =>{
     SchoolTypeShowOnRefresh();
     SkillLevelOnRefresh();
@@ -371,7 +391,7 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
 
 function deleteEducationSection(){
     console.log("You clicked deleteEducation");
-    if(addEducationCount != 0 ){
+    if(addEducationCount != educationDataFromDbCount ){
         const deleteSection = document.getElementById("education" + addEducationCount);
         const previousSection = addEducationCount-1;
         const scrollSection = document.getElementById("education" + previousSection);
@@ -470,7 +490,7 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
 
 window.onload = document.getElementById("deletejob").addEventListener("click", function() {
         console.log("You clicked deleteJob");
-        if(document.getElementById("experience" + addExperienceCount) == null){
+        if(addExperienceCount == experienceDataFromDbCount-1){
             var scrollSection = document.getElementById("experience-buttons");
             scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
             console.log("all experience records deleted");
@@ -479,7 +499,7 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
         }
         var deleteSection = document.getElementById("experience" + addExperienceCount);
         var previousSection = addExperienceCount-1;
-        if(previousSection!=-1){var scrollSection = document.getElementById("experience" + previousSection);}
+        if(previousSection!=experienceDataFromDbCount-1){var scrollSection = document.getElementById("experience" + previousSection);}
         else{var scrollSection = document.getElementById("experience-buttons");}
         deleteSection.classList.add("deleted_element");
         console.log("experience"+addExperienceCount+" deleted")
@@ -491,7 +511,7 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
         setTimeout(()=> {
             clearTimeout();
         }, 1);
-        if(addExperienceCount >= 0 ){
+        if(addExperienceCount >= experienceDataFromDbCount ){
             addExperienceCount -=1;
         };
 });
