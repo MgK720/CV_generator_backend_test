@@ -9,20 +9,13 @@ let addExperienceCount = 0;
 let addSkillCount = 0;
 let addHobbyCount = 0;
 let addLinkCount = 0;
-window.addEventListener("load", (event) => {
-    maxDate();
-  });
-function setAttributes(attrib, values){
-    for(var key in values){
-        attrib.setAttribute(key,values[key]);
-    }
-}
 
-//lepiej korzystać z tego zamiast - event dziala jeszcze przed pelnym zaladowaniem jsa cssa/ reszty dodatkowych plikow
 window.addEventListener("DOMContentLoaded", (event) =>{
     SchoolTypeShowOnRefresh();
     SkillLevelOnRefresh();
+    maxDate();
 })
+
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -37,7 +30,7 @@ function today(){
     let month = date.getMonth()+1;
     let year = date.getFullYear();
 
-    var currentDate;
+    let currentDate;
     if(day > 9){currentDate = `${year}-0${month}-${day}`;}
     else{currentDate = `${year}-0${month}-0${day}`;}
 
@@ -46,10 +39,10 @@ function today(){
 
 }
 function maxDate(){
-        var myEduDateInputFrom = document.getElementById("start_date_knowledge0");
-        var myEduDateInputTo = document.getElementById("end_date_knowledge0");
-        var myExpDateInputFrom = document.getElementById("start_date_job0");
-        var myExpDateInputTo = document.getElementById("end_date_job0");
+        const myEduDateInputFrom = document.getElementById("start_date_knowledge0");
+        const myEduDateInputTo = document.getElementById("end_date_knowledge0");
+        const myExpDateInputFrom = document.getElementById("start_date_job0");
+        const myExpDateInputTo = document.getElementById("end_date_job0");
 
 
         myEduDateInputFrom.setAttribute("max",today());
@@ -66,7 +59,6 @@ function maxDate(){
 
 }
 
-/* jquery CLS score of 0.1 or less - > myscore: 0.00004937*/
 $( document ).on( "click", "input[type='date']",function(event){
         var idOfClickedElement = event.target.id;
         if(idOfClickedElement.includes("end_date")){
@@ -82,26 +74,22 @@ $( document ).on( "click", "input[type='date']",function(event){
     })
 //input and load
 $( document ).on("input","input[type='range']", function(event){
-        var idOfClickedElement = event.target.id;
-        var valueOfClickedElement = event.target.value;
-        console.log("my value = " + valueOfClickedElement);
-        console.log(idOfClickedElement);
+        const idOfClickedElement = event.target.id;
+        const valueOfClickedElement = event.target.value;
 
-        var idNumber = idOfClickedElement.charAt(idOfClickedElement.length-1);
-        console.log(idNumber);
+        const idNumber = idOfClickedElement.charAt(idOfClickedElement.length-1);
 
-        var idOfParagraph = "skill-level-value" + idNumber;
-        console.log("my replaced id = " + idOfParagraph);
+        const idOfParagraph = "skill-level-value" + idNumber;
 
-        var idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
+        const idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
 
         SkillLevelParagraphSet(valueOfClickedElement, idOfParagraphSelector);
 
 })
 
 function SkillLevelOnRefresh(){
-    let skillLevelValue = document.getElementById("skill_level0").value;
-    var paragraphSelector = $("p[id='skill-level-value0']");
+    const skillLevelValue = document.getElementById("skill_level0").value;
+    const paragraphSelector = $("p[id='skill-level-value0']");
     SkillLevelParagraphSet(skillLevelValue, paragraphSelector);
     
 }
@@ -145,8 +133,8 @@ window.onload = document.getElementById("remove-log").addEventListener("click", 
 
 function schoolTypeShow(addEducationCount) {
     console.log(addEducationCount);
-    for(var x = 0; x<=addEducationCount;x+=1){
-        var knowledge = document.getElementById("knowledge_type" + x).value;
+    for(let x = 0; x<=addEducationCount;x+=1){
+        const knowledge = document.getElementById("knowledge_type" + x).value;
         if (knowledge == 1) {
             //inline-block
             document.getElementById("school_type" + x).required = true
@@ -192,9 +180,14 @@ function validateFile(){
 }
 validateFile();
 
+function setAttributes(attrib, values){
+    for(let key in values){
+        attrib.setAttribute(key,values[key]);
+    }
+}
 
 function createSpanValidity(){
-    var spanValidity = document.createElement("span");
+    const spanValidity = document.createElement("span");
     spanValidity.setAttribute("class","validity");
     return spanValidity;
 }
@@ -207,52 +200,59 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
         return;
     }
     console.log("You clicked addEducation");
-    var place = document.getElementById("education" + addEducationCount);
+    const place = document.getElementById("education" + addEducationCount);
     addEducationCount = addEducationCount +1;
 
-    var newSection = document.createElement("section");
+    const newSection = addEducationSection(place);
+
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+
+});
+
+function addEducationSection(place){
+    const newSection = document.createElement("section");
     newSection.setAttribute("id", "education" + addEducationCount);
     newSection.setAttribute("class", "education added_element");
 
     console.log("education"+addEducationCount+" added");
 
-    var educationUl = document.createElement("ul");
-    var knowledgeLi = document.createElement("li");
-    var knowledgeTypeLi = document.createElement("li");
-    var knowledgeDateLi = document.createElement("li");
-    var knowledgeDescriptionLi = document.createElement("li");
+    const educationUl = document.createElement("ul");
+    const knowledgeLi = document.createElement("li");
+    const knowledgeTypeLi = document.createElement("li");
+    const knowledgeDateLi = document.createElement("li");
+    const knowledgeDescriptionLi = document.createElement("li");
 
 
-    var knowledgeLabel = document.createElement("label");
+    const knowledgeLabel = document.createElement("label");
     setAttributes(knowledgeLabel, {"for": "knowledge_name" + addEducationCount})
     knowledgeLabel.textContent = "Knowledge:";
 
-    var knowledge = document.createElement("INPUT");
+    const knowledge = document.createElement("INPUT");
     setAttributes(knowledge, {"type": "text", "name": "knowledge_name" + addEducationCount, "id" : "knowledge_name" + addEducationCount, 
     "class" : "school", "minlength" : "1", "maxlength" : "45"});
     knowledge.required = true;
 
-    var spanValidity0 = createSpanValidity();
+    const spanValidity0 = createSpanValidity();
 
 
 
-    var knowledgeTypeLabel = document.createElement("label");
+    const knowledgeTypeLabel = document.createElement("label");
     setAttributes(knowledgeTypeLabel, {"for": "knowledge_type" + addEducationCount, "class": "knowledge_type"});
     knowledgeTypeLabel.textContent = "Type:";
 
-    var knowledgeType = document.createElement("select");
+    const knowledgeType = document.createElement("select");
     setAttributes(knowledgeType, {"name": "knowledge_type" + addEducationCount, "id": "knowledge_type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)"});
     knowledgeType.required = true;
 
-    var blankType0 = document.createElement("option");
+    const blankType0 = document.createElement("option");
     setAttributes(blankType0,{"value": ""});
     blankType0.textContent = "--option--";
 
-    var firstKnowledgeType = document.createElement("option");
+    const firstKnowledgeType = document.createElement("option");
     setAttributes(firstKnowledgeType,{"value": "1"});
     firstKnowledgeType.textContent = "School";
 
-    var secondKnowledgeType = document.createElement("option");
+    const secondKnowledgeType = document.createElement("option");
     setAttributes(secondKnowledgeType,{"value": "0"});
     secondKnowledgeType.textContent = "Course";
 
@@ -260,39 +260,39 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
     knowledgeType.appendChild(firstKnowledgeType);
     knowledgeType.appendChild(secondKnowledgeType);
 
-    var spanValidity1 = createSpanValidity();
+    const spanValidity1 = createSpanValidity();
 
 
 
-    var divForSchoolTypeSelect = document.createElement("div");
+    const divForSchoolTypeSelect = document.createElement("div");
     setAttributes(divForSchoolTypeSelect, {"id": "school-type-select" + addEducationCount, "class": "school-type-select"});
 
     /*var schoolTypeLabel = document.createElement("label")
     setAttributes(schoolTypeLabel, {"for": "school-type" + addEducationCount});
     schoolTypeLabel.textContent = "SchoolType:";*/
 
-    var schoolType = document.createElement("select")
+    const schoolType = document.createElement("select")
     setAttributes(schoolType, {"name": "school_type" + addEducationCount, "id": "school_type" + addEducationCount});
     schoolType.required = true;
 
 
-    var blankType1 = document.createElement("option");
+    const blankType1 = document.createElement("option");
     setAttributes(blankType1,{"value": ""});
     blankType1.textContent = "--option--";
 
-    var firstSchoolType = document.createElement("option");
+    const firstSchoolType = document.createElement("option");
     setAttributes(firstSchoolType, {"value": "0"});
     firstSchoolType.textContent = "Primary";
 
-    var secondSchoolType = document.createElement("option");
+    const secondSchoolType = document.createElement("option");
     setAttributes(secondSchoolType, {"value": "1"});
     secondSchoolType.textContent = "MidSchool";
 
-    var thirdSchoolType = document.createElement("option");
+    const thirdSchoolType = document.createElement("option");
     setAttributes(thirdSchoolType, {"value": "2"});
     thirdSchoolType.textContent = "HighSchool";
 
-    var spanValidity2 = createSpanValidity();
+    const spanValidity2 = createSpanValidity();
 
     schoolType.appendChild(blankType1);
     schoolType.appendChild(firstSchoolType);
@@ -305,34 +305,32 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 
 
-    var startYearLabel = document.createElement("label");
+    const startYearLabel = document.createElement("label");
     setAttributes(startYearLabel, {"for": "start_date_knowledge" + addEducationCount, class:"startyear"});
     startYearLabel.textContent = "From:";
 
-    var startYear = document.createElement("input");
-    //TODO walidacja dat (czy data zakonczenia jest pozniej niz data rozpoczecia) "max": today()
+    const startYear = document.createElement("input");
     setAttributes(startYear, {"type": "date", "name": "start_date_knowledge" + addEducationCount, "id": "start_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
     startYear.required = true;
 
-    var spanValidity3 = createSpanValidity();
+    const spanValidity3 = createSpanValidity();
 
-    var endYearLabel = document.createElement("label");
+    const endYearLabel = document.createElement("label");
     setAttributes(endYearLabel, {"for": "end_date_knowledge" + addEducationCount,class:"endyear"});
     endYearLabel.textContent = "To:";
 
-    var endYear = document.createElement("input");
+    const endYear = document.createElement("input");
     setAttributes(endYear, {"type": "date", "name": "end_date_knowledge" + addEducationCount, "id": "end_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
     endYear.required = true;
 
-    var spanValidity4 = createSpanValidity();
+    const spanValidity4 = createSpanValidity();
 
 
-
-    var educationDescriptionLabel = document.createElement("label");
+    const educationDescriptionLabel = document.createElement("label");
     setAttributes(educationDescriptionLabel, {"for": "education_description" + addEducationCount});
     educationDescriptionLabel.textContent = "Description:";
 
-    var educationDescription = document.createElement("input");
+    const educationDescription = document.createElement("input");
     setAttributes(educationDescription, {"type": "text", "name": "education_description" + addEducationCount,"class": "education-description", "id": "education_description" + addEducationCount, "maxlength": "100", "placeholder": "---Write something---"});
 
     knowledgeLi.appendChild(knowledgeLabel);
@@ -364,17 +362,19 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
     //document.getElementById("myform").appendChild(newSection);
     place.parentNode.insertBefore(newSection, place.nextSibling);
-    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 
-});
+    return newSection;
+}
 
 
-window.onload = document.getElementById("deleteEducation").addEventListener("click", function() {
+window.onload = document.getElementById("deleteEducation").addEventListener("click", deleteEducationSection);
+
+function deleteEducationSection(){
     console.log("You clicked deleteEducation");
     if(addEducationCount != 0 ){
-        var deleteSection = document.getElementById("education" + addEducationCount);
-        var previousSection = addEducationCount-1;
-        var scrollSection = document.getElementById("education" + previousSection);
+        const deleteSection = document.getElementById("education" + addEducationCount);
+        const previousSection = addEducationCount-1;
+        const scrollSection = document.getElementById("education" + previousSection);
         console.log("education"+addEducationCount+" deleted")
         addEducationCount -=1;
         deleteSection.classList.add("deleted_element");
@@ -388,12 +388,11 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
         }, 1);
     }else{
         console.log("all additional education records deleted");
-        var scrollSection = document.getElementById("education-buttons");
+        const scrollSection = document.getElementById("education-buttons");
         scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         //showLogMsg("all additional education records deleted");
     }
-});
-
+}
 window.onload = document.getElementById("addjob").addEventListener("click", function() {
     if(addExperienceCount == JOB_LIMIT){
         console.log("Too much experience records (LIMIT IS " + JOB_LIMIT + " )");
