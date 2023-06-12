@@ -58,7 +58,7 @@ function today(){
     return currentDate;
 
 }
-function maxDate(){
+function maxDate(){ //tylko dla create form -> poustawiać to w head -> zrobić head dla createForm i updateForm(i tam podane inne pliki .js dla create i dla update)
         const myEduDateInputFrom = document.getElementById("start_date_knowledge0");
         const myEduDateInputTo = document.getElementById("end_date_knowledge0");
         const myExpDateInputFrom = document.getElementById("start_date_job0");
