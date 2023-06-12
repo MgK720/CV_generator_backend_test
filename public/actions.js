@@ -1,14 +1,14 @@
-var EDU_LIMIT = 5;
-var JOB_LIMIT = 9;
-var SKILL_LIMIT = 13;
-var HOBBY_LIMIT = 7;
-var LINK_LIMIT = 7;
+const EDU_LIMIT = 5;
+const JOB_LIMIT = 9;
+const SKILL_LIMIT = 13;
+const HOBBY_LIMIT = 7;
+const LINK_LIMIT = 7;
 
-var addEducationCount = 0;
-var addExperienceCount = 0;
-var addSkillCount = 0;
-var addHobbyCount = 0;
-var addLinkCount = 0;
+let addEducationCount = 0;
+let addExperienceCount = 0;
+let addSkillCount = 0;
+let addHobbyCount = 0;
+let addLinkCount = 0;
 window.addEventListener("load", (event) => {
     maxDate();
   });
@@ -170,6 +170,28 @@ function SchoolTypeShowOnRefresh(){
         document.getElementById("school-type-select0").style.display = "flex";
     }
 }
+window.onload = document.querySelector('#myimage').addEventListener('change', validateFile);
+
+function validateFile(){
+    console.log('file changed');
+    const fileInput = document.querySelector('#myimage');
+    let file = fileInput.files[0];
+
+    if(file){
+        let fileSize = file.size/1024/1024; //in MB
+        let fileExtension = file.name.split('.').pop().toLowerCase();
+        const allowedExtensions = ['jpeg', 'jpg', 'png'];
+        if(fileSize < 5 && allowedExtensions.includes(fileExtension)){
+            fileInput.setCustomValidity('');
+        }else if(fileSize > 5){
+            fileInput.setCustomValidity('File size exceeds the maximum limit of 5MB');
+        }else if(!allowedExtensions.includes(fileExtension)){
+            fileInput.setCustomValidity(`Invalid filetype. Only ${allowedExtensions} files are allowed`);
+        }
+    }
+}
+validateFile();
+
 
 function createSpanValidity(){
     var spanValidity = document.createElement("span");
