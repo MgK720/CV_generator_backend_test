@@ -146,21 +146,24 @@ h2{
     color:white;
     border-color:orangered;
 }
+.level_container{
+    width:80%;
+}
 .level_bar{
-    height: 50px;
-    width: 300px;
+    height: 20px;
+    /*width: 300px;*/
     background-color: #061735;
     border:1px solid black;
     display:flex;
     flex-wrap:nowrap;
     border-radius:15px;
-    min-width: 150px;
-    max-width: 250px;
+    margin-top:1rem;
 }
 .level_bar div{
     border:0.5px solid black;
-    height:50px;
-    width:calc(300px/5);
+    height:20px;
+    width:calc(250px/5);
+    flex:1;
     display:inline-block;
     background-color: #061735;
     
@@ -174,19 +177,19 @@ h2{
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
 }
-.level-bar .vlow{
+.level_bar .vlow{
     background-color:red;
 }
-.level-bar .low{
+.level_bar .low{
     background-color:orange;
 }
-.level-bar .medium{
+.level_bar .medium{
     background-color:yellow;
 }
-.level-bar .high{
+.level_bar .high{
     background-color:greenyellow;
 }
-.level-bar .vhigh{
+.level_bar .vhigh{
     background-color:green;
 }
 
