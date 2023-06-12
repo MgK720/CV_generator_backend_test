@@ -229,7 +229,7 @@ window.onload = document.getElementById("addEducation").addEventListener("click"
 
 });
 
-function addEducationSection(place){
+function addEducationSection(place, data={}){
     const newSection = document.createElement("section");
     newSection.setAttribute("id", "education" + addEducationCount);
     newSection.setAttribute("class", "education added_element");
@@ -377,6 +377,15 @@ function addEducationSection(place){
     educationUl.appendChild(knowledgeTypeLi);
     educationUl.appendChild(knowledgeDateLi);
     educationUl.appendChild(knowledgeDescriptionLi);
+    console.log('datalenght: ', Object.keys(data).length)
+    if(!Object.keys(data).length === 0){//if data is not empty object - for update form
+        console.log('not empt');
+        knowledge.value = data['knowledge'];
+        knowledgeType.value = data['knowledge_type'];
+        startYear.value = data['start_date_knowledge'];
+        endYear.value = data['end_date_knowledge'];
+        educationDescription.value = data['description'];    
+    }
 
     newSection.appendChild(educationUl);
 
