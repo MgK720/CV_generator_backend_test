@@ -10,8 +10,8 @@ let addSkillCount = 0;
 let addHobbyCount = 0;
 let addLinkCount = 0;
 
-//for create form all variables = 0
-const educationDataFromDbCount = 0;
+//for create form all variables = 0 (1 for education - default 1 section created all time [not removable])
+const educationDataFromDbCount = 1; 
 const experienceDataFromDbCount = 0;
 const skillDataFromDbCount = 0;
 const hobbyDataFromDbCount = 0;
@@ -198,7 +198,6 @@ function validateFile(){
         }
     }
 }
-validateFile();
 
 function setAttributes(attrib, values){
     for(let key in values){
@@ -379,7 +378,7 @@ function addEducationSection(place, data={}){
     educationUl.appendChild(knowledgeDescriptionLi);
     console.log('datalenght: ', Object.keys(data).length)
     if(!Object.keys(data).length === 0){//if data is not empty object - for update form
-        console.log('not empt');
+        console.log('not empty');
         knowledge.value = data['knowledge'];
         knowledgeType.value = data['knowledge_type'];
         startYear.value = data['start_date_knowledge'];
@@ -400,7 +399,7 @@ window.onload = document.getElementById("deleteEducation").addEventListener("cli
 
 function deleteEducationSection(){
     console.log("You clicked deleteEducation");
-    if(addEducationCount != educationDataFromDbCount ){
+    if(addEducationCount != educationDataFromDbCount-1 ){
         const deleteSection = document.getElementById("education" + addEducationCount);
         const previousSection = addEducationCount-1;
         const scrollSection = document.getElementById("education" + previousSection);
@@ -429,52 +428,60 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
         return;
     }
     console.log("You clicked addjob");
+    let place = document.getElementById("education-buttons");
     if(document.getElementById("experience" + addExperienceCount) == null){
-        var place = document.getElementById("education-buttons");
+        console.log("my count"+addExperienceCount)
+        place = document.getElementById("education-buttons");
     }else{
-        var place = document.getElementById("experience" + addExperienceCount);
+        place = document.getElementById("experience" + addExperienceCount);
     }
     addExperienceCount = addExperienceCount +1;
 
-    var newSection = document.createElement("section");
+    newSection = addExperienceSection(place);
+
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+});
+
+function addExperienceSection(place, data={}){
+    const newSection = document.createElement("section");
     newSection.setAttribute("id", "experience" + addExperienceCount);
     newSection.setAttribute("class", "experience added_element");
 
     console.log("experience"+addExperienceCount+" added")
 
-    var experienceUl = document.createElement("ul");
-    var jobLi = document.createElement("li");
-    var jobDateLi = document.createElement("li");
+    const experienceUl = document.createElement("ul");
+    const jobLi = document.createElement("li");
+    const jobDateLi = document.createElement("li");
 
-    var jobLabel = document.createElement("label");
+    const jobLabel = document.createElement("label");
     setAttributes(jobLabel,{"for": "job_name"+addExperienceCount});
     jobLabel.textContent = "Job:";
 
-    var job = document.createElement("input");
+    const job = document.createElement("input");
     setAttributes(job, {"type": "text", "name": "job_name" + addExperienceCount, "id": "job_name" + addExperienceCount, "minlength": "1", "maxlength": "40"});
     job.required = true;
 
-    var spanValidity0 = createSpanValidity();
+    const spanValidity0 = createSpanValidity();
 
-    var startYearJobLabel = document.createElement("label");
+    const startYearJobLabel = document.createElement("label");
     setAttributes(startYearJobLabel, {"for": "start_date_job" + addExperienceCount});
     startYearJobLabel.textContent = "From:";
 
-    var startYearJob = document.createElement("input");
+    const startYearJob = document.createElement("input");
     setAttributes(startYearJob, {"type": "date", "name": "start_date_job" + addExperienceCount, "id": "start_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
     startYearJob.required = true;
 
-    var spanValidity1 = createSpanValidity();
+    const spanValidity1 = createSpanValidity();
 
-    var endYearJobLabel = document.createElement("label");
+    const endYearJobLabel = document.createElement("label");
     setAttributes(endYearJobLabel, {"for": "end_date_job" + addExperienceCount});
     endYearJobLabel.textContent = "To:";
 
-    var endYearJob = document.createElement("input");
+    const endYearJob = document.createElement("input");
     setAttributes(endYearJob, {"type": "date", "name": "end_date_job" + addExperienceCount, "id": "end_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
     endYearJob.required = true;
 
-    var spanValidity2 = createSpanValidity();
+    const spanValidity2 = createSpanValidity();
 
     jobLi.appendChild(jobLabel);
     jobLi.appendChild(job);
@@ -490,26 +497,35 @@ window.onload = document.getElementById("addjob").addEventListener("click", func
 
     experienceUl.appendChild(jobLi);
     experienceUl.appendChild(jobDateLi);
-
+    if(!Object.keys(data).length === 0){//if data is not empty object - for update form
+        console.log('not empty');
+        job.value = data['job_name'];
+        StartYearJob.value = data['start_date_job'];
+        EndYearJob.value = data['end_date_job']; 
+    }
     newSection.appendChild(experienceUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
-    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-});
 
-window.onload = document.getElementById("deletejob").addEventListener("click", function() {
-        console.log("You clicked deleteJob");
+    return newSection;
+}
+
+window.onload = document.getElementById("deletejob").addEventListener("click", deleteExperienceSection);
+
+function deleteExperienceSection(){
+    let scrollSection = document.getElementById("experience-buttons");
+    console.log("You clicked deleteJob");
         if(addExperienceCount == experienceDataFromDbCount-1){
-            var scrollSection = document.getElementById("experience-buttons");
+            scrollSection = document.getElementById("experience-buttons");
             scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
             console.log("all experience records deleted");
             //showLogMsg("all jobs records deleted");
             return;
         }
-        var deleteSection = document.getElementById("experience" + addExperienceCount);
-        var previousSection = addExperienceCount-1;
-        if(previousSection!=experienceDataFromDbCount-1){var scrollSection = document.getElementById("experience" + previousSection);}
-        else{var scrollSection = document.getElementById("experience-buttons");}
+        const deleteSection = document.getElementById("experience" + addExperienceCount);
+        const previousSection = addExperienceCount-1;
+        if(previousSection!=experienceDataFromDbCount-1){scrollSection = document.getElementById("experience" + previousSection);}
+        else{scrollSection = document.getElementById("experience-buttons");}
         deleteSection.classList.add("deleted_element");
         console.log("experience"+addExperienceCount+" deleted")
         const timer = setTimeout(console.log("Timer start"), 1000)
@@ -523,7 +539,7 @@ window.onload = document.getElementById("deletejob").addEventListener("click", f
         if(addExperienceCount >= experienceDataFromDbCount ){
             addExperienceCount -=1;
         };
-});
+}
 
 
 window.onload = document.getElementById("addskill").addEventListener("click", function() {
@@ -541,6 +557,12 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
     }
     addSkillCount = addSkillCount +1;
 
+    const newSection = createSkillSection(place);
+
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+});
+
+function createSkillSection(place, data={}){
     var newSection = document.createElement("section");
     newSection.setAttribute("id", "skill" + addSkillCount);
     newSection.setAttribute("class", "skill added_element");
@@ -582,15 +604,20 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
     skillLevelli.appendChild(skillLevel);
     skillLevelli.appendChild(skillLevelValue);
 
+    if(!Object.keys(data).length === 0){//if data is not empty object - for update form
+        console.log('not empty');
+        skillName.value = data['skill_name'];
+        skillLevel.value = data['level']; 
+    }
     newSection.appendChild(skillUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
-    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-    
 
-});
+    return newSection;
+}
+window.onload = document.getElementById("deleteskill").addEventListener("click", deleteSkillSection);
 
-window.onload = document.getElementById("deleteskill").addEventListener("click", function() {
+function deleteSkillSection(){
     console.log("You clicked deleteskill");
     if(document.getElementById("skill" + addSkillCount) == null){
         var scrollSection = document.getElementById("skill-buttons");
@@ -601,7 +628,7 @@ window.onload = document.getElementById("deleteskill").addEventListener("click",
     }
     var deleteSection = document.getElementById("skill" + addSkillCount);
     var previousSection = addSkillCount-1;
-    if(previousSection!=-1){var scrollSection = document.getElementById("skill" + previousSection);}
+    if(previousSection!=skillDataFromDbCount-1){var scrollSection = document.getElementById("skill" + previousSection);}
     else{var scrollSection = document.getElementById("skill-buttons");}
     deleteSection.classList.add("deleted_element");
     console.log("skill"+addSkillCount+" deleted")
@@ -614,10 +641,10 @@ window.onload = document.getElementById("deleteskill").addEventListener("click",
         clearTimeout();
     }, 1);
 
-    if(addSkillCount >= 0 ){
+    if(addSkillCount >= skillDataFromDbCount ){
         addSkillCount -=1;
     };
-});
+}
 
 window.onload = document.getElementById("addhobby").addEventListener("click", function() {
     if(addHobbyCount == HOBBY_LIMIT){
@@ -668,7 +695,7 @@ window.onload = document.getElementById("addhobby").addEventListener("click", fu
 
 window.onload = document.getElementById("deletehobby").addEventListener("click", function() {
     console.log("You clicked deletehobby");
-    if(document.getElementById("hobby" + addHobbyCount) == null){
+    if(addSkillCount == experienceDataFromDbCount-1){
         var scrollSection = document.getElementById("hobby-buttons");
         scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all hobby records deleted");
