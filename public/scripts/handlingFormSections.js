@@ -58,7 +58,7 @@ function createEducationSection(place, data={}){
 
 
     const knowledgeTypeLabel = document.createElement("label");
-    setAttributes(knowledgeTypeLabel, {"for": "knowledge_type" + addEducationCount, "class": "knowledge_type"});
+    setAttributes(knowledgeTypeLabel, {"for": "knowledge_type" + addEducationCount, "class": "knowledge-type"});
     knowledgeTypeLabel.textContent = "Type:";
 
     const knowledgeType = document.createElement("select");
