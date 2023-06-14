@@ -1,39 +1,9 @@
-import {validateFile, 
-        //setAttributes, 
-        //createSpanValidity,
-        //sleep, 
-        //schoolTypeShow,
-        today, 
-        createEducationSection,
-        deleteEducationSection,
-        createExperienceSection,
-        deleteExperienceSection,
-        createSkillSection,
-        deleteSkillSection,
-        createHobbySection,
-        deleteHobbySection,
-        createLinkSection,
-        deleteLinkSection
-    } from "./scripts/handlingFormSections";
-
 const EDU_LIMIT = 5;
 const JOB_LIMIT = 9;
 const SKILL_LIMIT = 13;
 const HOBBY_LIMIT = 7;
 const LINK_LIMIT = 7;
 
-let addEducationCount = 0;
-let addExperienceCount = 0;
-let addSkillCount = 0;
-let addHobbyCount = 0;
-let addLinkCount = 0;
-
-//for create form all variables = 0 (1 for education - default 1 section created all time [not removable])
-const educationDataFromDbCount = 1; 
-const experienceDataFromDbCount = 0;
-const skillDataFromDbCount = 0;
-const hobbyDataFromDbCount = 0;
-const linkDataFromDbCount = 0;
 //for update form all variables = tableDataCount
 if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w another js file (fetched in update template)
     educationDataFromDbCount = 1; //imported data from another js file (fetched in update template)
@@ -43,11 +13,6 @@ if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w anothe
     linkDataFromDbCount = 0;
 }
 
-function checkFormStatus(){ 
-    return document.querySelector('form').getAttribute('formStatus');
-}
-
-
 window.addEventListener("DOMContentLoaded", (event) =>{
     if(checkFormStatus() === 'create'){
         SchoolTypeShowOnRefresh();
@@ -56,7 +21,7 @@ window.addEventListener("DOMContentLoaded", (event) =>{
     }
 })
 
-function maxDate(){ //tylko dla create form -> poustawiać to w head -> zrobić head dla createForm i updateForm(i tam podane inne pliki .js dla create i dla update)
+function maxDate(){
         const myEduDateInputFrom = document.getElementById("start_date_knowledge0");
         const myEduDateInputTo = document.getElementById("end_date_knowledge0");
         const myExpDateInputFrom = document.getElementById("start_date_job0");
@@ -90,48 +55,6 @@ $( document ).on( "click", "input[type='date']",function(event){
             $("input[name='"+ idEndDate + "']").attr("min",$(this).val());
         })
     })
-//input and load
-$( document ).on("input","input[type='range']", function(event){
-        const idOfClickedElement = event.target.id;
-        const valueOfClickedElement = event.target.value;
-
-        const idNumber = idOfClickedElement.charAt(idOfClickedElement.length-1);
-
-        const idOfParagraph = "skill-level-value" + idNumber;
-
-        const idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
-
-        SkillLevelParagraphSet(valueOfClickedElement, idOfParagraphSelector);
-
-})
-
-function SkillLevelOnRefresh(){
-    const skillLevelValue = document.getElementById("skill_level0").value;
-    const paragraphSelector = $("p[id='skill-level-value0']");
-    SkillLevelParagraphSet(skillLevelValue, paragraphSelector);
-    
-}
-
-function SkillLevelParagraphSet(skillLevelValue, paragraphSelector){
-    if(skillLevelValue == 1){
-        paragraphSelector.text("Very Low");
-        paragraphSelector.css("color", "#ff0000")
-    }else if(skillLevelValue == 2){
-        paragraphSelector.text("Low");
-        paragraphSelector.css("color", "#ff4d00")
-    }else if(skillLevelValue == 3){
-        paragraphSelector.text("Medium");
-        paragraphSelector.css("color", "#ffa300")
-    }else if(skillLevelValue == 4){
-        paragraphSelector.text("High");
-        paragraphSelector.css("color", "#e3ff00")
-    }else if(skillLevelValue == 5){
-        paragraphSelector.text("Very High");
-        paragraphSelector.css("color", "#a3ff00")
-    }else{
-        return;
-    }
-}
 /*
 --------------------LEGACY-----------------------------
 function showLogMsg(message){
@@ -147,15 +70,7 @@ window.onload = document.getElementById("remove-log").addEventListener("click", 
     logElement.textContent = "";
     logSection.style.display = "none";
 });*/
-function SchoolTypeShowOnRefresh(){
-    //Miałem problem z sessionStorage tego elementu podczas odswiezania strony zostawała wybrana przed refreshem wartość
-    //nie działało to prawidłowo z funkcją schoolTypeShow, dlatego teraz po refreshu jesli uzytkownik wybral opcje "school"
-    //to prawidłowo wyświetli sie select wyboru school_type
-    if(document.getElementById("knowledge_type0").value == 1){
-        document.getElementById("school_type0").required = true
-        document.getElementById("school-type-select0").style.display = "flex";
-    }
-}
+
 window.onload = document.querySelector('#myimage').addEventListener('change', validateFile);
 
 window.onload = document.getElementById("addEducation").addEventListener("click", function() {
@@ -268,3 +183,55 @@ window.onload = document.getElementById("addlink").addEventListener("click", fun
 })
 
 window.onload = document.getElementById("deletelink").addEventListener("click", deleteLinkSection);
+
+$( document ).on("input","input[type='range']", function(event){
+    const idOfClickedElement = event.target.id;
+    const valueOfClickedElement = event.target.value;
+
+    const idNumber = idOfClickedElement.charAt(idOfClickedElement.length-1);
+
+    const idOfParagraph = "skill-level-value" + idNumber;
+
+    const idOfParagraphSelector = $("p[id='" + idOfParagraph + "']");
+
+    SkillLevelParagraphSet(valueOfClickedElement, idOfParagraphSelector);
+
+})
+
+function SkillLevelOnRefresh(){
+    const skillLevelValue = document.getElementById("skill_level0").value;
+    const paragraphSelector = $("p[id='skill-level-value0']");
+    SkillLevelParagraphSet(skillLevelValue, paragraphSelector);
+    
+}
+
+function SkillLevelParagraphSet(skillLevelValue, paragraphSelector){
+    if(skillLevelValue == 1){
+        paragraphSelector.text("Very Low");
+        paragraphSelector.css("color", "#ff0000")
+    }else if(skillLevelValue == 2){
+        paragraphSelector.text("Low");
+        paragraphSelector.css("color", "#ff4d00")
+    }else if(skillLevelValue == 3){
+        paragraphSelector.text("Medium");
+        paragraphSelector.css("color", "#ffa300")
+    }else if(skillLevelValue == 4){
+        paragraphSelector.text("High");
+        paragraphSelector.css("color", "#e3ff00")
+    }else if(skillLevelValue == 5){
+        paragraphSelector.text("Very High");
+        paragraphSelector.css("color", "#a3ff00")
+    }else{
+        return;
+    }
+}
+
+function SchoolTypeShowOnRefresh(){
+    //Miałem problem z sessionStorage tego elementu podczas odswiezania strony zostawała wybrana przed refreshem wartość
+    //nie działało to prawidłowo z funkcją schoolTypeShow, dlatego teraz po refreshu jesli uzytkownik wybral opcje "school"
+    //to prawidłowo wyświetli sie select wyboru school_type
+    if(document.getElementById("knowledge_type0").value == 1){
+        document.getElementById("school_type0").required = true
+        document.getElementById("school-type-select0").style.display = "flex";
+    }
+}
