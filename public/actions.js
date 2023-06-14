@@ -12,10 +12,10 @@ let addLinkCount = 0;
 
 //for create form all variables = 0 (1 for education - default 1 section created all time [not removable])
 const educationDataFromDbCount = 1; 
-const experienceDataFromDbCount = 0;
-const skillDataFromDbCount = 0;
-const hobbyDataFromDbCount = 0;
-const linkDataFromDbCount = 0;
+const experienceDataFromDbCount = 2;
+const skillDataFromDbCount = 3;
+const hobbyDataFromDbCount = 4;
+const linkDataFromDbCount = 5;
 //for update form all variables = tableDataCount
 if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w another js file (fetched in update template)
     educationDataFromDbCount = 1; //imported data from another js file (fetched in update template)
@@ -31,9 +31,11 @@ function checkFormStatus(){
 
 
 window.addEventListener("DOMContentLoaded", (event) =>{
-    SchoolTypeShowOnRefresh();
-    SkillLevelOnRefresh();
-    maxDate();
+    if(checkFormStatus() === 'create'){
+        SchoolTypeShowOnRefresh();
+        SkillLevelOnRefresh();
+        maxDate();
+    }
 })
 
 function sleep(milliseconds) {
@@ -549,11 +551,12 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
         return;
     }
     console.log("You clicked addskill");
+    let place = document.getElementById("experience-buttons");
     if(document.getElementById("skill" + addSkillCount) == null){
         console.log(1);
-        var place = document.getElementById("experience-buttons");
+        place = document.getElementById("experience-buttons");
     }else{
-        var place = document.getElementById("skill" + addSkillCount);
+        place = document.getElementById("skill" + addSkillCount);
     }
     addSkillCount = addSkillCount +1;
 
@@ -563,33 +566,33 @@ window.onload = document.getElementById("addskill").addEventListener("click", fu
 });
 
 function createSkillSection(place, data={}){
-    var newSection = document.createElement("section");
+    const newSection = document.createElement("section");
     newSection.setAttribute("id", "skill" + addSkillCount);
     newSection.setAttribute("class", "skill added_element");
 
     console.log("skill"+addSkillCount+" added");
 
-    var skillUl = document.createElement("ul");
-    var skillNameLi = document.createElement("li");
-    var skillLevelli = document.createElement("li");
+    const skillUl = document.createElement("ul");
+    const skillNameLi = document.createElement("li");
+    const skillLevelli = document.createElement("li");
 
-    var skillNameLabel = document.createElement("label")
+    const skillNameLabel = document.createElement("label")
     skillNameLabel.setAttribute("for", "skill_name" + addSkillCount);
     skillNameLabel.textContent = "Skill:"
 
-    var skillName = document.createElement("input")
+    const skillName = document.createElement("input")
     setAttributes(skillName, {"type": "text", "name": "skill_name" + addSkillCount, "id": "skill_name" + addSkillCount, "minlength": "1", "maxlength": "25"});
     skillName.required = true;
 
-    var spanValidity0 = createSpanValidity();
+    const spanValidity0 = createSpanValidity();
 
-    var skillLevelLabel = document.createElement("label");
+    const skillLevelLabel = document.createElement("label");
     skillLevelLabel.setAttribute("for", "skill_level" + addSkillCount);
 
-    var skillLevel = document.createElement("input");
+    const skillLevel = document.createElement("input");
     setAttributes(skillLevel, {"type": "range","id": "skill_level" + addSkillCount, "name": "skill_level" + addSkillCount, "min": "1", "max": "5", "value": "3", "step": "1"});
 
-    var skillLevelValue = document.createElement("p");
+    const skillLevelValue = document.createElement("p");
     skillLevelValue.setAttribute("id", "skill-level-value" + addSkillCount);
     skillLevelValue.textContent = "Medium"
 
@@ -619,17 +622,18 @@ window.onload = document.getElementById("deleteskill").addEventListener("click",
 
 function deleteSkillSection(){
     console.log("You clicked deleteskill");
-    if(document.getElementById("skill" + addSkillCount) == null){
-        var scrollSection = document.getElementById("skill-buttons");
+    let scrollSection = document.getElementById("skill-buttons");
+    if(addSkillCount == skillDataFromDbCount-1){
+        scrollSection = document.getElementById("skill-buttons");
         scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all skill records deleted");
         //showLogMsg("all skill records deleted");
         return;
     }
-    var deleteSection = document.getElementById("skill" + addSkillCount);
-    var previousSection = addSkillCount-1;
-    if(previousSection!=skillDataFromDbCount-1){var scrollSection = document.getElementById("skill" + previousSection);}
-    else{var scrollSection = document.getElementById("skill-buttons");}
+    const deleteSection = document.getElementById("skill" + addSkillCount);
+    const previousSection = addSkillCount-1;
+    if(previousSection!=skillDataFromDbCount-1){scrollSection = document.getElementById("skill" + previousSection);}
+    else{scrollSection = document.getElementById("skill-buttons");}
     deleteSection.classList.add("deleted_element");
     console.log("skill"+addSkillCount+" deleted")
     const timer = setTimeout(console.log("Timer start"), 1000)
@@ -653,60 +657,74 @@ window.onload = document.getElementById("addhobby").addEventListener("click", fu
         return;
     }
     console.log("You clicked addhobby");
+    let place = document.getElementById("skill-buttons");
     if(document.getElementById("hobby" + addHobbyCount) == null){
-        var place = document.getElementById("skill-buttons");
+        place = document.getElementById("skill-buttons");
     }else{
-        var place = document.getElementById("hobby" + addHobbyCount);
+        place = document.getElementById("hobby" + addHobbyCount);
     }
     addHobbyCount = addHobbyCount +1;
 
-    var newSection = document.createElement("section");
+    const newSection = createHobbySection(place);
+
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+
+
+})
+
+function createHobbySection(place, data={}){
+    const newSection = document.createElement("section");
     newSection.setAttribute("id", "hobby" + addHobbyCount);
     newSection.setAttribute("class", "hobby added_element");
 
     console.log("hobby"+addHobbyCount+" added")
 
-    var hobbyUl = document.createElement("ul");
-    var hobbyLi = document.createElement("li");
+    const hobbyUl = document.createElement("ul");
+    const hobbyLi = document.createElement("li");
 
-    var hobbyLabel = document.createElement("label");
+    const hobbyLabel = document.createElement("label");
     setAttributes(hobbyLabel, {"for": "hobby_name" + addHobbyCount});
     hobbyLabel.textContent = "Hobby:"
 
-    var hobby = document.createElement("input");
+    const hobby = document.createElement("input");
     setAttributes(hobby, {"type": "text", "name": "hobby_name" + addHobbyCount, "id": "hobby_name" + addHobbyCount, "minlength": "1", "maxlength": "25"});
     hobby.required = true;
 
-    var spanValidity0 = createSpanValidity();
+    const spanValidity0 = createSpanValidity();
 
     hobbyUl.appendChild(hobbyLi);
 
     hobbyLi.appendChild(hobbyLabel);
     hobbyLi.appendChild(hobby);
     hobbyLi.appendChild(spanValidity0);
-
+    if(!Object.keys(data).length === 0){//if data is not empty object - for update form
+        console.log('not empty');
+        hobby.value = data['hobby_name'];
+    }
     newSection.appendChild(hobbyUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
-    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
 
+    return newSection;
+}
 
-})
+window.onload = document.getElementById("deletehobby").addEventListener("click", deleteHobbySection);
 
-window.onload = document.getElementById("deletehobby").addEventListener("click", function() {
+function deleteHobbySection(){
     console.log("You clicked deletehobby");
-    if(addSkillCount == experienceDataFromDbCount-1){
-        var scrollSection = document.getElementById("hobby-buttons");
+    let scrollSection = document.getElementById("hobby-buttons");
+    if(addHobbyCount == hobbyDataFromDbCount-1){
+        scrollSection = document.getElementById("hobby-buttons");
         scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all hobby records deleted");
         //showLogMsg("all hobby records deleted");
         return;
     }
 
-    var deleteSection = document.getElementById("hobby" + addHobbyCount);
-    var previousSection = addHobbyCount-1;
-    if(previousSection!=-1){var scrollSection = document.getElementById("hobby" + previousSection);}
-    else{var scrollSection = document.getElementById("hobby-buttons");}
+    const deleteSection = document.getElementById("hobby" + addHobbyCount);
+    const previousSection = addHobbyCount-1;
+    if(previousSection!=hobbyDataFromDbCount-1){scrollSection = document.getElementById("hobby" + previousSection);}
+    else{scrollSection = document.getElementById("hobby-buttons");}
     deleteSection.classList.add("deleted_element");
     console.log("hobby"+addHobbyCount+" deleted")
     const timer = setTimeout(console.log("Timer start"), 1000)
@@ -717,10 +735,10 @@ window.onload = document.getElementById("deletehobby").addEventListener("click",
     setTimeout(()=> {
         clearTimeout();
     }, 1);
-    if(addHobbyCount >= 0 ){
+    if(addHobbyCount >= hobbyDataFromDbCount ){
         addHobbyCount -=1;
     };
-});
+}
 
 window.onload = document.getElementById("addlink").addEventListener("click", function() {
     if(addLinkCount == LINK_LIMIT){
@@ -729,42 +747,50 @@ window.onload = document.getElementById("addlink").addEventListener("click", fun
         return;
     }
     console.log("You clicked addlink");
+    let place = document.getElementById("hobby-buttons");
     if(document.getElementById("link" + addLinkCount) == null){
-        var place = document.getElementById("hobby-buttons");
+        place = document.getElementById("hobby-buttons");
     }else{
-        var place = document.getElementById("link" + addLinkCount);
+        place = document.getElementById("link" + addLinkCount);
     }
     addLinkCount = addLinkCount +1;
 
-    var newSection = document.createElement("section");
+    const newSection = createLinkSection(place);
+
+    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+
+})
+
+function createLinkSection(place, data={}){
+    const newSection = document.createElement("section");
     newSection.setAttribute("id", "link" + addLinkCount);
     newSection.setAttribute("class", "link added_element");
 
     console.log("link"+addLinkCount+" added")
 
-    var linkUl = document.createElement("ul");
-    var linkUrlLi = document.createElement("li");
-    var linkNameLi = document.createElement("li");
+    const linkUl = document.createElement("ul");
+    const linkUrlLi = document.createElement("li");
+    const linkNameLi = document.createElement("li");
 
-    var linkUrlLabel = document.createElement("label");
+    const linkUrlLabel = document.createElement("label");
     setAttributes(linkUrlLabel, {"for": "link_url" + addLinkCount});
     linkUrlLabel.textContent = "Link(URL):"
 
-    var linkUrl = document.createElement("input");
+    const linkUrl = document.createElement("input");
     setAttributes(linkUrl, {"type": "text", "name": "link_url" + addLinkCount, "id": "link_url" + addLinkCount, "placeholder": "https://pl.linkedin.com/in/(profile)", "pattern": "https://.*", "maxlength": "100"});
     linkUrl.required = true;
 
-    var spanValidity0 = createSpanValidity();
+    const spanValidity0 = createSpanValidity();
 
-    var linkNameLabel = document.createElement("label");
+    const linkNameLabel = document.createElement("label");
     setAttributes(linkNameLabel, {"for": "link_name" + addLinkCount});
     linkNameLabel.textContent = "Display as:"
 
-    var linkName = document.createElement("input");
+    const linkName = document.createElement("input");
     setAttributes(linkName, {"type": "text", "name": "link_name" + addLinkCount, "id": "link_name" + addLinkCount, "placeholder": "linkedin",  "minlength": "1"});    
     linkName.required = true;
 
-    var spanValidity1 = createSpanValidity();
+    const spanValidity1 = createSpanValidity();
 
     linkUl.appendChild(linkUrlLi);
     linkUl.appendChild(linkNameLi);
@@ -777,28 +803,34 @@ window.onload = document.getElementById("addlink").addEventListener("click", fun
     linkNameLi.appendChild(linkName);
     linkNameLi.appendChild(spanValidity1);
 
-
+    if(!Object.keys(data).length === 0){//if data is not empty object - for update form
+        console.log('not empty');
+        linkUrl.value = data['link_url'];
+        linkName.value = data['link_name'];
+    }
     newSection.appendChild(linkUl);
 
     place.parentNode.insertBefore(newSection, place.nextSibling);
-    newSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    return newSection;
+}
 
-})
+window.onload = document.getElementById("deletelink").addEventListener("click", deleteLinkSection);
 
-window.onload = document.getElementById("deletelink").addEventListener("click", function() {
+function deleteLinkSection(){
     console.log("You clicked deletelink");
-    if(document.getElementById("link" + addLinkCount) == null){
-        var scrollSection = document.getElementById("link-buttons");
+    let scrollSection = document.getElementById("link-buttons");
+    if(addLinkCount == linkDataFromDbCount-1){
+        scrollSection = document.getElementById("link-buttons");
         scrollSection.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
         console.log("all link records deleted");
         //showLogMsg("all link records deleted");
         return;
     }
 
-    var deleteSection = document.getElementById("link" + addLinkCount);
-    var previousSection = addLinkCount-1;
-    if(previousSection!=-1){var scrollSection = document.getElementById("link" + previousSection);}
-    else{var scrollSection = document.getElementById("link-buttons");}
+    const deleteSection = document.getElementById("link" + addLinkCount);
+    const previousSection = addLinkCount-1;
+    if(previousSection!=linkDataFromDbCount-1){scrollSection = document.getElementById("link" + previousSection);}
+    else{scrollSection = document.getElementById("link-buttons");}
     deleteSection.classList.add("deleted_element");
     console.log("link"+addLinkCount+" deleted")
     const timer = setTimeout(console.log("Timer start"), 1000)
@@ -809,7 +841,7 @@ window.onload = document.getElementById("deletelink").addEventListener("click", 
     setTimeout(()=> {
         clearTimeout();
     }, 1);
-    if(addLinkCount >= 0 ){
+    if(addLinkCount >= linkDataFromDbCount ){
         addLinkCount -=1;
     };
-});
+}
