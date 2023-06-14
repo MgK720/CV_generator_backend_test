@@ -12,10 +12,10 @@ let addLinkCount = 0;
 
 //for create form all variables = 0 (1 for education - default 1 section created all time [not removable])
 const educationDataFromDbCount = 1; 
-const experienceDataFromDbCount = 2;
-const skillDataFromDbCount = 3;
-const hobbyDataFromDbCount = 4;
-const linkDataFromDbCount = 5;
+const experienceDataFromDbCount = 0;
+const skillDataFromDbCount = 0;
+const hobbyDataFromDbCount = 0;
+const linkDataFromDbCount = 0;
 //for update form all variables = tableDataCount
 if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w another js file (fetched in update template)
     educationDataFromDbCount = 1; //imported data from another js file (fetched in update template)
