@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get("/", (req, res) => {
-  res.render('index');
+  res.render('index', {outputData : 0});
   });
 
 app.get("/cv/:id",(req, res) => {

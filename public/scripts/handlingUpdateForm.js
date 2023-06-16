@@ -1,31 +1,51 @@
 $(document).ready(function() {
-    console.log(outputData);
-    // Perform further processing or rendering of the data on the client side
-  });
+    getPersonalData();
+    educationDataFromDbCount = getAllKnowledgeData();
+ });
 
-// $(document).ready(function() {
-//     var myurl = {
-//         firstPart: '/cv/',
-//         id: '',
-//         secondPart: 'update',
-//         toString(){
-//             return this.firstPart + this.id + this.secondPart;
-//         }
-//     }
-//     myurl.id = window.location.pathname.replace(myurl.firstPart, '').replace(myurl.secondPart, '');
-//     $.ajax({
-//       url: myurl.toString(),
-//       method: 'GET',
-//       dataType: 'string',
-//       success: function(data) {
-//         const jsonData = JSON.parse(data);
-//         console.log(data);
-//       },
-//       error: function(error, status, xhr) {
-//         console.error('Error:', error);
-//       console.log('Status:', status);
-//       console.log('Response:', xhr.responseText);
-//       }
-//     });
-//   });
+function getPersonalData(index = 0){
+  let personalData = outputData.personaldata[index];
+    $('input[name="personaldata_id"]').val(personalData.personaldata_id);
+    $('#firstname').val(personalData.firstname);
+
+    $('#lastname').val(personalData.lastname);
+
+    //it doesnt work now i need to download file to client
+    //$('input#myimage').val(personalData.img_destination);
+
+    $('#email').val(personalData.email);
+
+    $('#phone_country').val(personalData.phone_country);
+
+    $('#phone').val(personalData.phone);
+}
+
+function getKnowledgeData(index){
+  let knowledge = outputData.knowledge[index];
+    $(`#knowledge_name${index}`).val(knowledge.knowledge_name)
+    $(`#knowledge_type${index}`).val(knowledge.knowledgetype_id)
+    $(`#school_type${index}`).val(knowledge.schooltype_id)
+    $(`#start_date_knowledge${index}`).val(knowledge.start_date_knowledge.slice(0,10))
+    $(`#end_date_knowledge${index}`).val(knowledge.end_date_knowledge.slice(0,10))
+    $(`#education_description${index}`).val(knowledge.description)
+}
+
+function getAllKnowledgeData(){
+  if(outputData.knowledge){
+    getKnowledgeData(0);
+    schoolTypeShowOnAdded(0)
+    for(let i = 1; i < outputData.knowledge.length; i++){
+      const place = document.getElementById("education" + addEducationCount);
+      addEducationCount++;
+
+      createEducationSection(place);
+      getKnowledgeData(i);
+
+      schoolTypeShowOnAdded(i)
+    }
+  }
+  return outputData.knowledge.length;
+}
+
+
   

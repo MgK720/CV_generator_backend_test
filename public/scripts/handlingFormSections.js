@@ -5,11 +5,11 @@ let addHobbyCount = 0;
 let addLinkCount = 0;
 
 //for create form all variables = 0 (1 for education - default 1 section created all time [not removable])
-const educationDataFromDbCount = 1; 
-const experienceDataFromDbCount = 0;
-const skillDataFromDbCount = 0;
-const hobbyDataFromDbCount = 0;
-const linkDataFromDbCount = 0;
+let educationDataFromDbCount = 1; 
+let experienceDataFromDbCount = 0;
+let skillDataFromDbCount = 0;
+let hobbyDataFromDbCount = 0;
+let linkDataFromDbCount = 0;
 
 function validateFile(){
     console.log('file changed');
@@ -62,7 +62,7 @@ function createEducationSection(place, data={}){
     knowledgeTypeLabel.textContent = "Type:";
 
     const knowledgeType = document.createElement("select");
-    setAttributes(knowledgeType, {"name": "knowledge_type" + addEducationCount, "id": "knowledge_type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)"});
+    setAttributes(knowledgeType, {"name": "knowledge_type" + addEducationCount, "id": "knowledge_type" + addEducationCount, "onchange": "schoolTypeShow(addEducationCount)", });
     knowledgeType.required = true;
 
     const blankType0 = document.createElement("option");

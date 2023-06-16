@@ -235,3 +235,10 @@ function SchoolTypeShowOnRefresh(){
         document.getElementById("school-type-select0").style.display = "flex";
     }
 }
+
+function schoolTypeShowOnAdded(index){
+    if(document.getElementById(`knowledge_type${index}`).value == 1){
+        const event = new Event("change");
+        document.getElementById(`knowledge_type${index}`).dispatchEvent(event);
+    }
+}
