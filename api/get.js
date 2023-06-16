@@ -8,7 +8,7 @@ const pool = new Pool({
     port: process.env.DB_PORT,
   })
 
-const getCv = async (request, response) => {
+const getCv = async (request, response, template) => {
     const id = request.params.id;
 
     try{
@@ -35,7 +35,7 @@ const getCv = async (request, response) => {
 
         //console.log(JSON.stringify(outputData.link))
         console.log(JSON.stringify(outputData));
-        response.render('get_cv/get_cv', {
+        response.render(template, {
              outputData: JSON.stringify(outputData)
         });
 
