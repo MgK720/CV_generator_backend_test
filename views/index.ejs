@@ -23,6 +23,7 @@
         <form action="/cv" method="POST" enctype="multipart/form-data" formStatus="create">
             <section id="myform">
                 <section id="name">
+                    <input type="number" name="personaldata_id" style="display:none">
                     <ul>
                         <li>
                             <label for="firstname">Firstname:</label>
@@ -62,6 +63,7 @@
                     </ul>
                 </section>
                 <section id="education0" class="education">
+                    <input type="number" name="knowledge_id" style="display:none">
                     <ul>
                         <li>
                             <label for="knowledge_name0">Knowledge:</label>
@@ -112,6 +114,7 @@
                     <input type="button" id="deleteEducation" value="-Knowledge">
                 </div>
                 <section id="experience0" class="experience">
+                    <input type="number" name="experience_id" style="display:none">
                     <ul>
                         <li>
                             <label for="job_name0">Job:</label>
@@ -135,6 +138,7 @@
                     <input type="button" id="deletejob" value="-Job">
                 </div>
                 <section id="skill0" class="skill">
+                    <input type="number" name="skill_id" style="display:none">
                     <ul>
                         <li>
                             <label for="skill_name0">Skill:</label>
@@ -156,6 +160,7 @@
                 </div>
                 <!--refactored to this line-->
                 <section id="hobby0" class="hobby">
+                    <input type="number" name="hobby_id" style="display:none">
                     <ul>
                         <li>
                             <label for="hobby_name0">Hobby:</label>
@@ -170,6 +175,7 @@
                     <input type="button" id="deletehobby" value="-Hobby">
                 </div>
                 <section id="link0" class="link">
+                    <input type="number" name="link_id" style="display:none">
                     <ul>
                         <li>
                             <label for="link_url0">Link(URL):</label>

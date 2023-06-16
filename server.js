@@ -16,7 +16,9 @@ app.get("/", (req, res) => {
   res.render('index');
   });
 
-app.get("/cv/:id", getCv);
+app.get("/cv/:id",getCv);
+
+app.get('/cv/:id/update', getCv);
 
 app.post('/cv', upload_img.uploadFile, db.createCv)
 

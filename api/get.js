@@ -32,8 +32,9 @@ const getCv = async (request, response) => {
              hobby: getHobbyData.rows,
              link: getLinkData.rows
         };
-        console.log(JSON.stringify(outputData.link))
-        //console.log(JSON.stringify(outputData));
+
+        //console.log(JSON.stringify(outputData.link))
+        console.log(JSON.stringify(outputData));
         response.render('get_cv/get_cv', {
              outputData: JSON.stringify(outputData)
         });
