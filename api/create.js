@@ -1,4 +1,4 @@
-const {upload, getFileDetails} = require('./upload_img.js')
+//const {upload} = require('./upload_img.js')
 const Pool = require('pg').Pool
 require('dotenv').config({ debug: process.env.DEBUG });
 const pool = new Pool({
@@ -10,6 +10,7 @@ const pool = new Pool({
   })
 const createCv = async (request, response) => {
     let outputMessage = '';
+    let img_destination = null;
     const cv_url = `http://cv.com/${Math.floor(Math.random() * 100000)}.cv`
     const personaldata = {
         firstname : request.body.firstname,
@@ -18,10 +19,9 @@ const createCv = async (request, response) => {
         phone_country : request.body.phone_country,
         phone : request.body.phone,
     };
-    let img_destination = '';
-    getFileDetails(async (fileDir, fileName) => {
-        img_destination = `imgs/${fileName}`;
-        console.log("my img dest:" + img_destination)});
+    if(request.file){
+        img_destination =`imgs/${request.file.filename}`;
+    }
     try{
         console.log(request.body);
 

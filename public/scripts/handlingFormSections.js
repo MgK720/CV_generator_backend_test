@@ -29,6 +29,7 @@ function validateFile(){
         }
     }
 }
+validateFile();
 
 function createEducationSection(place, data={}){
     const newSection = document.createElement("section");

@@ -57,6 +57,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 @font-face {
     font-family: mainFontMedium;
     src: url(fonts/Roboto/Roboto-Medium.ttf);

@@ -10,8 +10,7 @@ function getPersonalData(index = 0){
 
     $('#lastname').val(personalData.lastname);
 
-    //it doesnt work now i need to download file to client
-    //$('input#myimage').val(personalData.img_destination);
+    getImg($('#myimage'), personalData.img_destination)
 
     $('#email').val(personalData.email);
 
@@ -47,5 +46,12 @@ function getAllKnowledgeData(){
   return outputData.knowledge.length;
 }
 
+function getImg(input, img_destination){
+  if(img_destination){
+    const file = new File([""], '/' + img_destination);
+    input.files = [file];
+    console.log(input.files);
+  }
+}
 
   

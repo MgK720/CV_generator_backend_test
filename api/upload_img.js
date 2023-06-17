@@ -13,8 +13,10 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
         fileName = "cv_image" + "-" + Date.now()+".jpg";
         cb(null, fileName)
-    }
+    },
   })
+
+
 
 const maxSize = 10 * 1000 * 1000;
     
@@ -56,8 +58,5 @@ const uploadFile = (req, res, next) => {
 };
 module.exports = {
     uploadFile,
-    getFileDetails: (callback) => {
-        callback(fileDir, fileName);
-      },
     
 }
