@@ -93,6 +93,10 @@ function getAllExperienceData(){
       addExperienceCount++;
 
       createExperienceSection(place);
+
+      const newExperienceSectionPlace = document.getElementById("experience" + addExperienceCount);
+      prepareExperienceSectionForUpdateForm(newExperienceSectionPlace);
+
       getExperienceData(i);
     }
   }
@@ -107,6 +111,10 @@ function getAllSkillData(){
       addSkillCount++;
 
       createSkillSection(place);
+
+      const newSkillSectionPlace = document.getElementById("skill" + addSkillCount);
+      prepareSkillSectionForUpdateForm(newSkillSectionPlace);
+
       getSkillData(i);
     }
   }
@@ -121,6 +129,10 @@ function getAllHobbyData(){
       addHobbyCount++;
 
       createHobbySection(place);
+
+      const newHobbySectionPlace = document.getElementById("hobby" + addHobbyCount);
+      prepareHobbySectionForUpdateForm(newHobbySectionPlace);
+
       getHobbyData(i);
     }
   }
@@ -135,6 +147,10 @@ function getAllLinkData(){
       addLinkCount++;
 
       createLinkSection(place);
+
+      const newLinkSectionPlace = document.getElementById("link" + addLinkCount);
+      prepareLinkSectionForUpdateForm(newLinkSectionPlace);
+
       getLinkData(i);
     }
   }
@@ -155,5 +171,27 @@ function prepareEducationSectionForUpdateForm(place){
   const educationIdElement = document.createElement('input');
   setAttributes(educationIdElement, {"type": "number", "name": "knowledge_id" + addEducationCount, "id": "knowledge_id" + addEducationCount, "class": "hidden_id"});
   place.insertBefore(educationIdElement, place.firstChild);
+}
+
+function prepareExperienceSectionForUpdateForm(place){
+  const jobIdElement = document.createElement('input');
+  setAttributes(jobIdElement, {"type": "number", "name": "job_id" + addExperienceCount, "id": "job_id" + addExperienceCount, "class": "hidden_id"})
+  place.insertBefore(jobIdElement, place.firstChild);
+}
+
+function prepareSkillSectionForUpdateForm(place){
+  const skillIdElement = document.createElement('input');
+  setAttributes(skillIdElement, {"type": "number", "name": "skill_id" + addSkillCount, "id": "skill_id" + addSkillCount, "class": "hidden_id"})
+  place.insertBefore(skillIdElement, place.firstChild);
+}
+function prepareHobbySectionForUpdateForm(place){
+  const hobbyIdElement = document.createElement('input');
+  setAttributes(hobbyIdElement, {"type": "number", "name": "hobby_id" + addHobbyCount, "id": "hobby_id" + addHobbyCount, "class": "hidden_id"})
+  place.insertBefore(hobbyIdElement, place.firstChild);
+}
+function prepareLinkSectionForUpdateForm(place){
+  const linkIdElement = document.createElement('input');
+  setAttributes(linkIdElement, {"type": "number", "name": "link_id" + addLinkCount, "id": "link_id" + addLinkCount, "class": "hidden_id"})
+  place.insertBefore(linkIdElement, place.firstChild);
 }
 
