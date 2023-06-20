@@ -1,4 +1,5 @@
 const {upload, getFileDetails} = require('./upload_img.js')
+const {addKnowledge, addExperience, addSkill, addHobby, addLink} = require('./create.js');
 const Pool = require('pg').Pool
 require('dotenv').config({ debug: process.env.DEBUG });
 const pool = new Pool({
@@ -10,8 +11,10 @@ const pool = new Pool({
   })
 
 const updateCv = async (request, response) =>{
-    const id = request.params.id;
+    response.send('something');
 
 }
 
-const updatePeronaldata = async ()
+module.exports = {
+  updateCv,
+}

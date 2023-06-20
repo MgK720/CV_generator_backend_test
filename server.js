@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const upload_img = require('./api/upload_img')
 const app = express()
 const db = require('./api/create')
+const dbUpdate = require('./api/update')
 const { getCv } = require('./api/get');
 const port = 3000
 
@@ -31,7 +32,14 @@ app.get('/cv/:id/update', (req, res) => {
   }
 });
 
-app.post('/cv', upload_img.uploadFile, db.createCv)
+app.post('/cv', upload_img.uploadFile, (req, res) =>{
+  if(!req.body.personaldata_id){
+    db.createCv(req,res);
+  }else{
+    dbUpdate.updateCv(req,res);
+  }
+  
+})
 
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)

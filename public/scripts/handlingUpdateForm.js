@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    //prepareMyForm();
     getPersonalData();
     educationDataFromDbCount = getAllKnowledgeData();
     experienceDataFromDbCount = getAllExperienceData();
@@ -157,15 +158,10 @@ function getAllLinkData(){
   return outputData.link.length;
 }
 
-
-
-function getImg(input, img_destination){
-  if(img_destination){
-    const file = new File([""], '/' + img_destination);
-    input.files = [file];
-    console.log(input.files);
-  }
+function prepareMyForm(){
+  $('form').setAttribute("action", 'done')
 }
+
 
 function prepareEducationSectionForUpdateForm(place){
   const educationIdElement = document.createElement('input');
@@ -195,3 +191,10 @@ function prepareLinkSectionForUpdateForm(place){
   place.insertBefore(linkIdElement, place.firstChild);
 }
 
+function getImg(input, img_destination){
+  if(img_destination){
+    const file = new File([""], '/' + img_destination);
+    input.files = [file];
+    console.log(input.files);
+  }
+}
