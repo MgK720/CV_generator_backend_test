@@ -35,9 +35,16 @@ const getCv = async (request, response, template) => {
 
         //console.log(JSON.stringify(outputData.link))
         console.log(JSON.stringify(outputData));
-        response.render(template, {
-             outputData: JSON.stringify(outputData)
-        });
+        if(outputData.personaldata.length){//personaldata is required in all cv's
+            response.render(template, {
+            outputData: JSON.stringify(outputData)
+           });
+        }else{
+            response.render('confirm_generation/confirm', {
+                cvID: -1,
+                msg: 'No data available',
+            });
+        }
 
         //console.log(outputData);
         //render output or fetch in client side js
