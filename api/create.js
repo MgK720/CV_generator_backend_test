@@ -251,4 +251,10 @@ const addLinkEntries = async (cvID, data) => {
 }
 module.exports = {
   createCv,
+  addKnowledge,
+  addExperience,
+  addSkill,
+  addHobby,
+  addLink,
+
 }

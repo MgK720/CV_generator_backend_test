@@ -10,6 +10,8 @@ const pool = new Pool({
     port: process.env.DB_PORT,
   })
 
+//TODO reszta tabel + obsluga plikow, jesli w update frmie dodamy plik (ktory nastepnie dostanie sie na serwer) to aktualizujemy img destination i usuwamy stary plik pod starym img_destination
+
 const updateCv = async (request, response) =>{
   let outputMessage = '';
   let cvID = request.body.cv_id;
@@ -25,18 +27,20 @@ const updateCv = async (request, response) =>{
 }
 
 const updateOrCreateSkill  = async (cvID, skillID, skill_name, skill_level) =>{
-  const myQuery = 'SELECT skill_id FROM skill WHERE skill_id = $1';
+  //let myQuery = 'SELECT skill_id FROM skill WHERE skill_id = $1';
   let typeOfProcess = '';
   let result = ''
   let output = ''
 
   try{
-      const skillProcesing = await pool.query(myQuery, [skillID]);
-      console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + skillProcesing.rows[0].length);
-      if (skillProcesing.length === 0) {
+      //const skillProcesing = await pool.query(myQuery, [skillID]);
+      //console.log(skillProcesing.rows.length);
+      if (skillID == -1) {
+          console.log('cr');
           typeOfProcess = 'create';
-          result = await addSkill(cvID, skill_name, skill_level);
+          result = await addSkill(cvID, skill_name, skill_level); //cos nie dziala
       } else {
+        console.log('up');
           typeOfProcess = 'update';
           result = await updateSkill(skillID, skill_name, skill_level);
       }
@@ -52,14 +56,9 @@ const updateSkill = async (skillID, skill_name, skill_level) => {
   try{
       let result = ';'
       const updateResult = await pool.query('Update skill Set skill_name= $2, level =$3 where skill_id=$1', [skillID, skill_name, skill_level]);
-      console.log('updateResult === ' + updateResult.length);
-      if(updateResult){
-        result = `skill_id = ${skillID} updated, ${updateResult.rows[0]}`;
-        //console.log(`skill_id = ${skillID} updated, ${updateResult.rows[0]}`)
-      }else{
-        result = `skill_id = ${skillID} no changes`;
-        //console.log(`skill_id = ${skillID} no changes`)
-      }
+      //console.log('updateResult === ' + updateResult.length);
+      result = `skill_id = ${skillID} updated, ${updateResult.rows[0]}`;
+      //console.log(`skill_id = ${skillID} no changes`)
       return result;
   }catch (e){
       console.log(e);
@@ -72,14 +71,21 @@ const updateAllSkills = async(cvID, data) =>{
   try{
     let output = '';
     let numberOfSkill = 0;
-    let skillID = data['skill_id' + numberOfSkill];
-    while(skillID){
+    let skillNameWithNumber = data['skill_name' + numberOfSkill];
+    while(skillNameWithNumber){
         let skill_name = data['skill_name' + numberOfSkill];
         let skill_level = data['skill_level' + numberOfSkill];
-        output = updateOrCreateSkill(cvID,skillID, skill_name, skill_level);
+        let skill_id = data['skill_id' + numberOfSkill];
+        if(skill_id){
+          output = updateOrCreateSkill(cvID,skill_id, skill_name, skill_level);
+        }else{
+          output = updateOrCreateSkill(cvID,-1, skill_name, skill_level);
+        }
+        console.log(`execute updateorCreate for ${numberOfSkill}`);
 
         numberOfSkill +=1;
-        skillID = data['skill_id' + numberOfSkill];
+        skillNameWithNumber = data['skill_name' + numberOfSkill];
+        console.log('num = ' + numberOfSkill);
     }
     if(output){
       return output;
