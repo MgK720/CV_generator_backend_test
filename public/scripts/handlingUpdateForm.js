@@ -1,5 +1,6 @@
 $(document).ready(function() {
     //prepareMyForm();
+    setCvId();
     getPersonalData();
     educationDataFromDbCount = getAllKnowledgeData();
     experienceDataFromDbCount = getAllExperienceData();
@@ -7,22 +8,25 @@ $(document).ready(function() {
     hobbyDataFromDbCount = getAllHobbyData();
     linkDataFromDbCount = getAllLinkData();
  });
+function setCvId(){
+  $('#cv_id').val(outputData.personaldata[0].cv_id);
+}
 
 function getPersonalData(index = 0){
     let personalData = outputData.personaldata[index];
-    $('#personaldata_id').val(personalData.personaldata_id)
-    $('input[name="personaldata_id"]').val(personalData.personaldata_id);
-    $('#firstname').val(personalData.firstname);
+      $('#personaldata_id').val(personalData.personaldata_id)
+      $('input[name="personaldata_id"]').val(personalData.personaldata_id);
+      $('#firstname').val(personalData.firstname);
 
-    $('#lastname').val(personalData.lastname);
+      $('#lastname').val(personalData.lastname);
 
-    getImg($('#myimage'), personalData.img_destination)
+      //getImg($('#myimage'), personalData.img_destination)
 
-    $('#email').val(personalData.email);
+      $('#email').val(personalData.email);
 
-    $('#phone_country').val(personalData.phone_country);
+      $('#phone_country').val(personalData.phone_country);
 
-    $('#phone').val(personalData.phone);
+      $('#phone').val(personalData.phone);
 }
 
 function getKnowledgeData(index){
@@ -38,10 +42,10 @@ function getKnowledgeData(index){
 
 function getExperienceData(index){
   let experience = outputData.experience[index];
-  $(`#job_id${index}`).val(experience.job_id)
-  $(`#job_name${index}`).val(experience.job_name);
-  $(`#start_date_job${index}`).val(experience.start_date_job.slice(0,10));
-  $(`#end_date_job${index}`).val(experience.end_date_job.slice(0,10));
+    $(`#job_id${index}`).val(experience.job_id)
+    $(`#job_name${index}`).val(experience.job_name);
+    $(`#start_date_job${index}`).val(experience.start_date_job.slice(0,10));
+    $(`#end_date_job${index}`).val(experience.end_date_job.slice(0,10));
 }
 
 function getSkillData(index){
@@ -65,7 +69,7 @@ function getLinkData(index){
 }
 
 function getAllKnowledgeData(){
-  if(outputData.knowledge){
+  if(outputData.knowledge.length){
     getKnowledgeData(0);
     schoolTypeShowOnAdded(0)
     for(let i = 1; i < outputData.knowledge.length; i++){
@@ -87,7 +91,7 @@ function getAllKnowledgeData(){
 
 
 function getAllExperienceData(){
-  if(outputData.experience){
+  if(outputData.experience.length){
     getExperienceData(0);
     for(let i = 1; i < outputData.experience.length; i++){
       const place = document.getElementById('experience' + addExperienceCount);
@@ -101,11 +105,11 @@ function getAllExperienceData(){
       getExperienceData(i);
     }
   }
-  return outputData.knowledge.length;
+  return outputData.experience.length;
 }
 
 function getAllSkillData(){
-  if(outputData.skill){
+  if(outputData.skill.length){
     getSkillData(0);
     for(let i = 1;i < outputData.skill.length; i++){
       const place = document.getElementById('skill' + addSkillCount)
@@ -123,7 +127,7 @@ function getAllSkillData(){
 }
 
 function getAllHobbyData(){
-  if(outputData.hobby){
+  if(outputData.hobby.length){
     getHobbyData(0);
     for(let i = 1; i< outputData.hobby.length; i++){
       const place = document.getElementById('hobby' + addHobbyCount);
@@ -141,7 +145,7 @@ function getAllHobbyData(){
 }
 
 function getAllLinkData(){
-  if(outputData.link){
+  if(outputData.link.length){
     getLinkData(0);
     for(let i = 1; i< outputData.link.length; i++){
       const place = document.getElementById('link' + addLinkCount);
