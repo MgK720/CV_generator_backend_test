@@ -17,7 +17,11 @@ const updateCv = async (request, response) =>{
   let cvID = request.body.cv_id;
   try{
     outputMessage += await updatePersonaldata(cvID, request.body, request.file);
+    outputMessage += await updateAllKnowledge(cvID, request.body);
+    outputMessage += await updateAllExperience(cvID, request.body);
     outputMessage += await updateAllSkills(cvID, request.body);
+    outputMessage += await updateAllHobby(cvID, request.body);
+    outputMessage += await updateAllLinks(cvID, request.body);
     console.log(outputMessage);
     response.send(outputMessage);
   }catch(e){
@@ -194,7 +198,65 @@ const updateLink = async (link_id, link_url, link_name) =>{
     throw e;
   }
 }
-
+const updateAllKnowledge = async(cvID, data) =>{
+  try{
+    let output = '';
+    let numberOfKnowledge = 0;
+    let knowledgeNameWithNumber = data['knowledge_name' + numberOfKnowledge];
+    while(knowledgeNameWithNumber){
+        let knowledge_name = data['knowledge_name' + numberOfKnowledge];
+        let knowledge_type = data['knowledge_type' + numberOfKnowledge];
+        let school_type = data['school_type' + numberOfKnowledge];
+        let start_date_knowledge = data['start_date_knowledge' + numberOfKnowledge];
+        let end_date_knowledge = data['end_date_knowledge' + numberOfKnowledge];
+        let description = data['description' + numberOfKnowledge];
+        let knowledge_id = data['knowledge_id' + numberOfKnowledge];
+        if(knowledge_id){
+          output = updateOrCreateKnowledge(cvID,knowledge_id, knowledge_name, knowledge_type, school_type, start_date_knowledge, end_date_knowledge, description);
+        }else{
+          output = updateOrCreateKnowledge(cvID,-1, knowledge_name, knowledge_type, school_type, start_date_knowledge, end_date_knowledge, description);
+        }
+        numberOfKnowledge +=1;
+        knowledgeNameWithNumber = data['knowledge_name' + numberOfKnowledge];
+    }
+    if(output){
+      return output;
+    }else{
+      return `cvID = ${cvID} no knowledge Data `
+    }
+  }catch (e){
+    console.log(e);
+    throw e;
+  }
+}
+const updateAllExperience = async(cvID, data) =>{
+  try{
+    let output = '';
+    let numberOfExperience = 0;
+    let experienceNameWithNumber = data['job_name' + numberOfExperience];
+    while(experienceNameWithNumber){
+        let job_name = data['job_name' + numberOfExperience];
+        let start_date_job = data['start_date_job' + numberOfExperience];
+        let end_date_job = data['end_date_job' + numberOfExperience];
+        let job_id = data['job_id' + numberOfExperience];
+        if(job_id){
+          output = updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
+        }else{
+          output = updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
+        }
+        numberOfExperience +=1;
+        experienceNameWithNumber = data['job_name' + numberOfExperience];
+    }
+    if(output){
+      return output;
+    }else{
+      return `cvID = ${cvID} no experience Data `
+    }
+  }catch (e){
+    console.log(e);
+    throw e;
+  }
+}
 const updateAllSkills = async(cvID, data) =>{
   try{
     let output = '';
@@ -215,14 +277,66 @@ const updateAllSkills = async(cvID, data) =>{
     if(output){
       return output;
     }else{
-      return `cvID = ${cvID} skill data no changes `
+      return `cvID = ${cvID} no skill Data `
     }
   }catch (e){
     console.log(e);
     throw e;
   }
 }
-
+const updateAllHobby = async (cvID, data)=>{
+  try {
+    let output = '';
+    let numberOfHobby = 0;
+    let hobbyNameWithNumber = data['hobby_name' + numberOfHobby];
+    while(hobbyNameWithNumber){
+        let hobby_name = data['hobby_name' + numberOfHobby];
+        let hobby_id = data['hobby_id' + numberOfHobby];
+        if(hobby_id){
+          output = updateOrCreateHobby(cvID,hobby_id, hobby_name);
+        }else{
+          output = updateOrCreateHobby(cvID,-1, hobby_name);
+        }
+        numberOfHobby +=1;
+        hobbyNameWithNumber = data['hobby_name' + numberOfHobby];
+    }
+    if(output){
+      return output;
+    }else{
+      return `cvID = ${cvID} no hobby Data `
+    }
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
+const updateAllLinks = async (cvID, data)=>{
+  try {
+    let output = '';
+    let numberOflink = 0;
+    let linkNameWithNumber = data['link_name' + numberOflink];
+    while(linkNameWithNumber){
+        let link_name = data['link_name' + numberOflink];
+        let link_url = data['link_url' + numberOflink];
+        let link_id = data['link_id' + numberOflink];
+        if(link_id){
+          output = updateOrCreateLink(cvID,link_id, link_url,link_name);
+        }else{
+          output = updateOrCreateLink(cvID,-1, link_url,link_name);
+        }
+        numberOflink +=1;
+        linkNameWithNumber = data['link_name' + numberOflink];
+    }
+    if(output){
+      return output;
+    }else{
+      return `cvID = ${cvID} no link Data `
+    }
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
 module.exports = {
   updateCv,
 }
