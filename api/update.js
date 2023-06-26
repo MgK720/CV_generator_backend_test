@@ -69,13 +69,32 @@ const updateOrCreateSkill  = async (cvID, skillID, skill_name, skill_level) =>{
       throw e;
   }
 }
-
+const updateKnowledge = async(knowledge_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) => {
+  try{
+      const updateResult = await pool.query(`Update knowledge Set 
+      knowledge_name=$2, knowledgetype_id=$3, schooltype_id=$4, start_date_knowledge=$5,end_date_knowledge=$6, description = $7 where knowledge_id=$1`, 
+      [knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,start_date_knowledge,end_date_knowledge,description]);
+      return `knowledge_id = ${knowledge_id} updated`;
+  }catch (e){
+    console.log(e);
+    throw e;
+  }
+}
+const updateExperience = async(job_id, job_name,start_date_job,end_date_job) =>{
+  try{
+    const updateResult = await pool.query(`Update experience Set
+    job_name=$2, start_date_job=$3,end_date_job=$4 where job_id=$1`,
+    [job_id,job_name,start_date_job,end_date_job]);
+    return `job_id = ${job_id} updated`;
+  }catch (e){
+    console.log(e);
+    throw e;
+  }
+}
 const updateSkill = async (skillID, skill_name, skill_level) => {
   try{
-      let result = ';'
       const updateResult = await pool.query('Update skill Set skill_name= $2, level =$3 where skill_id=$1', [skillID, skill_name, skill_level]);
-      result = `skill_id = ${skillID} updated`;
-      return result;
+      return `skill_id = ${skillID} updated`;
   }catch (e){
       console.log(e);
       throw e;
