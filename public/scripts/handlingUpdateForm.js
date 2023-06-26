@@ -20,7 +20,7 @@ function getPersonalData(index = 0){
 
       $('#lastname').val(personalData.lastname);
 
-      //getImg($('#myimage'), personalData.img_destination)
+      $('#img_destination').val(personalData.img_destination);
 
       $('#email').val(personalData.email);
 

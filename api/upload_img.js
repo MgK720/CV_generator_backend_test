@@ -1,5 +1,6 @@
 const multer = require("multer")
 const path = require("path")
+const fs = require('fs');
 
 
 let fileDir = '';
@@ -56,7 +57,22 @@ const uploadFile = (req, res, next) => {
         }
     })
 };
+
+var deleteFile = (fileName) =>{
+    pathToFile = "public/" + fileName;
+    try{
+        fs.unlink(pathToFile, (error)=>{
+            if(error){
+                throw error;
+            }
+        })
+        return `${fileName} deleted <br>\n`;
+    }catch (error){
+        throw error;
+    }
+}
 module.exports = {
     uploadFile,
+    deleteFile,
     
 }

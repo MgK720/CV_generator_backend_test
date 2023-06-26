@@ -1,4 +1,4 @@
-const {upload, getFileDetails} = require('./upload_img.js')
+const {upload, getFileDetails, deleteFile} = require('./upload_img.js')
 const {addKnowledge, addExperience, addSkill, addHobby, addLink} = require('./create.js');
 const Pool = require('pg').Pool
 require('dotenv').config({ debug: process.env.DEBUG });
@@ -16,6 +16,7 @@ const updateCv = async (request, response) =>{
   let outputMessage = '';
   let cvID = request.body.cv_id;
   try{
+    outputMessage += await updatePersonaldata(cvID, request.body, request.file);
     outputMessage += await updateAllSkills(cvID, request.body);
     console.log(outputMessage);
     response.send(outputMessage);
@@ -25,26 +26,43 @@ const updateCv = async (request, response) =>{
     //if req.body.filename then delete previous img and upload to server new file + change img_destination in db
 
 }
+const updatePersonaldata = async(cvID, data, file)=>{
+  let output = `cv_id = ${cvID}, personaldata_id = ${data.personaldata_id} updated <br> \n`;
+  try{
+    let updatePersonaldataQuery = 'Update personaldata set firstname=$2, lastname=$3, email =$4, phone_country=$5, phone=$6 where personaldata_id=$1';
+    const newPersonaldataValues = [data.personaldata_id, data.firstname, data.lastname, data.email, data.phone_country, data.phone];
+    if(file){
+      updatePersonaldataQuery = 'Update personaldata set firstname=$2, lastname=$3, email =$4, phone_country=$5, phone=$6, img_destination=$7 where personaldata_id=$1';
+      newimg_destination =`imgs/${file.filename}`;
+      newPersonaldataValues.push(newimg_destination);
+    }
+    const updateResult = await pool.query(updatePersonaldataQuery,newPersonaldataValues)
+    if(file){
+      const resultDeleteFile = deleteFile(data.img_destination)
+      output += resultDeleteFile;
+    }
+    return output;
+  }catch (e){
+    console.log(e);
+    throw e;
+  }
+
+}
 
 const updateOrCreateSkill  = async (cvID, skillID, skill_name, skill_level) =>{
-  //let myQuery = 'SELECT skill_id FROM skill WHERE skill_id = $1';
   let typeOfProcess = '';
   let result = ''
   let output = ''
 
   try{
-      //const skillProcesing = await pool.query(myQuery, [skillID]);
-      //console.log(skillProcesing.rows.length);
       if (skillID == -1) {
-          console.log('cr');
           typeOfProcess = 'create';
-          result = await addSkill(cvID, skill_name, skill_level); //cos nie dziala
+          result = await addSkill(cvID, skill_name, skill_level);
       } else {
-        console.log('up');
           typeOfProcess = 'update';
           result = await updateSkill(skillID, skill_name, skill_level);
       }
-      output += `${result}, process = ${typeOfProcess}`
+      output += `${result}, process = ${typeOfProcess} <br>\n`
       return output
   }catch (e){
       console.log(e);
@@ -56,9 +74,7 @@ const updateSkill = async (skillID, skill_name, skill_level) => {
   try{
       let result = ';'
       const updateResult = await pool.query('Update skill Set skill_name= $2, level =$3 where skill_id=$1', [skillID, skill_name, skill_level]);
-      //console.log('updateResult === ' + updateResult.length);
-      result = `skill_id = ${skillID} updated, ${updateResult.rows[0]}`;
-      //console.log(`skill_id = ${skillID} no changes`)
+      result = `skill_id = ${skillID} updated`;
       return result;
   }catch (e){
       console.log(e);
@@ -81,11 +97,8 @@ const updateAllSkills = async(cvID, data) =>{
         }else{
           output = updateOrCreateSkill(cvID,-1, skill_name, skill_level);
         }
-        console.log(`execute updateorCreate for ${numberOfSkill}`);
-
         numberOfSkill +=1;
         skillNameWithNumber = data['skill_name' + numberOfSkill];
-        console.log('num = ' + numberOfSkill);
     }
     if(output){
       return output;
