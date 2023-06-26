@@ -66,6 +66,25 @@ const updateOrCreateKnowledge = async(cvID, knowledge_id, knowledge_name, knowle
       throw e;
   }
 }
+const updateOrCreateExperience = async(cvID, job_id, job_name,start_date_job,end_date_job) =>{
+  let typeOfProcess = '';
+  let result = ''
+  let output = ''
+  try{
+      if (skillID == -1) {
+          typeOfProcess = 'create';
+          result = await addExperience(cvID, job_name,start_date_job,end_date_job);
+      } else {
+          typeOfProcess = 'update';
+          result = await updateExperience(job_id, job_name,start_date_job,end_date_job);
+      }
+      output += `${result}, process = ${typeOfProcess} <br>\n`
+      return output
+  }catch (e){
+      console.log(e);
+      throw e;
+  }
+}
 
 const updateOrCreateSkill  = async (cvID, skillID, skill_name, skill_level) =>{
   let typeOfProcess = '';
@@ -78,6 +97,46 @@ const updateOrCreateSkill  = async (cvID, skillID, skill_name, skill_level) =>{
       } else {
           typeOfProcess = 'update';
           result = await updateSkill(skillID, skill_name, skill_level);
+      }
+      output += `${result}, process = ${typeOfProcess} <br>\n`
+      return output
+  }catch (e){
+      console.log(e);
+      throw e;
+  }
+}
+
+const updateOrCreateHobby = async (cvID, hobby_id, hobby_name) =>{
+  let typeOfProcess = '';
+  let result = ''
+  let output = ''
+  try{
+      if (skillID == -1) {
+          typeOfProcess = 'create';
+          result = await addHobby(cvID, hobby_name);
+      } else {
+          typeOfProcess = 'update';
+          result = await updateHobby(hobby_id, hobby_name);
+      }
+      output += `${result}, process = ${typeOfProcess} <br>\n`
+      return output
+  }catch (e){
+      console.log(e);
+      throw e;
+  }
+}
+
+const updateOrCreateLink = async (cvID, link_id, link_url, link_name) =>{
+  let typeOfProcess = '';
+  let result = ''
+  let output = ''
+  try{
+      if (skillID == -1) {
+          typeOfProcess = 'create';
+          result = await addLink(cvID, link_url, link_name);
+      } else {
+          typeOfProcess = 'update';
+          result = await updateLink(link_id, link_url, link_name);
       }
       output += `${result}, process = ${typeOfProcess} <br>\n`
       return output
