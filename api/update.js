@@ -46,14 +46,31 @@ const updatePersonaldata = async(cvID, data, file)=>{
     console.log(e);
     throw e;
   }
-
+}
+const updateOrCreateKnowledge = async(cvID, knowledge_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) => {
+  let typeOfProcess = '';
+  let result = ''
+  let output = ''
+  try{
+      if (skillID == -1) {
+          typeOfProcess = 'create';
+          result = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
+      } else {
+          typeOfProcess = 'update';
+          result = await updateKnowledge(knowledge_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
+      }
+      output += `${result}, process = ${typeOfProcess} <br>\n`
+      return output
+  }catch (e){
+      console.log(e);
+      throw e;
+  }
 }
 
 const updateOrCreateSkill  = async (cvID, skillID, skill_name, skill_level) =>{
   let typeOfProcess = '';
   let result = ''
   let output = ''
-
   try{
       if (skillID == -1) {
           typeOfProcess = 'create';
