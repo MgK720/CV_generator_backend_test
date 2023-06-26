@@ -1,5 +1,6 @@
 $(document).ready(function() {
     //prepareMyForm();
+    console.log(outputData);
     setCvId();
     getPersonalData();
     educationDataFromDbCount = getAllKnowledgeData();
@@ -20,7 +21,9 @@ function getPersonalData(index = 0){
 
       $('#lastname').val(personalData.lastname);
 
-      $('#img_destination').val(personalData.img_destination);
+      if(personalData.img_destination){
+        $('#img_destination').val(personalData.img_destination);
+      }
 
       $('#email').val(personalData.email);
 
@@ -34,7 +37,9 @@ function getKnowledgeData(index){
     $(`#knowledge_id${index}`).val(knowledge.knowledge_id)
     $(`#knowledge_name${index}`).val(knowledge.knowledge_name)
     $(`#knowledge_type${index}`).val(knowledge.knowledgetype_id)
-    $(`#school_type${index}`).val(knowledge.schooltype_id)
+    if(knowledge.schooltype_id >= 0){
+      $(`#school_type${index}`).val(knowledge.schooltype_id)
+    }
     $(`#start_date_knowledge${index}`).val(knowledge.start_date_knowledge.slice(0,10))
     $(`#end_date_knowledge${index}`).val(knowledge.end_date_knowledge.slice(0,10))
     $(`#education_description${index}`).val(knowledge.description)

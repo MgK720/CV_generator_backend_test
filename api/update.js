@@ -9,9 +9,6 @@ const pool = new Pool({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
   })
-
-//TODO reszta tabel + obsluga plikow, jesli w update frmie dodamy plik (ktory nastepnie dostanie sie na serwer) to aktualizujemy img destination i usuwamy stary plik pod starym img_destination
-
 const updateCv = async (request, response) =>{
   let outputMessage = '';
   let cvID = request.body.cv_id;
@@ -27,8 +24,7 @@ const updateCv = async (request, response) =>{
   }catch(e){
     console.error(e)
   }
-    //if req.body.filename then delete previous img and upload to server new file + change img_destination in db
-
+//TODO IF NO CHANGES DONT CONSOLE LOG
 }
 const updatePersonaldata = async(cvID, data, file)=>{
   let output = `cv_id = ${cvID}, personaldata_id = ${data.personaldata_id} updated <br> \n`;
@@ -56,7 +52,7 @@ const updateOrCreateKnowledge = async(cvID, knowledge_id, knowledge_name, knowle
   let result = ''
   let output = ''
   try{
-      if (skillID == -1) {
+      if (knowledge_id == -1) {
           typeOfProcess = 'create';
           result = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
       } else {
@@ -75,7 +71,7 @@ const updateOrCreateExperience = async(cvID, job_id, job_name,start_date_job,end
   let result = ''
   let output = ''
   try{
-      if (skillID == -1) {
+      if (job_id == -1) {
           typeOfProcess = 'create';
           result = await addExperience(cvID, job_name,start_date_job,end_date_job);
       } else {
@@ -115,7 +111,7 @@ const updateOrCreateHobby = async (cvID, hobby_id, hobby_name) =>{
   let result = ''
   let output = ''
   try{
-      if (skillID == -1) {
+      if (hobby_id == -1) {
           typeOfProcess = 'create';
           result = await addHobby(cvID, hobby_name);
       } else {
@@ -135,7 +131,7 @@ const updateOrCreateLink = async (cvID, link_id, link_url, link_name) =>{
   let result = ''
   let output = ''
   try{
-      if (skillID == -1) {
+      if (link_id == -1) {
           typeOfProcess = 'create';
           result = await addLink(cvID, link_url, link_name);
       } else {
@@ -151,6 +147,7 @@ const updateOrCreateLink = async (cvID, link_id, link_url, link_name) =>{
 }
 const updateKnowledge = async(knowledge_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) => {
   try{
+      if(schooltype_id == false) {schooltype_id = null};
       const updateResult = await pool.query(`Update knowledge Set 
       knowledge_name=$2, knowledgetype_id=$3, schooltype_id=$4, start_date_knowledge=$5,end_date_knowledge=$6, description = $7 where knowledge_id=$1`, 
       [knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,start_date_knowledge,end_date_knowledge,description]);
@@ -162,7 +159,7 @@ const updateKnowledge = async(knowledge_id, knowledge_name, knowledgetype_id, sc
 }
 const updateExperience = async(job_id, job_name,start_date_job,end_date_job) =>{
   try{
-    const updateResult = await pool.query(`Update experience Set
+    const updateResult = await pool.query(`Update job Set
     job_name=$2, start_date_job=$3,end_date_job=$4 where job_id=$1`,
     [job_id,job_name,start_date_job,end_date_job]);
     return `job_id = ${job_id} updated`;
@@ -206,15 +203,16 @@ const updateAllKnowledge = async(cvID, data) =>{
     while(knowledgeNameWithNumber){
         let knowledge_name = data['knowledge_name' + numberOfKnowledge];
         let knowledge_type = data['knowledge_type' + numberOfKnowledge];
+        console.log(data['knowledge_type3']);
         let school_type = data['school_type' + numberOfKnowledge];
         let start_date_knowledge = data['start_date_knowledge' + numberOfKnowledge];
         let end_date_knowledge = data['end_date_knowledge' + numberOfKnowledge];
-        let description = data['description' + numberOfKnowledge];
+        let description = data['education_description' + numberOfKnowledge];
         let knowledge_id = data['knowledge_id' + numberOfKnowledge];
         if(knowledge_id){
-          output = updateOrCreateKnowledge(cvID,knowledge_id, knowledge_name, knowledge_type, school_type, start_date_knowledge, end_date_knowledge, description);
+          output = await updateOrCreateKnowledge(cvID,knowledge_id, knowledge_name, knowledge_type, school_type, start_date_knowledge, end_date_knowledge, description);
         }else{
-          output = updateOrCreateKnowledge(cvID,-1, knowledge_name, knowledge_type, school_type, start_date_knowledge, end_date_knowledge, description);
+          output = await updateOrCreateKnowledge(cvID,-1, knowledge_name, knowledge_type, school_type, start_date_knowledge, end_date_knowledge, description);
         }
         numberOfKnowledge +=1;
         knowledgeNameWithNumber = data['knowledge_name' + numberOfKnowledge];
@@ -240,9 +238,9 @@ const updateAllExperience = async(cvID, data) =>{
         let end_date_job = data['end_date_job' + numberOfExperience];
         let job_id = data['job_id' + numberOfExperience];
         if(job_id){
-          output = updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
+          output = await updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
         }else{
-          output = updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
+          output = await updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
         }
         numberOfExperience +=1;
         experienceNameWithNumber = data['job_name' + numberOfExperience];
@@ -267,9 +265,9 @@ const updateAllSkills = async(cvID, data) =>{
         let skill_level = data['skill_level' + numberOfSkill];
         let skill_id = data['skill_id' + numberOfSkill];
         if(skill_id){
-          output = updateOrCreateSkill(cvID,skill_id, skill_name, skill_level);
+          output = await updateOrCreateSkill(cvID,skill_id, skill_name, skill_level);
         }else{
-          output = updateOrCreateSkill(cvID,-1, skill_name, skill_level);
+          output = await updateOrCreateSkill(cvID,-1, skill_name, skill_level);
         }
         numberOfSkill +=1;
         skillNameWithNumber = data['skill_name' + numberOfSkill];
@@ -293,9 +291,9 @@ const updateAllHobby = async (cvID, data)=>{
         let hobby_name = data['hobby_name' + numberOfHobby];
         let hobby_id = data['hobby_id' + numberOfHobby];
         if(hobby_id){
-          output = updateOrCreateHobby(cvID,hobby_id, hobby_name);
+          output = await updateOrCreateHobby(cvID,hobby_id, hobby_name);
         }else{
-          output = updateOrCreateHobby(cvID,-1, hobby_name);
+          output = await updateOrCreateHobby(cvID,-1, hobby_name);
         }
         numberOfHobby +=1;
         hobbyNameWithNumber = data['hobby_name' + numberOfHobby];
@@ -320,9 +318,9 @@ const updateAllLinks = async (cvID, data)=>{
         let link_url = data['link_url' + numberOflink];
         let link_id = data['link_id' + numberOflink];
         if(link_id){
-          output = updateOrCreateLink(cvID,link_id, link_url,link_name);
+          output = await updateOrCreateLink(cvID,link_id, link_url,link_name);
         }else{
-          output = updateOrCreateLink(cvID,-1, link_url,link_name);
+          output = await updateOrCreateLink(cvID,-1, link_url,link_name);
         }
         numberOflink +=1;
         linkNameWithNumber = data['link_name' + numberOflink];
