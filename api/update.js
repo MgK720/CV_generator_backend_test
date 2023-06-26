@@ -100,7 +100,24 @@ const updateSkill = async (skillID, skill_name, skill_level) => {
       throw e;
   }
 }
-
+const updateHobby = async (hobby_id, hobby_name) =>{
+  try {
+      const updateResult = await pool.query('Update hobby Set hobby_name=$2 where hobby_id=$1', [hobby_id,hobby_name]);
+      return `hobby_id = ${hobby_id} updated`;
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
+const updateLink = async (link_id, link_url, link_name) =>{
+  try {
+      const updateResult = await pool.query('Update Link Set link_url=$2, link_name=$3 where link_id=$1', [link_id,link_url,link_name]);
+      return `link_id = ${link_id} updated`;
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+}
 
 const updateAllSkills = async(cvID, data) =>{
   try{
