@@ -11,5 +11,5 @@
             print(cvID, allSKills)
         }
     })
-6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search)
+6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona
 7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete)
