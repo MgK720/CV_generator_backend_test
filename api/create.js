@@ -45,7 +45,7 @@ const createCv = async (request, response) => {
 
         response.render('confirm_generation/confirm', {
             cvID: cvID,
-            msg: '',
+            msg: 'successfully generated',
         })
         //response.status(201).send(outputMessage);
     }catch (error){

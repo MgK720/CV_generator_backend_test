@@ -204,3 +204,34 @@ h2{
         font-size: 250%;
     }
 }
+
+#cv_actions_buttons{
+    width:99%;
+}
+/* #update_cv a, #delete_cv a{
+    color:white;
+} */
+#update_cv, #delete_cv{
+    font-family: mainFontMedium;
+    font-size:1.4em;
+    background-color: #061735;
+    color:white;
+    border:3px solid white;
+    margin-top:1rem;
+    margin-right:2px;
+    width:49%;
+    height:50px;
+    transition: all 0.25s;
+  }
+  #update_cv:hover,#delete_cv:hover{
+    background-color: #07264e;
+    color:#F9F5EB;
+    border-color:green;
+    box-shadow: 0 0.5em 0.5em -0.4em green;
+    transform: translateY(-0.24em);
+    cursor:pointer;
+  }
+  #delete_cv:hover{
+    border-color: #AF0000;
+    box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+  }

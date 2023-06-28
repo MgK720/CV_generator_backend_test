@@ -180,9 +180,9 @@
                                 <div class="link">
                                     <ul>
                                         <li>
-                                            <button class="link_button" href="<%= linkRecord.link_url %>">
+                                            <a href="<%= linkRecord.link_url %>"><button class="link_button">
                                                 <%= linkRecord.link_name%>
-                                            </button>
+                                            </button></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -191,6 +191,11 @@
                                         <p>No link data available.</p>
                                         <% } %>
 
+                </section>
+                <section id="cv_actions_buttons">
+                    <h2>what you want to do?</h2>
+                        <a href="update"><button id="update_cv">update</button></a>
+                        <a href="delete"><button id="delete_cv">delete</button></a>
                 </section>
     </main>
     <footer>

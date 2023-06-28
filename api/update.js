@@ -20,9 +20,17 @@ const updateCv = async (request, response) =>{
     outputMessage += await updateAllHobby(cvID, request.body);
     outputMessage += await updateAllLinks(cvID, request.body);
     console.log(outputMessage);
-    response.send(outputMessage);
+    //response.send(outputMessage);
+    response.render('confirm_generation/confirm', {
+      cvID: cvID,
+      msg: 'successfully updated',
+  })
   }catch(e){
     console.error(e)
+    response.render('confirm_generation/confirm', {
+      cvID: cvID,
+      msg: 'Some inputs not valid',
+  });
   }
 //TODO IF NO CHANGES DONT CONSOLE LOG
 }

@@ -60,3 +60,7 @@ input[type=number] {
 *{
   box-sizing: border-box;
 }
+
+a{
+	text-decoration: none;
+}
