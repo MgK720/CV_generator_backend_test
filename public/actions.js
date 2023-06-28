@@ -242,3 +242,11 @@ function schoolTypeShowOnAdded(index){
         document.getElementById(`knowledge_type${index}`).dispatchEvent(event);
     }
 }
+
+function levelParagraphOnAdded(index){
+    //const event = new Event("oninput");
+    skillLevelValue = $(`#skill_level${index}`).val();
+    paragraphSelector = $(`#skill-level-value${index}`);
+    SkillLevelParagraphSet(skillLevelValue,paragraphSelector )
+    //document.getElementById(`skill-level-value${index}`).dispatchEvent(event);
+}

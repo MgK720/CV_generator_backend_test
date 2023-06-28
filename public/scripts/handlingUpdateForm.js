@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //prepareMyForm();
-    console.log(outputData);
+    //console.log(outputData);
     setCvId();
     getPersonalData();
     educationDataFromDbCount = getAllKnowledgeData();
@@ -76,8 +76,10 @@ function getLinkData(index){
 function getAllKnowledgeData(){
   if(outputData.knowledge.length){
     getKnowledgeData(0);
+    //console.log(outputData.knowledge[0]);
     schoolTypeShowOnAdded(0)
     for(let i = 1; i < outputData.knowledge.length; i++){
+      //console.log(outputData.knowledge[i]);
       const place = document.getElementById("education" + addEducationCount);
       addEducationCount++; 
 
@@ -99,6 +101,7 @@ function getAllExperienceData(){
   if(outputData.experience.length){
     getExperienceData(0);
     for(let i = 1; i < outputData.experience.length; i++){
+      //console.log(outputData.experience[i]);
       const place = document.getElementById('experience' + addExperienceCount);
       addExperienceCount++;
 
@@ -116,6 +119,7 @@ function getAllExperienceData(){
 function getAllSkillData(){
   if(outputData.skill.length){
     getSkillData(0);
+    levelParagraphOnAdded(0);
     for(let i = 1;i < outputData.skill.length; i++){
       const place = document.getElementById('skill' + addSkillCount)
       addSkillCount++;
@@ -126,6 +130,7 @@ function getAllSkillData(){
       prepareSkillSectionForUpdateForm(newSkillSectionPlace);
 
       getSkillData(i);
+      levelParagraphOnAdded(i);
     }
   }
   return outputData.skill.length;

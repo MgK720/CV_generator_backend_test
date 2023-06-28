@@ -52,6 +52,7 @@ const updateOrCreateKnowledge = async(cvID, knowledge_id, knowledge_name, knowle
   let result = ''
   let output = ''
   try{
+    //console.log(`knowledge_id= ${knowledge_id}`)
       if (knowledge_id == -1) {
           typeOfProcess = 'create';
           result = await addKnowledge(cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description);
@@ -147,7 +148,7 @@ const updateOrCreateLink = async (cvID, link_id, link_url, link_name) =>{
 }
 const updateKnowledge = async(knowledge_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) => {
   try{
-      if(schooltype_id == false) {schooltype_id = null};
+      if(knowledgetype_id != 1 ) {schooltype_id = null};
       const updateResult = await pool.query(`Update knowledge Set 
       knowledge_name=$2, knowledgetype_id=$3, schooltype_id=$4, start_date_knowledge=$5,end_date_knowledge=$6, description = $7 where knowledge_id=$1`, 
       [knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,start_date_knowledge,end_date_knowledge,description]);
@@ -203,7 +204,7 @@ const updateAllKnowledge = async(cvID, data) =>{
     while(knowledgeNameWithNumber){
         let knowledge_name = data['knowledge_name' + numberOfKnowledge];
         let knowledge_type = data['knowledge_type' + numberOfKnowledge];
-        console.log(data['knowledge_type3']);
+        //console.log(data['knowledge_type3']);
         let school_type = data['school_type' + numberOfKnowledge];
         let start_date_knowledge = data['start_date_knowledge' + numberOfKnowledge];
         let end_date_knowledge = data['end_date_knowledge' + numberOfKnowledge];
@@ -240,7 +241,7 @@ const updateAllExperience = async(cvID, data) =>{
         if(job_id){
           output = await updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
         }else{
-          output = await updateOrCreateExperience(cvID,job_id, job_name, start_date_job, end_date_job);
+          output = await updateOrCreateExperience(cvID,-1, job_name, start_date_job, end_date_job);
         }
         numberOfExperience +=1;
         experienceNameWithNumber = data['job_name' + numberOfExperience];

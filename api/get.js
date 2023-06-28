@@ -14,7 +14,7 @@ const getCv = async (request, response, template) => {
     try{
         const getPersonalData = await pool.query('SELECT * FROM personaldata WHERE cv_id = $1', [id]);
 
-        const getKnowledgeData = await pool.query('SELECT * FROM knowledge WHERE cv_id = $1', [id]);
+        const getKnowledgeData = await pool.query('SELECT * FROM knowledge WHERE cv_id = $1 order by knowledge_id', [id]);
 
         const getExperienceData = await pool.query('SELECT * FROM job WHERE cv_id = $1', [id]);
 
@@ -34,7 +34,7 @@ const getCv = async (request, response, template) => {
         };
 
         //console.log(JSON.stringify(outputData.link))
-        console.log(JSON.stringify(outputData));
+        //console.log(JSON.stringify(outputData.knowledge));
         if(outputData.personaldata.length){//personaldata is required in all cv's
             response.render(template, {
             outputData: JSON.stringify(outputData)
