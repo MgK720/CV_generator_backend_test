@@ -15,13 +15,14 @@ if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w anothe
 
 window.addEventListener("DOMContentLoaded", (event) =>{
     if(checkFormStatus() === 'create'){
-        SchoolTypeShowOnRefresh();
-        SkillLevelOnRefresh();
+        //SchoolTypeShowOnRefresh();
+        //SkillLevelOnRefresh();
         maxDate();
     }
 })
 
 function maxDate(){
+    console.log('hahahahahahahahaha');
         const myEduDateInputFrom = document.getElementById("start_date_knowledge0");
         const myEduDateInputTo = document.getElementById("end_date_knowledge0");
         const myExpDateInputFrom = document.getElementById("start_date_job0");

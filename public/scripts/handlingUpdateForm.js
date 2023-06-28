@@ -1,6 +1,7 @@
 $(document).ready(function() {
     //prepareMyForm();
     //console.log(outputData);
+    setUpdateFormStatus();
     setCvId();
     getPersonalData();
     educationDataFromDbCount = getAllKnowledgeData();
@@ -11,6 +12,9 @@ $(document).ready(function() {
  });
 function setCvId(){
   $('#cv_id').val(outputData.personaldata[0].cv_id);
+}
+function setUpdateFormStatus(){
+  $('form').attr('formStatus', 'update')
 }
 
 function getPersonalData(index = 0){
