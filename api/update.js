@@ -10,6 +10,7 @@ const pool = new Pool({
     port: process.env.DB_PORT,
   })
 const updateCv = async (request, response) =>{
+  console.log(request.body);
   let outputMessage = '';
   let cvID = request.body.cv_id;
   try{
@@ -157,6 +158,7 @@ const updateOrCreateLink = async (cvID, link_id, link_url, link_name) =>{
 const updateKnowledge = async(knowledge_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) => {
   try{
       if(knowledgetype_id != 1 ) {schooltype_id = null};
+      console.log(start_date_knowledge);
       const updateResult = await pool.query(`Update knowledge Set 
       knowledge_name=$2, knowledgetype_id=$3, schooltype_id=$4, start_date_knowledge=$5,end_date_knowledge=$6, description = $7 where knowledge_id=$1`, 
       [knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,start_date_knowledge,end_date_knowledge,description]);

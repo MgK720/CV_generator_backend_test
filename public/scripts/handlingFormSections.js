@@ -132,7 +132,7 @@ function createEducationSection(place, data={}){
     startYearLabel.textContent = "From:";
 
     const startYear = document.createElement("input");
-    setAttributes(startYear, {"type": "date", "name": "start_date_knowledge" + addEducationCount, "id": "start_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(startYear, {"type": "date", "name": "start_date_knowledge" + addEducationCount, "id": "start_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today()});
     startYear.required = true;
 
     const spanValidity3 = createSpanValidity();
@@ -142,7 +142,7 @@ function createEducationSection(place, data={}){
     endYearLabel.textContent = "To:";
 
     const endYear = document.createElement("input");
-    setAttributes(endYear, {"type": "date", "name": "end_date_knowledge" + addEducationCount, "id": "end_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(endYear, {"type": "date", "name": "end_date_knowledge" + addEducationCount, "id": "end_date_knowledge" + addEducationCount, "min": "1900-01-01", "max": today()});
     endYear.required = true;
 
     const spanValidity4 = createSpanValidity();
@@ -248,7 +248,7 @@ function createExperienceSection(place, data={}){
     startYearJobLabel.textContent = "From:";
 
     const startYearJob = document.createElement("input");
-    setAttributes(startYearJob, {"type": "date", "name": "start_date_job" + addExperienceCount, "id": "start_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(startYearJob, {"type": "date", "name": "start_date_job" + addExperienceCount, "id": "start_date_job" + addExperienceCount, "min": "1900-01-01", "max": today()});
     startYearJob.required = true;
 
     const spanValidity1 = createSpanValidity();
@@ -258,7 +258,7 @@ function createExperienceSection(place, data={}){
     endYearJobLabel.textContent = "To:";
 
     const endYearJob = document.createElement("input");
-    setAttributes(endYearJob, {"type": "date", "name": "end_date_job" + addExperienceCount, "id": "end_date_job" + addExperienceCount, "min": "1900-01-01", "max": today(), "value": today()});
+    setAttributes(endYearJob, {"type": "date", "name": "end_date_job" + addExperienceCount, "id": "end_date_job" + addExperienceCount, "min": "1900-01-01", "max": today()});
     endYearJob.required = true;
 
     const spanValidity2 = createSpanValidity();

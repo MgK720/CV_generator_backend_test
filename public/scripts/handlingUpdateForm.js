@@ -46,6 +46,8 @@ function getKnowledgeData(index){
     }
     $(`#start_date_knowledge${index}`).val(knowledge.start_date_knowledge.slice(0,10))
     $(`#end_date_knowledge${index}`).val(knowledge.end_date_knowledge.slice(0,10))
+    $(`#end_date_knowledge${index}`).attr('min',knowledge.start_date_knowledge.slice(0,10) )
+
     $(`#education_description${index}`).val(knowledge.description)
 }
 

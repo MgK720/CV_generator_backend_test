@@ -14,15 +14,15 @@ if(checkFormStatus() === 'update'){ //pamietac zeby ustawic ten atrybut w anothe
 }
 
 window.addEventListener("DOMContentLoaded", (event) =>{
-    if(checkFormStatus() === 'create'){
+    if(checkFormStatus() === 'create' || checkFormStatus() === 'update'){
         //SchoolTypeShowOnRefresh();
         //SkillLevelOnRefresh();
         maxDate();
+        //setDefaultDate();
     }
 })
 
 function maxDate(){
-    console.log('hahahahahahahahaha');
         const myEduDateInputFrom = document.getElementById("start_date_knowledge0");
         const myEduDateInputTo = document.getElementById("end_date_knowledge0");
         const myExpDateInputFrom = document.getElementById("start_date_job0");
@@ -30,17 +30,28 @@ function maxDate(){
 
 
         myEduDateInputFrom.setAttribute("max",today());
-        myEduDateInputFrom.setAttribute("value", today());
 
         myEduDateInputTo.setAttribute("max",today());
-        myEduDateInputTo.setAttribute("value", today());
 
         myExpDateInputFrom.setAttribute("max",today());
-        myExpDateInputFrom.setAttribute("value", today());
 
         myExpDateInputTo.setAttribute("max",today());
-        myExpDateInputTo.setAttribute("value", today());
 
+}
+
+function setDefaultDate(){
+    const myEduDateInputFrom = document.getElementById("start_date_knowledge0");
+        const myEduDateInputTo = document.getElementById("end_date_knowledge0");
+        const myExpDateInputFrom = document.getElementById("start_date_job0");
+        const myExpDateInputTo = document.getElementById("end_date_job0");
+
+
+        myEduDateInputFrom.setAttribute("value", today());
+        myEduDateInputTo.setAttribute("value", today());
+
+        myExpDateInputFrom.setAttribute("value", today());
+
+        myExpDateInputTo.setAttribute("value", today());
 }
 
 $( document ).on( "click", "input[type='date']",function(event){

@@ -84,6 +84,7 @@ const addPersonalData = async (cvID, firstname, lastname, email, phone_country, 
 
 const addKnowledge = async (cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description) =>{
     if(schooltype_id == false) {schooltype_id = null};
+    console.log(start_date_knowledge);
     const knowledgeResult = await pool.query(`INSERT INTO knowledge(knowledge_id, cv_id, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description)
           VALUES (DEFAULT, $1, $2, $3, $4, $5, $6, $7) RETURNING *`,
           [cvID, knowledge_name, knowledgetype_id, schooltype_id, start_date_knowledge, end_date_knowledge, description]);
