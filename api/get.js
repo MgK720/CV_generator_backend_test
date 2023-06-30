@@ -14,7 +14,7 @@ const getCv = async (request, response, template) => {
     try{
         const getPersonalData = await pool.query('SELECT * FROM personaldata WHERE cv_id = $1', [id]);
 
-        const getKnowledgeData = await pool.query("SELECT cv_id, knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,to_char(start_date_knowledge, 'YYYY-MM-DD'), to_char(end_date_knowledge, 'YYYY-MM-DD'), description FROM knowledge WHERE cv_id = $1 order by knowledge_id", [id]);
+        const getKnowledgeData = await pool.query("SELECT cv_id, knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,to_char(start_date_knowledge, 'YYYY-MM-DD') start_date_knowledge, to_char(end_date_knowledge, 'YYYY-MM-DD') end_date_knowledge, description FROM knowledge WHERE cv_id = $1 order by knowledge_id", [id]);
 
         const getExperienceData = await pool.query('SELECT * FROM job WHERE cv_id = $1', [id]);
 
