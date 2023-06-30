@@ -44,9 +44,9 @@ function getKnowledgeData(index){
     if(knowledge.schooltype_id >= 0){
       $(`#school_type${index}`).val(knowledge.schooltype_id)
     }
-    $(`#start_date_knowledge${index}`).val(knowledge.start_date_knowledge.slice(0,10))
-    $(`#end_date_knowledge${index}`).val(knowledge.end_date_knowledge.slice(0,10))
-    $(`#end_date_knowledge${index}`).attr('min',knowledge.start_date_knowledge.slice(0,10) )
+    $(`#start_date_knowledge${index}`).val(knowledge.start_date_knowledge)
+    $(`#end_date_knowledge${index}`).val(knowledge.end_date_knowledge)
+    $(`#end_date_knowledge${index}`).attr('min',knowledge.start_date_knowledge)
 
     $(`#education_description${index}`).val(knowledge.description)
 }
