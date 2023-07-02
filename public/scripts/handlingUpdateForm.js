@@ -55,8 +55,9 @@ function getExperienceData(index){
   let experience = outputData.experience[index];
     $(`#job_id${index}`).val(experience.job_id)
     $(`#job_name${index}`).val(experience.job_name);
-    $(`#start_date_job${index}`).val(experience.start_date_job.slice(0,10));
-    $(`#end_date_job${index}`).val(experience.end_date_job.slice(0,10));
+    $(`#start_date_job${index}`).val(experience.start_date_job);
+    $(`#end_date_job${index}`).val(experience.end_date_job);
+    $(`#end_date_job${index}`).attr('min',experience.start_date_job)
 }
 
 function getSkillData(index){

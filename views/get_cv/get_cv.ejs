@@ -108,8 +108,7 @@
                                                 </span></p>
                                         </li>
                                         <li>
-                                            <p>From: <%= jobRecord.start_date_job.slice(0,10) %> To: <%=
-                                                        jobRecord.end_date_job.slice(0,10) %>
+                                            <p>From: <%= jobRecord.start_date_job %> To: <%= jobRecord.end_date_job %>
                                             </p>
                                         </li>
                                     </ul>
@@ -181,8 +180,8 @@
                                     <ul>
                                         <li>
                                             <a href="<%= linkRecord.link_url %>"><button class="link_button">
-                                                <%= linkRecord.link_name%>
-                                            </button></a>
+                                                    <%= linkRecord.link_name%>
+                                                </button></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -194,8 +193,10 @@
                 </section>
                 <section id="cv_actions_buttons">
                     <h2>what you want to do?</h2>
-                        <a href="<%= '/cv/' + personalData[0].cv_id + '/update' %>"><button id="update_cv">update</button></a>
-                        <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' %>"><button id="delete_cv">delete</button></a>
+                    <a href="<%= '/cv/' + personalData[0].cv_id + '/update' %>"><button
+                            id="update_cv">update</button></a>
+                    <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' %>"><button
+                            id="delete_cv">delete</button></a>
                 </section>
     </main>
     <footer>
