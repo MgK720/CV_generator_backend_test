@@ -20,7 +20,7 @@ const deleteCv = async (request, response) => {
         const result = await pool.query('Delete from cv where cv_id = $1', [id]);
         if(img_destination){
             deleteFile(img_destination);
-            outputMessage += `${img_destination} deleted`
+            outputMessage += `${img_destination} deleted\n`
         }
         outputMessage += `${id} - deleted, ${result} `;
         console.log(outputMessage);
