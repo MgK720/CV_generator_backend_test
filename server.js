@@ -41,10 +41,10 @@ app.post('/cv', upload_img.uploadFile, (req, res) =>{
   }
   
 })
-app.get('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET
+app.get('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - now for just DELETE button on client side
   deleteCv(req,res);
 })
-app.delete('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET
+app.delete('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - for fetch api
   deleteCv(req,res);
 });
 
