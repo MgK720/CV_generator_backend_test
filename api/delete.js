@@ -1,5 +1,7 @@
 const Pool = require('pg').Pool
+const { deleteFile } = require('./upload_img.js')
 require('dotenv').config({ debug: process.env.DEBUG });
+
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -10,9 +12,18 @@ const pool = new Pool({
 
 const deleteCv = async (request, response) => {
     const id = parseInt(request.params.id);
+    const select_img_destination  = await pool.query('Select img_destination from personaldata where cv_id=$1', [id]);
+    const img_destination = select_img_destination.rows[0].img_destination;
+    let outputMessage = '';
+
     try {
         const result = await pool.query('Delete from cv where cv_id = $1', [id]);
-        console.log(`${id} - deleted: ${result}`);
+        if(img_destination){
+            deleteFile(img_destination);
+            outputMessage += `${img_destination} deleted`
+        }
+        outputMessage += `${id} - deleted, ${result} `;
+        console.log(outputMessage);
         response.status(200).render('confirm_generation/confirm', {
                 cvID: id,
                 msg: 'successfully deleted',
