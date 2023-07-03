@@ -11,7 +11,7 @@
 
 <body>
     <div id="container">
-        <% if(cvID> -1) {%>
+        <% if(cvID> -1 && !errorDelete && !errorUpdate) {%>
             <h1 class="confirmed_h">
                 <%= msg %>
             </h1>

@@ -21,7 +21,7 @@ const deleteCv = async (request, response) => {
         });
     } catch (error) {
         console.log(error);
-        response.render('confirm_generation/confirm', {
+        response.status(403).render('confirm_generation/confirm', {
             cvID: id,
             msg: 'Something gone wrong',
             errorUpdate: false,

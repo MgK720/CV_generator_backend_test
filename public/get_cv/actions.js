@@ -9,3 +9,20 @@ window.onload = ()=>{
         } 
     }
 }
+
+
+// document.querySelector('#delete_cv_href').addEventListener('click', async(event)=>{
+//     event.preventDefault();
+//     link = document.querySelector('#delete_cv_href');
+//     const id = link.href.slice(25, link.href.indexOf('d')-1); //wydzielenie id z atrybutu href;
+
+//     await fetch(`/cv/${id}/delete`, {
+//         method: 'DELETE',
+//     }).then((res)=>{
+//         console.log(res);
+//     }).catch((err)=>{
+//         console.log(err);
+//     })
+
+//     //return response.json()
+// })

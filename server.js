@@ -41,7 +41,12 @@ app.post('/cv', upload_img.uploadFile, (req, res) =>{
   }
   
 })
-app.delete('/cv/:id/delete', deleteCv);
+app.get('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET
+  deleteCv(req,res);
+})
+app.delete('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET
+  deleteCv(req,res);
+});
 
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)
