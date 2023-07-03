@@ -53,8 +53,15 @@ const getCv = async (request, response, template) => {
         //render output or fetch in client side js
         //response.status(200).send(outputData);
     }catch (error){
-        console.log(error);
-        response.status(500).send("Error while getting data");
+        //console.log(error);
+        //response.status(500).send("Error while getting data");
+        response.render('confirm_generation/confirm', {
+            cvID: -1,
+            msg: 'No data available',
+            errorUpdate: false,
+            errorDelete: false
+        });
+        throw error;
     }
 }
 

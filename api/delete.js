@@ -13,7 +13,7 @@ const deleteCv = async (request, response) => {
     try {
         const result = await pool.query('Delete from cv where cv_id = $1', [id]);
         console.log(`${id} - deleted: ${result}`);
-        response.render('confirm_generation/confirm', {
+        response.status(200).render('confirm_generation/confirm', {
                 cvID: id,
                 msg: 'successfully deleted',
                 errorUpdate: false,
