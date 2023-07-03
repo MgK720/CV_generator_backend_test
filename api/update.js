@@ -25,12 +25,16 @@ const updateCv = async (request, response) =>{
     response.render('confirm_generation/confirm', {
       cvID: cvID,
       msg: 'successfully updated',
+      errorUpdate: false,
+      errorDelete: false
   })
   }catch(e){
     console.error(e)
     response.render('confirm_generation/confirm', {
       cvID: cvID,
       msg: 'Some inputs not valid',
+      errorUpdate: true,
+      errorDelete: false
   });
   }
 //TODO IF NO CHANGES DONT CONSOLE LOG

@@ -12,17 +12,17 @@ const getCv = async (request, response, template) => {
     const id = request.params.id;
 
     try{
-        const getPersonalData = await pool.query('SELECT * FROM personaldata WHERE cv_id = $1', [id]);
+        const getPersonalData = await pool.query('SELECT * FROM personaldata WHERE cv_id = $1 order by personaldata_id', [id]);
 
         const getKnowledgeData = await pool.query("SELECT cv_id, knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,to_char(start_date_knowledge, 'YYYY-MM-DD') start_date_knowledge, to_char(end_date_knowledge, 'YYYY-MM-DD') end_date_knowledge, description FROM knowledge WHERE cv_id = $1 order by knowledge_id", [id]);
 
         const getExperienceData = await pool.query("SELECT cv_id, job_id,job_name, to_char(start_date_job, 'YYYY-MM-DD') start_date_job, to_char(end_date_job, 'YYYY-MM-DD') end_date_job FROM job WHERE cv_id = $1 order by job_id", [id]);
 
-        const getSkillData = await pool.query('SELECT * FROM skill WHERE cv_id = $1', [id]);
+        const getSkillData = await pool.query('SELECT * FROM skill WHERE cv_id = $1 order by skill_id', [id]);
 
-        const getHobbyData = await pool.query('SELECT * FROM hobby WHERE cv_id = $1', [id]);
+        const getHobbyData = await pool.query('SELECT * FROM hobby WHERE cv_id = $1 order by hobby_id', [id]);
 
-        const getLinkData = await pool.query('SELECT * FROM link WHERE cv_id = $1', [id]);
+        const getLinkData = await pool.query('SELECT * FROM link WHERE cv_id = $1 order by link_id', [id]);
 
         const outputData = {
              personaldata: getPersonalData.rows,
@@ -44,6 +44,8 @@ const getCv = async (request, response, template) => {
             response.render('confirm_generation/confirm', {
                 cvID: -1,
                 msg: 'No data available',
+                errorUpdate: false,
+                errorDelete: false
             });
         }
 

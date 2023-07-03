@@ -46,6 +46,8 @@ const createCv = async (request, response) => {
         response.render('confirm_generation/confirm', {
             cvID: cvID,
             msg: 'successfully generated',
+            errorUpdate: false,
+            errorDelete: false
         })
         //response.status(201).send(outputMessage);
     }catch (error){
@@ -54,6 +56,8 @@ const createCv = async (request, response) => {
         response.render('confirm_generation/confirm', {
             cvID: -1,
             msg: 'Some inputs not valid',
+            errorUpdate: false,
+            errorDelete: false
         });
     }
 

@@ -50,6 +50,8 @@ const uploadFile = (req, res, next) => {
             res.render('confirm_generation/confirm', {
                 cvID: -1,
                 msg: 'Uploaded file is too large or filetype is not supported',
+                errorUpdate: false,
+                errorDelete: false
             });
         }
         else {

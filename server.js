@@ -5,6 +5,7 @@ const app = express()
 const db = require('./api/create')
 const dbUpdate = require('./api/update')
 const { getCv } = require('./api/get');
+const { deleteCv } = require('./api/delete');
 const port = 3000
 
 
@@ -40,6 +41,8 @@ app.post('/cv', upload_img.uploadFile, (req, res) =>{
   }
   
 })
+
+app.delete('cv/:id/delete', deleteCv(req,res));
 
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)
