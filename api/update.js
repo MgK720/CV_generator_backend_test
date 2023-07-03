@@ -51,8 +51,10 @@ const updatePersonaldata = async(cvID, data, file)=>{
     }
     const updateResult = await pool.query(updatePersonaldataQuery,newPersonaldataValues)
     if(file){
-      const resultDeleteFile = deleteFile(data.img_destination)
-      output += resultDeleteFile;
+      if(data.img_destination){
+        const resultDeleteFile = deleteFile(data.img_destination)
+        output += resultDeleteFile;
+      }
     }
     return output;
   }catch (e){
