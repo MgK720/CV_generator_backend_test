@@ -17,7 +17,12 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
   res.render('index', {outputData : 0});
   });
-
+app.get("/login", (req,res) =>{
+  res.render('login_register/login.ejs');
+})
+app.get("/register", (req,res)=>{
+  res.render('login_register/register.ejs');
+})
 app.get("/cv/:id",(req, res) => {
   try{
     getCv(req, res, 'get_cv/get_cv');
