@@ -23,6 +23,9 @@ app.get("/login", (req,res) =>{
 app.get("/register", (req,res)=>{
   res.render('login_register/register.ejs');
 })
+app.get('/rules', (req,res)=>{
+  res.render('login_register/rules.ejs')
+})
 app.get("/cv/:id",(req, res) => {
   try{
     getCv(req, res, 'get_cv/get_cv');
