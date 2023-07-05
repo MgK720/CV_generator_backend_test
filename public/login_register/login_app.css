@@ -22,8 +22,7 @@ h1{
 }
 section{
     margin-top:15vh;
-    height:500px;
-    min-width:400px;
+    width:400px;
     padding:2rem;
     border-radius: 2%;
     background-color: #07264e;
@@ -31,6 +30,7 @@ section{
 }
 ul{
     display:flex;
+    height: 450px;
     flex-direction: column;
 }
 li h2{
@@ -87,7 +87,6 @@ label[for="agree"]{
     text-transform: none;
     font-size:1rem;
     margin-top: 1.4rem;
-    margin-bottom: 1rem;
     color:white;
 }
 #to_register_href a{
@@ -116,7 +115,23 @@ a:hover{
     box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
     transform: translateY(-0.24em);
 }
-
+@media (max-width:420px) {
+    h1{
+        font-size:2.8rem;
+    }
+    section{
+        width:360px;
+    }
+    #to_register_href, #check_li{
+        font-size:0.9rem;
+    }
+    
+}
+@media (max-width:360px){
+    section{
+        width:320px;
+    }
+}
 /* footer{
     text-align: center;
     margin-top:25vh;
