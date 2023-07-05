@@ -73,6 +73,15 @@ input:focus:not(#agree){
     margin-top:6rem;
     color:white;
 }
+#agree{
+    transform: scale(1.7);
+}
+#agree:hover{
+    outline-color:#AF0000;
+}
+label[for="agree"]{
+    margin-left: 0.3em;
+}
 #to_register_href{
     text-align: center;
     text-transform: none;
