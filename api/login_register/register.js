@@ -11,27 +11,45 @@ const pool = new Pool({
   })
 
 const register = async (request,response)=>{
-    const { login, password, rep_password } = req.body;
-    if(password !== rep_password){
-        response.render('login_register/register.ejs', {
-            msg: 'Repeated password is not the same'
-        })
+    try{
+        const { login, password, rep_password } = req.body;
+        if(password !== rep_password){
+            response.render('login_register/register.ejs', {
+                msg: 'Repeated password is not the same'
+            })
+        }
+        const isNewLogin = await isNewUser(login);
+        if(isNewLogin){
+            let hashedPassword = await bcrypt.hash(password,10);
+            try{
+                const insertQuery = await pool.query('Insert Into account(account_id, cv_id, login,password) Values (default, null, $1, $2)', [login, hashedPassword]);
+            }catch(e){
+                throw e;
+            }
+            console.log(`New account registered - ${login}`);
+            response.render('index');
+        }else{
+            response.render('login_register/register.ejs', {
+                msg: 'User with this login already exists'
+            })
+        }
+    }catch (error){
+        console.log(error);
     }
-    const isNewLogin = isNewUser(login);
-    if(isNewLogin){
-
-    }else{
-        response.render('login_register/register.ejs', {
-            msg: 'User with this login already exists'
-        })
-    }
-
   }
 
 const isNewUser = async (login) =>{
-    const result = await pool.query('Select login from account where login=$1', [login]);
-    if(result.length > 0 ){
-        return false;
+    try{
+        const result = await pool.query('Select login from account where login=$1', [login]);
+        if(result.length > 0 ){
+            return false;
+        }
+        return true;
+    }catch (error){
+        throw error;
     }
-    return true;
+}
+
+module.exports = {
+    register,
 }
