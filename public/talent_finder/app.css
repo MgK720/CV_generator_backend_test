@@ -32,6 +32,9 @@ h2{
     font-size:1.5em;
     color:orange;
 }
+p{
+    display:inline-block;
+}
 a{
     color:orangered;
 }
@@ -39,7 +42,33 @@ a:hover{
     text-decoration: underline;
 }
 #all_records{
+    display:flex;
+    flex-direction: row;
+    margin:1rem 1rem;
+    border-top:1px solid orange;
     text-transform: none;
+}
+.record{
+    border:1px solid white;
+    background-color: #07264e;
+    color:white;
+    border-radius: 10px;
+    margin:1rem 1rem;
+    width:400px;
+    height:450px;
+}
+ul{
+    display:flex;
+}
+img{
+    width:120px;
+    height:150px;
+    border:1px solid orange;
+}
+.personaldata{
+    display:flex;
+    flex-direction: column;
+    padding:1rem;
 }
 #input_div{
     margin-top:1rem;
@@ -52,6 +81,10 @@ a:hover{
     width:400px;
     font-size: 1em;
     font-family: mainFontMedium;
+    padding-left:1rem;
+}
+.skills li{
+    margin-left:0.5em;
 }
 #search{
     height:60px;
