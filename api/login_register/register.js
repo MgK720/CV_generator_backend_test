@@ -12,7 +12,7 @@ const pool = new Pool({
 
 const register = async (request,response)=>{
     try{
-        const { login, password, rep_password } = req.body;
+        const { login, password, rep_password } = request.body;
         if(password !== rep_password){
             response.render('login_register/register.ejs', {
                 msg: 'Repeated password is not the same'
