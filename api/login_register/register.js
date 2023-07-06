@@ -17,6 +17,7 @@ const register = async (request,response)=>{
             response.render('login_register/register.ejs', {
                 msg: 'Repeated password is not the same'
             })
+            throw 'Repeated password is not the same';
         }
         const isNewLogin = await isNewUser(login);
         if(isNewLogin){
@@ -32,6 +33,7 @@ const register = async (request,response)=>{
             response.render('login_register/register.ejs', {
                 msg: 'User with this login already exists'
             })
+            throw 'User with this login already exists';
         }
     }catch (error){
         console.log(error);

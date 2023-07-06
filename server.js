@@ -19,10 +19,10 @@ app.get("/", (req, res) => {
   res.render('index', {outputData : 0});
   });
 app.get("/login", (req,res) =>{
-  res.render('login_register/login.ejs');
+  res.render('login_register/login.ejs', {msg: 0});
 })
 app.get("/register", (req,res)=>{
-  res.render('login_register/register.ejs');
+  res.render('login_register/register.ejs', {msg : 0});
 })
 app.post("/register", (req,res)=>{
   register(req,res);
