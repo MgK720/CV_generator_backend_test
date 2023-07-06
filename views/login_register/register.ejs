@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/get_cv/reset.css">
-    <link rel="stylesheet" href="/login_register/login_app.css">
+    <link rel="stylesheet" href="/login_register/register_app.css">
     <title>Document</title>
 </head>
 
@@ -18,11 +18,11 @@
         <form action="get">
             <ul class="container">
                 <li>
-                    <h2>login</h2>
+                    <h2>register</h2>
                 </li>
                 <li>
                     <label for="login"></label>
-                    <input type="text" name="login" id="login" placeholder="login" minlength="8" maxlength="20" required>
+                    <input type="text" name="login" id="login" placeholder="login" minlength="8" maxlength="20" required >
                     <span class="validity"></span>
                 </li>
                 <li>
@@ -30,14 +30,19 @@
                     <input type="password" name="password" id="password" placeholder="password" minlength="8" maxlength="40" required>
                     <span class="validity"></span>
                 </li>
+                <li>
+                    <label for="rep_password"></label>
+                    <input type="passwor" name="rep_password" id="rep_password" placeholder="repeat password" required>
+                    <span class="validity"></span>
+                </li>
                 <li id="check_li">
                     <input type="checkbox" name="agree" id="agree" required>
                     <label for="agree">I agree all statements in <a href="/rules">ToS</a></label>
                 </li>
-                <input type="submit" value="login" id="submit">
+                <input type="submit" value="register" id="submit">
                 </li>
-                <li id="to_register_href">
-                    <p>Don't have an account? <a href="/register">register</a></p>
+                <li id="to_login_href">
+                    <p>have an account? <a href="/login">login</a></p>
                 </li>
             </ul>
         </form>
