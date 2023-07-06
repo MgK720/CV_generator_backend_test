@@ -53,12 +53,16 @@ app.post('/cv', upload_img.uploadFile, (req, res) =>{
   }
   
 })
-app.get('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - now for just DELETE button on client side
+app.get('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - now for just DELETE button on client side - zastosowac method override
   deleteCv(req,res);
 })
 app.delete('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - for fetch api
   deleteCv(req,res);
 });
+
+app.get('/talentfinder', (req,res)=>{
+  res.render('talent_finder/talent_finder.ejs')
+})
 
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)
