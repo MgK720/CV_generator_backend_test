@@ -6,6 +6,7 @@ const db = require('./api/create')
 const dbUpdate = require('./api/update')
 const { getCv } = require('./api/get');
 const { deleteCv } = require('./api/delete');
+const {register} = require('./api/login_register/register');
 const port = 3000
 
 
@@ -22,6 +23,9 @@ app.get("/login", (req,res) =>{
 })
 app.get("/register", (req,res)=>{
   res.render('login_register/register.ejs');
+})
+app.post("/register", (req,res)=>{
+  register(req,res);
 })
 app.get('/rules', (req,res)=>{
   res.render('login_register/rules.ejs')

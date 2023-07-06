@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-
+const Pool = require('pg').Pool
 require('dotenv').config({ debug: process.env.DEBUG });
 
 const pool = new Pool({
