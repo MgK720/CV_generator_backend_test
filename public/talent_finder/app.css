@@ -27,3 +27,47 @@ header h1{
     margin:0.5em 0;
     text-transform: none;
 }
+h2{
+    text-align:center;
+    font-size:1.5em;
+    color:orange;
+}
+a{
+    color:orangered;
+}
+a:hover{
+    text-decoration: underline;
+}
+#all_records{
+    text-transform: none;
+}
+#input_div{
+    margin-top:1rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#verb_like{
+    height:60px;
+    width:400px;
+    font-size: 1em;
+    font-family: mainFontMedium;
+}
+#search{
+    height:60px;
+    width:150px;
+    font-size: 0.9em;
+    font-family: mainFontMedium;
+    background-color: #061735;
+    color:white;
+    border:3px solid orangered;
+    transition: all 0.25s;
+}
+#search:hover{
+    background-color: #07264e;
+    color:#F9F5EB;
+    border-color: orange;
+    box-shadow: 0 0.5em 0.5em -0.4em orange;
+    transform: translateY(-0.24em);
+    cursor:pointer;
+}
