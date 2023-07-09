@@ -64,6 +64,15 @@ app.get('/talentfinder', (req,res)=>{
   res.render('talent_finder/talent_finder.ejs')
 })
 
+app.get('*', (req,res) => {
+   response.render('confirm_generation/confirm', {
+            cvID: -1,
+            msg: 'The requested URL was not found on this server',
+            errorUpdate: false,
+            errorDelete: false
+        });
+}) 
+
 app.listen(port, () => {
       console.log(`App running on port ${port}.`)
 })
