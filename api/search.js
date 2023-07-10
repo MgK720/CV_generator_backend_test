@@ -11,18 +11,21 @@ const pool = new Pool({
 
 const searchBySkillLike = async (req, res) =>{
     const {verb_like} = req.query;
-    const query = `select distinct cv_id, img_destination, firstname, lastname, phone_country, phone, email, skills 
+    const query = `SELECT DISTINCT cv_id, img_destination, firstname, lastname, phone_country, phone, email, skills 
                         FROM (SELECT skill.cv_id, skill.skill_name, personaldata.firstname, personaldata.lastname, 
                             personaldata.phone_country, personaldata.phone,personaldata.email, 
-                            personaldata.img_destination, (SELECT STRING_AGG(skill_name, ', ') FROM skill where cv_id = cv.cv_id) AS skills
+                            personaldata.img_destination, (SELECT STRING_AGG(skill_name, ',') FROM skill where cv_id = cv.cv_id) AS skills
                                 FROM  ((cv INNER join skill 
                                 ON cv.cv_id=skill.cv_id
                                 ) INNER JOIN personaldata 
                                 ON cv.cv_id=personaldata.cv_id) WHERE skill.skill_name ILIKE $1) as response`;
     try{
         const result = await pool.query(query, [`%${verb_like}%`]);
-        console.log(result.rows);
-        console.log(result.rows.length);
+        const outputData = result.rows;
+        for(let i =0; i < outputData.length; i++){
+            outputData[i].skills = outputData[i].skills.split(',');
+        }
+        console.log(`Talent Finder Request, Verb = ${verb_like}`);
         res.send(result.rows);
     }catch(e){
         console.error(e);
