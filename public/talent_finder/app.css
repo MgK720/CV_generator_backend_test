@@ -106,7 +106,15 @@ img{
     transform: translateY(-0.24em);
     outline:none;
 }
+.skills{
+    text-align:center;
+    border-top:2px solid orange;
+    margin:1rem 1rem;
+    justify-content: center;
+    align-items: center;
+}
 .skills li{
+    margin-top:1rem;
     margin-left:0.5em;
 }
 #search{
