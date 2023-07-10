@@ -1,3 +1,4 @@
+//TODO W PRZYSZLOSCI OGRANICZENIE WYSWIETLANIA DANYCH NP TYLKO PO 20 NA STRONE I PRZYCISK NEXT 
 const form = document.querySelector('form');
 form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -5,7 +6,13 @@ form.addEventListener('submit', async function (e) {
     const searchTerm = form.elements.verb_like.value;
     const config = { params: { verb_like: searchTerm } }
     const res = await axios.get(`/talentfinder/search`, config);
-    makeCards(res.data)
+    //todo style dla takiej sytuacji
+    // if(res.data.length){
+    //     makeCards(res.data);
+    // }else{
+    //     makeBlank();
+    // }
+    makeCards(res.data);
     console.log(res.data);
     form.elements.verb_like.value = '';
 })
@@ -85,4 +92,20 @@ const deleteCards = () =>{
             records[i].remove();
         }, 3000)
     }
+}
+
+const makeBlank = ()=>{
+    const place = document.querySelector('#all_records');
+
+    const record = document.createElement('div')
+    record.classList.add('record');
+
+    const messageParagraph = document.createElement('p');
+    messageParagraph.innerText = 'No data Available';
+
+    record.append(messageParagraph);
+
+    setTimeout(() =>{
+        place.append(record);
+    }, 3000)
 }
