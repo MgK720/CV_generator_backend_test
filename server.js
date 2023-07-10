@@ -65,7 +65,7 @@ app.get('/talentfinder', (req,res)=>{
 })
 
 app.get('*', (req,res) => {
-   response.render('confirm_generation/confirm', {
+  res.render('confirm_generation/confirm', {
             cvID: -1,
             msg: 'The requested URL was not found on this server',
             errorUpdate: false,

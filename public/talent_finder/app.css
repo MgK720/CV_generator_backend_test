@@ -67,8 +67,20 @@ img{
 }
 .personaldata{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
     padding:1rem;
+}
+.personaldata li:nth-of-type(2){
+    margin-left:2rem;
+}
+.personaldata li:nth-of-type(2) p{
+    padding:0.5rem;
+}
+.personaldata li:nth-of-type(2) p:nth-of-type(1){
+    text-transform: uppercase;
+    max-width:250px;
 }
 #input_div{
     margin-top:1rem;
@@ -79,9 +91,20 @@ img{
 #verb_like{
     height:60px;
     width:400px;
-    font-size: 1em;
     font-family: mainFontMedium;
-    padding-left:1rem;
+    font-size:0.9em;
+    letter-spacing: 1px;
+    padding-left:10px;
+    transition: all 0.25s;
+}
+#verb_like:focus{
+    border-width: 2px;
+    background-color: #07264e;
+    color:#F9F5EB;
+    border-color: #AF0000;
+    box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+    transform: translateY(-0.24em);
+    outline:none;
 }
 .skills li{
     margin-left:0.5em;
