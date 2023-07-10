@@ -7,6 +7,7 @@ const dbUpdate = require('./api/update')
 const { getCv } = require('./api/get');
 const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
+const {searchBySkillLike} = require('./api/search');
 const port = 3000
 
 
@@ -62,6 +63,9 @@ app.delete('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF G
 
 app.get('/talentfinder', (req,res)=>{
   res.render('talent_finder/talent_finder.ejs')
+})
+app.get('/talentfinder/search', (req,res)=>{
+  searchBySkillLike(req,res);
 })
 
 app.get('*', (req,res) => {
