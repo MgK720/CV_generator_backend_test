@@ -44,16 +44,21 @@ a:hover{
 #all_records{
     display:flex;
     flex-direction: row;
-    margin:1rem 1rem;
-    border-top:1px solid orange;
+    margin:2rem 1rem;
+    border-top:3px solid orange;
     text-transform: none;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
 }
 .record{
     border:1px solid white;
     background-color: #07264e;
     color:white;
     border-radius: 10px;
-    margin:1rem 1rem;
+    margin-top:3rem;
+    margin-left:1rem;
+    margin-right:1rem;
     width:400px;
     height:450px;
 }
@@ -112,6 +117,8 @@ img{
     margin:1rem 1rem;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    flex-wrap:wrap;
 }
 .skills li{
     margin-top:1rem;

@@ -1,7 +1,7 @@
 const form = document.querySelector('form');
 form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    //deleteImages();
+    deleteCards();
     const searchTerm = form.elements.verb_like.value;
     const config = { params: { verb_like: searchTerm } }
     const res = await axios.get(`/talentfinder/search`, config);
@@ -55,7 +55,7 @@ const makeCard = (row) => {
     personaldataHrefsLi.append(personaldataCvHrefParagraph);
     personaldataHrefsLi.append(personaldataTelHrefParagraph);
     personaldataHrefsLi.append(personaldataMailHrefParagraph);
-    
+
     personaldataUl.append(personaldataImgLi);
     personaldataUl.append(personaldataHrefsLi);
 
@@ -78,11 +78,11 @@ const makeCard = (row) => {
     }, 3000)
 }
 
-const deleteImages = () =>{
-    let images = document.querySelectorAll('img');
-    for(let i =0; i< images.length; i++){
+const deleteCards = () =>{
+    let records = document.querySelectorAll('.record');
+    for(let i =0; i< records.length; i++){
         setTimeout(() =>{
-            images[i].remove();
+            records[i].remove();
         }, 3000)
     }
 }
