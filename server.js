@@ -12,6 +12,7 @@ const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
 require('./api/login_register/login')(passport);
 const {searchBySkillLike} = require('./api/search');
+const { loggedIn, goHome } = require('./api/login_register/middlewares');
 
 const port = 3000
 
@@ -42,11 +43,10 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-app.get("/", (req, res) => {
-  console.log(`USER AAAAAAAAAA = ${req.user}`);
+app.get("/",loggedIn, (req, res) => {
   res.render('index', {outputData : 0});
   });
-app.get("/login", (req,res) =>{
+app.get("/login",goHome, (req,res) =>{
   res.render('login_register/login.ejs', {msg: 0});
 })
 app.post("/login", passport.authenticate("local-login", { failureRedirect: '/login' }), (req, res) => {
@@ -54,24 +54,23 @@ app.post("/login", passport.authenticate("local-login", { failureRedirect: '/log
   res.redirect('/');
 }
 );
-app.get("/register", (req,res)=>{
+app.get("/register",goHome, (req,res)=>{
   res.render('login_register/register.ejs', {msg : 0});
 })
 app.post("/register", (req,res)=>{
   register(req,res);
 })
 app.get('/rules', (req,res)=>{
-  console.log(`USER AAAAAAAAAA = ${req.user}`);
   res.render('login_register/rules.ejs')
 })
-app.get("/cv/:id",(req, res) => {
+app.get("/cv/:id", (req, res) => {
   try{
     getCv(req, res, 'get_cv/get_cv');
   }catch(e){
     console.log(e);
   }
 });
-app.get('/cv/:id/update', (req, res) => {
+app.get('/cv/:id/update',loggedIn, (req, res) => {
   try{
     getCv(req, res, 'index');
   }catch(e){
@@ -79,7 +78,7 @@ app.get('/cv/:id/update', (req, res) => {
   }
 });
 
-app.post('/cv', upload_img.uploadFile, (req, res) =>{
+app.post('/cv',loggedIn, upload_img.uploadFile, (req, res) =>{
   if(!req.body.personaldata_id){
     db.createCv(req,res);
   }else{
@@ -87,7 +86,7 @@ app.post('/cv', upload_img.uploadFile, (req, res) =>{
   }
   
 })
-app.delete('/cv/:id/delete', (req,res)=>{
+app.delete('/cv/:id/delete',loggedIn, (req,res)=>{
   deleteCv(req,res);
 });
 
