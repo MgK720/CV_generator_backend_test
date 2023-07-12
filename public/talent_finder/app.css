@@ -59,8 +59,11 @@ a:hover{
     margin-top:3rem;
     margin-left:1rem;
     margin-right:1rem;
-    width:400px;
-    height:450px;
+    min-width:320px;
+    max-width:500px;
+    min-height:450px;
+    max-height:550px;
+
 }
 ul{
     display:flex;
@@ -141,4 +144,25 @@ img{
     box-shadow: 0 0.5em 0.5em -0.4em orange;
     transform: translateY(-0.24em);
     cursor:pointer;
+}
+@media (max-width:500px){
+    a{
+        font-size:1.3rem;
+    }
+    img{
+        width:100px;
+        height:130px;
+    }
+    .personaldata li:nth-of-type(2){
+        margin-left:0;
+    }
+}
+@media (max-width:400px){
+    a{
+        font-size:1.2rem;
+    }
+    img{
+        width:90px;
+        height:120px;
+    }
 }
