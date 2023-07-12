@@ -195,7 +195,7 @@
                     <h2>what you want to do?</h2>
                     <a href="<%= '/cv/' + personalData[0].cv_id + '/update' %>"><button
                             id="update_cv">update</button></a>
-                    <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' %>" id="delete_cv_href"><button
+                    <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' + '?_method=DELETE' %>" id="delete_cv_href"><button
                             id="delete_cv">delete</button></a>
                 </section>
     </main>

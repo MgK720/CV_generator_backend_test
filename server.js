@@ -1,4 +1,5 @@
 const express = require('express')
+const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const upload_img = require('./api/upload_img')
 const app = express()
@@ -8,13 +9,22 @@ const { getCv } = require('./api/get');
 const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
 const {searchBySkillLike} = require('./api/search');
+
 const port = 3000
 
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: true})); 
-app.set('view engine', 'ejs');
+app.use(methodOverride('_method'))
 app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use( function( req, res, next ) { //for anchor tag _method
+  if ( req.query._method == 'DELETE' ) {
+      req.method = 'DELETE';
+      req.url = req.path;
+  }       
+  next(); 
+});
 
 app.get("/", (req, res) => {
   res.render('index', {outputData : 0});
@@ -54,10 +64,7 @@ app.post('/cv', upload_img.uploadFile, (req, res) =>{
   }
   
 })
-app.get('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - now for just DELETE button on client side - zastosowac method override
-  deleteCv(req,res);
-})
-app.delete('/cv/:id/delete', (req,res)=>{//TODO - USE DELETE METHOD INSTEAD OF GET - for fetch api
+app.delete('/cv/:id/delete', (req,res)=>{
   deleteCv(req,res);
 });
 
