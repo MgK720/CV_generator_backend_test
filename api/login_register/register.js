@@ -19,8 +19,8 @@ const register = async (request,response)=>{
             })
             throw 'Repeated password is not the same';
         }
-        const isNewLogin = await isNewUser(login);
-        if(isNewLogin){
+        const isNewLogin = await isLoginExists(login);
+        if(!isLoginExists){
             let hashedPassword = await bcrypt.hash(password,10);
             try{
                 const insertQuery = await pool.query('Insert Into account(account_id, cv_id, login,password) Values (default, null, $1, $2)', [login, hashedPassword]);
@@ -40,13 +40,13 @@ const register = async (request,response)=>{
     }
   }
 
-const isNewUser = async (login) =>{
+const isLoginExists = async (login) =>{
     try{
-        const result = await pool.query('Select login from account where login=$1', [login]);
-        if(result.rows.length > 0 ){
+        const result = await pool.query('Select * from account where login=$1', [login]);
+        if(result.rowCount == 0 ){
             return false;
         }
-        return true;
+        return result.rows[0];
     }catch (error){
         throw error;
     }
@@ -54,4 +54,5 @@ const isNewUser = async (login) =>{
 
 module.exports = {
     register,
+    isLoginExists
 }

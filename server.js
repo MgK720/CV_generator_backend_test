@@ -1,5 +1,7 @@
 const express = require('express')
+const session = require('express-session')
 const methodOverride = require('method-override')
+const passport = require('passport');
 const bodyParser = require('body-parser')
 const upload_img = require('./api/upload_img')
 const app = express()
@@ -8,15 +10,22 @@ const dbUpdate = require('./api/update')
 const { getCv } = require('./api/get');
 const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
+require('./api/login_register/login')(passport);
 const {searchBySkillLike} = require('./api/search');
 
 const port = 3000
 
-
+app.use(session({
+  secret: 'thatsecretthinggoeshere',
+  resave: false,
+  saveUninitialized: true
+}));
 app.use(bodyParser.json())
 app.use(express.urlencoded({extended: true})); 
 app.use(methodOverride('_method'))
 app.use(express.static('public'));
+app.use(passport.initialize());
+app.use(passport.session());
 app.set('view engine', 'ejs');
 app.use( function( req, res, next ) { //for anchor tag _method
   if ( req.query._method == 'DELETE' ) {
@@ -25,13 +34,26 @@ app.use( function( req, res, next ) { //for anchor tag _method
   }       
   next(); 
 });
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 app.get("/", (req, res) => {
+  console.log(`USER AAAAAAAAAA = ${req.user}`);
   res.render('index', {outputData : 0});
   });
 app.get("/login", (req,res) =>{
   res.render('login_register/login.ejs', {msg: 0});
 })
+app.post("/login", passport.authenticate("local-login", { failureRedirect: '/login' }), (req, res) => {
+  //res.json({ user: req.user });
+  res.redirect('/');
+}
+);
 app.get("/register", (req,res)=>{
   res.render('login_register/register.ejs', {msg : 0});
 })
@@ -39,6 +61,7 @@ app.post("/register", (req,res)=>{
   register(req,res);
 })
 app.get('/rules', (req,res)=>{
+  console.log(`USER AAAAAAAAAA = ${req.user}`);
   res.render('login_register/rules.ejs')
 })
 app.get("/cv/:id",(req, res) => {
