@@ -160,7 +160,7 @@
                                     <li>
                                         <label for="skill_name0">Skill:</label>
                                         <input type="text" name="skill_name0" id="skill_name0" minlength="1"
-                                            maxlength="25" required>
+                                            maxlength="25" onkeypress="return /[0-9a-zA-Z]/i.test(event.key)" required>
                                         <span class="validity"></span>
                                     </li>
                                     <li>
