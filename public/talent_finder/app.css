@@ -90,6 +90,12 @@ img{
     text-transform: uppercase;
     max-width:250px;
 }
+form{
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap:wrap;
+}
 #input_div{
     margin-top:1rem;
     display:flex;
@@ -98,7 +104,7 @@ img{
 }
 #verb_like{
     height:60px;
-    width:400px;
+    width:410px;
     font-family: mainFontMedium;
     font-size:0.9em;
     letter-spacing: 1px;
@@ -122,6 +128,7 @@ img{
     align-items: center;
     flex-direction: column;
     flex-wrap:wrap;
+    height:310px;
 }
 .skills li{
     margin-top:1rem;
@@ -145,7 +152,23 @@ img{
     transform: translateY(-0.24em);
     cursor:pointer;
 }
+@media (max-width:560px){
+    .skills{
+        height:340px;
+        font-size:0.8em;
+    }
+    #search{
+        margin-top:1rem;
+        width:97%;
+    }
+    #verb_like{
+        width:97%;
+    }
+}
 @media (max-width:500px){
+    header h1{
+        font-size:2.8rem;
+    }
     a{
         font-size:1.3rem;
     }
