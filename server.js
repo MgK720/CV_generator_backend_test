@@ -43,6 +43,8 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+
+
 app.get("/",loggedIn, (req, res) => {
   res.render('index', {outputData : 0});
   });

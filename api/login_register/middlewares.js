@@ -15,7 +15,7 @@ function goHome(req,res,next){
         next();
     }
 }
-
+//TODO index.js w folderze api, żebym mógł jednym require uzyc wszystkich metod z api
 module.exports = {
     loggedIn,
     goHome
