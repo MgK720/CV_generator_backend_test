@@ -335,7 +335,7 @@ function createSkillSection(place, data={}){
     skillNameLabel.textContent = "Skill:"
 
     const skillName = document.createElement("input")
-    setAttributes(skillName, {"type": "text", "name": "skill_name" + addSkillCount, "id": "skill_name" + addSkillCount, "minlength": "1", "maxlength": "25"});
+    setAttributes(skillName, {"type": "text", "name": "skill_name" + addSkillCount, "id": "skill_name" + addSkillCount, "minlength": "1", "maxlength": "25", "onkeypress": "return /[0-9a-zA-Z]/i.test(event.key)"});
     skillName.required = true;
 
     const spanValidity0 = createSpanValidity();

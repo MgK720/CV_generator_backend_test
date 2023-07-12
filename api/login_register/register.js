@@ -19,8 +19,8 @@ const register = async (request,response)=>{
             })
             throw 'Repeated password is not the same';
         }
-        const isNewLogin = await isLoginExists(login);
-        if(!isLoginExists){
+        const loginExists = await isLoginExists(login);
+        if(!loginExists){
             let hashedPassword = await bcrypt.hash(password,10);
             try{
                 const insertQuery = await pool.query('Insert Into account(account_id, cv_id, login,password) Values (default, null, $1, $2)', [login, hashedPassword]);

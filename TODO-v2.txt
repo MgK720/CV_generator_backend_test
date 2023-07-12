@@ -1,8 +1,8 @@
 1.update DONE
 2.delete DONE
-3.register DONE
-4.login
-5.search 
+3.register DONE (w przyszlosci nakazywanie używania bardziej skomplikowanych haseł)
+4.login DONE 
+5.search DONE
     (najprawdopodobniej wszystko w jednym ejs - input i pod lista wszystkich skilli ktora sie generuje dynamicznie jesli wyszukamy frazy)
     A | skill input ejs + get route
     B | in route ---> select * from skill 
@@ -13,3 +13,10 @@
     })
 6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona
 7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete)
+
+
+TODO 14.07
+1.modal dla delete (proces bedzie nie do odwrócenia)
+2.powrót do home page pod każdym h1 (cv generator) anchor tag
+3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo)
+
