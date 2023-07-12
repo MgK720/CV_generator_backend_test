@@ -28,7 +28,7 @@ const register = async (request,response)=>{
                 throw e;
             }
             console.log(`New account registered - ${login}`);
-            response.render('index');
+            response.redirect('/login');
         }else{
             response.render('login_register/register.ejs', {
                 msg: 'User with this login already exists'
@@ -43,7 +43,7 @@ const register = async (request,response)=>{
 const isNewUser = async (login) =>{
     try{
         const result = await pool.query('Select login from account where login=$1', [login]);
-        if(result.length > 0 ){
+        if(result.rows.length > 0 ){
             return false;
         }
         return true;

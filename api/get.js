@@ -32,8 +32,8 @@ const getCv = async (request, response, template) => {
              hobby: getHobbyData.rows,
              link: getLinkData.rows
         };
-
-        console.log(JSON.stringify(outputData));
+        console.log(`Data read where id = ${outputData.personaldata[0].cv_id}`)
+        //console.log(JSON.stringify(outputData));
         //console.log(outputData.knowledge[0].start_date_knowledge)
         //console.log(JSON.stringify(outputData.knowledge));
         if(outputData.personaldata.length){//personaldata is required in all cv's
