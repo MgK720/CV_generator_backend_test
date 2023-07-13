@@ -25,6 +25,7 @@ const searchBySkillLike = async (req, res) =>{
         for(let i =0; i < outputData.length; i++){
             outputData[i].skills = outputData[i].skills.split(',');
         }
+        console.log(result.rows);
         console.log(`Talent Finder Request, Verb = ${verb_like}`);
         res.send(result.rows);
     }catch(e){

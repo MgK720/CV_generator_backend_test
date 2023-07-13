@@ -22,17 +22,20 @@
                 </li>
                 <li>
                     <label for="login"></label>
-                    <input type="text" name="login" id="login" placeholder="Login" minlength="8" maxlength="30" required >
+                    <input type="text" name="login" id="login" placeholder="Login" minlength="8" maxlength="30"
+                        required>
                     <span class="validity"></span>
                 </li>
                 <li>
                     <label for="password"></label>
-                    <input type="password" name="password" id="password" placeholder="Password" minlength="8" maxlength="40" required>
+                    <input type="password" name="password" id="password" placeholder="Password" minlength="8"
+                        maxlength="40" required>
                     <span class="validity"></span>
                 </li>
                 <li>
                     <label for="rep_password"></label>
-                    <input type="password" name="rep_password" id="rep_password" placeholder="Confirm Password" required>
+                    <input type="password" name="rep_password" id="rep_password" minlength="8" maxlength="40"
+                        placeholder="Confirm Password" required>
                     <span class="validity"></span>
                 </li>
                 <li id="check_li">
@@ -48,12 +51,16 @@
         </form>
     </section>
     <% if(msg){ %>
-        <div id="message"><p><%= msg %></p></div>
-    <%}%>
-    <!-- <footer>
+        <div id="message">
+            <p>
+                <%= msg %>
+            </p>
+        </div>
+        <%}%>
+            <!-- <footer>
         <p>Copyright &copy Igor Ciesielski 2023</p>
     </footer> -->
-    <script src="/login_register/login_app.js"></script>
+            <script src="/login_register/login_app.js"></script>
 </body>
 
 </html>
