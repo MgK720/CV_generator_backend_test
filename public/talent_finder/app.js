@@ -14,6 +14,7 @@ let pageNumber = 1;
 let maxPageVisible = Infinity;
 let searchTerm = 0;
 
+const h1 = document.querySelector('h1');
 const form = document.querySelector('form');
 const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
@@ -31,14 +32,14 @@ form.addEventListener('submit', async function (e) {
     form.elements.verb_like.value = '';
 })
 previous.addEventListener('click', async ()=> {
-    console.log('prevclicked' + pageNumber);
+    h1.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
     if(pageNumber > 1){
         pageNumber--;
         await fetchData(searchTerm, pageNumber);
     }
 })
 next.addEventListener('click', async ()=>{
-    console.log('nextClicked' + pageNumber);
+    h1.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
     pageNumber++;
     await fetchData(searchTerm, pageNumber);
 })
@@ -54,24 +55,35 @@ const fetchData = async (verb, page)=>{
     if(page == 1){
         disableButton(previous);
     }
-    enableButton(next);
     try{
         if(page == maxPageVisible){//if second time we go to the last page
             disableButton(next);
             pageNumber--;
             return;
+        }else{ // if there is no maxPageVisible yet - try to find it on next page
+            const nextPage = page + 1;
+            const config_next = { params: { verb_like: verb, pageNumber: nextPage} }
+            const res_next = await axios.get(`/talentfinder/search`, config_next);
+            if(res_next.data.length == 0){
+                maxPageVisible = nextPage;
+                disableButton(next);
+            }else{
+                enableButton(next);
+            }
         }
         const config = { params: { verb_like: verb, pageNumber: page} }
         const res = await axios.get(`/talentfinder/search`, config);
-        if(res.data.length == 0 ){
+        if(res.data.length == 0 ){ // if there is completely no data for verb_like
             maxPageVisible = page;
             disableButton(next);
             pageNumber--;
-            if(pageNumber == 0){ //if there is completely no data for verb_like
-                deleteCards();
-            }
+            deleteCards();
+            // if(pageNumber == 0){ //if there is completely no data for verb_like
+            //     deleteCards();
+            // }
             return;
-        }else{
+        }
+        else{
             if(page > 1){
                 enableButton(previous);
             }
@@ -140,18 +152,15 @@ const makeCard = (row) => {
 
     record.append(personaldataUl);
     record.append(skillsUl);
-
-    setTimeout(() =>{
-        place.append(record);
-    }, 3000)
+    record.classList.add('record_added');
+    place.append(record);
 }
 
 const deleteCards = () =>{
     let records = document.querySelectorAll('.record');
     for(let i =0; i< records.length; i++){
-        setTimeout(() =>{
-            records[i].remove();
-        }, 3000)
+        records[i].classList.add('record_deleted');
+        records[i].remove();
     }
 }
 
