@@ -1,25 +1,47 @@
 //TODO W PRZYSZLOSCI OGRANICZENIE WYSWIETLANIA DANYCH NP TYLKO PO 20 NA STRONE I PRZYCISK NEXT 
+let pageNumber = 1;
+let searchTerm = 0;
+
 const form = document.querySelector('form');
+const previous = document.querySelector('#previous');
+const next = document.querySelector('#next');
 form.addEventListener('submit', async function (e) {
     e.preventDefault();
+    pageNumber = 1;
+    searchTerm = form.elements.verb_like.value;
+
     deleteCards();
-    const searchTerm = form.elements.verb_like.value;
-    const config = { params: { verb_like: searchTerm } }
-    const res = await axios.get(`/talentfinder/search`, config);
-    //todo style dla takiej sytuacji
-    // if(res.data.length){
-    //     makeCards(res.data);
-    // }else{
-    //     makeBlank();
-    // }
-    makeCards(res.data);
-    console.log(res.data);
+    await fetchData(searchTerm, pageNumber);
+
     form.elements.verb_like.value = '';
 })
+previous.addEventListener('click', async ()=> {
+    if(pageNumber > 1){
+        deleteCards();
+        pageNumber--;
+        await fetchData(searchTerm, pageNumber);
+    }
+})
+next.addEventListener('click', async ()=>{
+    deleteCards();
+    pageNumber++;
+    await fetchData(searchTerm, pageNumber);
+})
+
 
 const makeCards = (data) => {
     for (let row of data) {
         makeCard(row);    
+    }
+}
+
+const fetchData = async (verb, page)=>{
+    try{
+        const config = { params: { verb_like: verb, pageNumber: page} }
+        const res = await axios.get(`/talentfinder/search`, config);
+        makeCards(res.data);
+    }catch(e){
+        console.log(e);
     }
 }
 
