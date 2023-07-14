@@ -34,7 +34,6 @@ const query = `SELECT DISTINCT cv_id, img_destination, firstname, lastname, phon
                               ON cv.cv_id=personaldata.cv_id) WHERE skill.skill_name ILIKE $1) as response LIMIT $2 OFFSET $3`;
     try{
         const result = await pool.query(query, [`%${verb_like}%`,pageSize, offset]);
-        console.log(result);
         const outputData = result.rows;
         for(let i =0; i < outputData.length; i++){
             outputData[i].skills = outputData[i].skills.split(',');

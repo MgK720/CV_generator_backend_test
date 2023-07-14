@@ -1,29 +1,31 @@
 //TODO W PRZYSZLOSCI OGRANICZENIE WYSWIETLANIA DANYCH NP TYLKO PO 20 NA STRONE I PRZYCISK NEXT 
 let pageNumber = 1;
+let maxPageVisible = Infinity;
 let searchTerm = 0;
 
 const form = document.querySelector('form');
 const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
+
 form.addEventListener('submit', async function (e) {
     e.preventDefault();
     pageNumber = 1;
+    maxPageVisible = Infinity;
     searchTerm = form.elements.verb_like.value;
 
-    deleteCards();
     await fetchData(searchTerm, pageNumber);
 
     form.elements.verb_like.value = '';
 })
 previous.addEventListener('click', async ()=> {
+    console.log('prevclicked' + pageNumber);
     if(pageNumber > 1){
-        deleteCards();
         pageNumber--;
         await fetchData(searchTerm, pageNumber);
     }
 })
 next.addEventListener('click', async ()=>{
-    deleteCards();
+    console.log('nextClicked' + pageNumber);
     pageNumber++;
     await fetchData(searchTerm, pageNumber);
 })
@@ -36,10 +38,34 @@ const makeCards = (data) => {
 }
 
 const fetchData = async (verb, page)=>{
+    if(page == 1){
+        previous.disabled = true;
+    }
+    next.disabled = false;
     try{
+        if(page == maxPageVisible){//if second time we go to the last page
+            next.disabled = true;
+            pageNumber--;
+            return;
+        }
         const config = { params: { verb_like: verb, pageNumber: page} }
         const res = await axios.get(`/talentfinder/search`, config);
-        makeCards(res.data);
+        if(res.data.length == 0 ){
+            maxPageVisible = page;
+            next.disabled = true;
+            pageNumber--;
+            if(pageNumber == 0){ //if there is completely no data for verb_like
+                deleteCards();
+            }
+            return;
+        }else{
+            if(page > 1){
+                previous.disabled = false;
+            }
+            deleteCards();
+            console.log(page);
+            makeCards(res.data);
+        }
     }catch(e){
         console.log(e);
     }
