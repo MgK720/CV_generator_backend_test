@@ -32,7 +32,16 @@ const searchBySkillLike = async (req, res) =>{
         }
         //console.log(result.rows);
         console.log(`Talent Finder Request, Verb = ${verb_like}`);
-        res.send(result.rows);
+        if(verb_like === undefined){ //if typed this route as url
+            res.render('confirm_generation/confirm', {
+                cvID: -1,
+                msg: 'The requested URL was not found on this server',
+                errorUpdate: false,
+                errorDelete: false
+            });
+        }else{
+            res.send(result.rows);
+        }
     }catch(e){
         console.error(e);
     }

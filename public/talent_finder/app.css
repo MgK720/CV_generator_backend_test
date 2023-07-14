@@ -51,6 +51,7 @@ a:hover{
     text-decoration: underline;
 }
 #all_records{
+    min-height:450px;
     display:flex;
     flex-direction: row;
     margin:2rem 1rem;
