@@ -134,7 +134,7 @@ form{
     margin-top:1rem;
     margin-left:0.5em;
 }
-#search, #previous, #next{
+#search, .control_button{
     height:60px;
     width:150px;
     font-size: 0.9em;
@@ -144,7 +144,7 @@ form{
     border:3px solid orangered;
     transition: all 0.25s;
 }
-#search:hover, #previous:hover, #next:hover{
+#search:hover, .control_button:hover{
     background-color: #07264e;
     color:#F9F5EB;
     border-color: orange;
@@ -159,9 +159,22 @@ form{
     display:flex;
     flex-direction: row;
 }
-#previous, #next{
+.control_button{
     text-transform: uppercase;
     width:45%;
+}
+.button_disable{
+    background-color: #061735;
+    color:grey;
+    border:3px solid grey;
+}
+.button_disable:hover{
+    background-color: #061735;
+    color:grey;
+    border:3px solid grey;
+    box-shadow: none;
+    transform: none;
+    cursor:default;
 }
 @media (max-width:560px){
     .skills{

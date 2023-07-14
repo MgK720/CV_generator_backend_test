@@ -1,4 +1,15 @@
-//TODO W PRZYSZLOSCI OGRANICZENIE WYSWIETLANIA DANYCH NP TYLKO PO 20 NA STRONE I PRZYCISK NEXT 
+//TODO W PRZYSZLOSCI OGRANICZENIE WYSWIETLANIA DANYCH NP TYLKO PO 20 NA STRONE I PRZYCISK NEXT - *** DONE ***
+const disableButton = (buttonId) =>{
+    buttonId.disabled = true;
+    buttonId.classList.add('button_disable');
+}
+
+const enableButton = (buttonId) => {
+    buttonId.disabled = false;
+    buttonId.classList.remove('button_disable');
+}
+
+
 let pageNumber = 1;
 let maxPageVisible = Infinity;
 let searchTerm = 0;
@@ -6,6 +17,8 @@ let searchTerm = 0;
 const form = document.querySelector('form');
 const previous = document.querySelector('#previous');
 const next = document.querySelector('#next');
+disableButton(previous);
+disableButton(next);
 
 form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -39,12 +52,12 @@ const makeCards = (data) => {
 
 const fetchData = async (verb, page)=>{
     if(page == 1){
-        previous.disabled = true;
+        disableButton(previous);
     }
-    next.disabled = false;
+    enableButton(next);
     try{
         if(page == maxPageVisible){//if second time we go to the last page
-            next.disabled = true;
+            disableButton(next);
             pageNumber--;
             return;
         }
@@ -52,7 +65,7 @@ const fetchData = async (verb, page)=>{
         const res = await axios.get(`/talentfinder/search`, config);
         if(res.data.length == 0 ){
             maxPageVisible = page;
-            next.disabled = true;
+            disableButton(next);
             pageNumber--;
             if(pageNumber == 0){ //if there is completely no data for verb_like
                 deleteCards();
@@ -60,7 +73,7 @@ const fetchData = async (verb, page)=>{
             return;
         }else{
             if(page > 1){
-                previous.disabled = false;
+                enableButton(previous);
             }
             deleteCards();
             console.log(page);
