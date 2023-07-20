@@ -42,7 +42,7 @@ async function isOwner(req,res,next){ //for routes: /cv/:id/update, /cv/:id/dele
     if(cvAssignedToAccount.rows[0].cv_id == id){
         next();
     }else{
-        res.redirect('/talentfinder') //tutaj redirect to homepage
+        res.redirect('/home') //tutaj redirect to homepage
     }
 }
 
@@ -51,7 +51,7 @@ async function hasCvAlready(req,res,next){ // for route: /
     if(await hasCv(req) == false){
         next()
     }else{
-        res.redirect('/talentfinder')// tutaj redirect to home page
+        res.redirect('/home')// tutaj redirect to home page
     }
 }
 async function hasCv(req){ //for route: /cv
@@ -66,7 +66,7 @@ async function hasCv(req){ //for route: /cv
 }
 function goHome(req,res,next){
     if (req.user) {
-        res.redirect('/'); //redirect to home page
+        res.redirect('/home'); //redirect to home page
     }else{
         next();
     }

@@ -42,9 +42,15 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 
-
+app.get("/home",(req,res)=>{
+  res.render("home/home.ejs");
+})
 app.get("/",loggedIn,hasCvAlready, (req, res) => {
   res.render('index', {outputData : 0});
   });
@@ -62,6 +68,12 @@ app.get("/register",goHome, (req,res)=>{
 app.post("/register",goHome, (req,res)=>{
   register(req,res);
 })
+app.post('/logout', function(req, res, next){
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 app.get('/rules', (req,res)=>{
   res.render('login_register/rules.ejs')
 })
