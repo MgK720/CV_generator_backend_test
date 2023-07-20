@@ -23,12 +23,9 @@ async function cvOwnership(req,res,next){  // for buttons(update,delete) in /cv/
         const id = req.params.id;
         const cvAssignedToAccount = await pool.query('Select cv_id from account where login=$1', [login]);
         if(cvAssignedToAccount.rows[0].cv_id == id){
-            //req.isOwner = true;
-            //res.set('isOwner', true)
             res.locals.isOwner = true;
             next();
         }else{
-            //res.set('isOwner', false)
             res.locals.isOwner = false;
             next();
         }
@@ -37,6 +34,7 @@ async function cvOwnership(req,res,next){  // for buttons(update,delete) in /cv/
         next();
     }
 }
+
 async function isOwner(req,res,next){ //for routes: /cv/:id/update, /cv/:id/delete
     const login = req.user.login;
     const id = req.params.id;

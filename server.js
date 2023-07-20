@@ -45,7 +45,7 @@ passport.deserializeUser(function(user, done) {
 
 
 
-app.get("/",loggedIn,isOwner, (req, res) => {
+app.get("/",loggedIn, (req, res) => {
   res.render('index', {outputData : 0});
   });
 app.get("/login",goHome, (req,res) =>{

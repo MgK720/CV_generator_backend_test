@@ -20,4 +20,4 @@ TODO 14.07
 2.powrót do home page pod każdym h1 (cv generator) anchor tag
 3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo)
 4.logout
-
+5.delete (wtedy update account set null where cv_id=id)
