@@ -32,7 +32,10 @@ app.use( function( req, res, next ) { //for anchor tag _method
   if ( req.query._method == 'DELETE' ) {
       req.method = 'DELETE';
       req.url = req.path;
-  }       
+  }else if(req.query._method == 'POST'){
+      req.method = 'POST';
+      req.url = req.path;
+  }      
   next(); 
 });
 passport.serializeUser(function(user, done) {
@@ -51,9 +54,10 @@ app.use((req, res, next) => {
 app.get("/home",(req,res)=>{
   res.render("home/home.ejs");
 })
-app.get('/account'),async (req,res)=>{
-  res.render("account/account.ejs", {hasCv: hasCv(req)});
-}
+app.get('/account',loggedIn, async (req,res)=>{
+  console.log(1);
+  res.render("account/account.ejs", {hasCv: await hasCv(req)});
+})
 app.get("/",loggedIn,hasCvAlready, (req, res) => {
   res.render('index', {outputData : 0});
   });
@@ -71,7 +75,7 @@ app.get("/register",goHome, (req,res)=>{
 app.post("/register",goHome, (req,res)=>{
   register(req,res);
 })
-app.post('/logout', function(req, res, next){
+app.post('/logout',loggedIn, function(req, res, next){
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
