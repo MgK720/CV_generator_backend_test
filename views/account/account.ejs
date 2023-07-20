@@ -7,6 +7,31 @@
     <title>Cv Generator - <%= user.login %></title>
 </head>
 <body>
-    
+    <header>
+        <h1>CV Generator</h1>
+    </header>
+    <main>
+        <h2>Hello <%= user.login %> !!!</h2>
+        <ul>
+                <%if(!hasCv){%>
+                    <li>
+                        <a href="/">Create</a>
+                    </li>
+                <% }else{%>
+                    <li>
+                        <a href="<%= '/cv/' + cv_id  %>">Show my CV</a>
+                    </li>
+                    <li>
+                        <a href="<%= '/cv/' + cv_id + '/update' %>">Update my CV</a>
+                    </li>
+                    <li>
+                        <a href="<%= '/cv/' + cv_id + '/delete' %>">Delete my CV</a>
+                    </li>
+                <%} %>
+        </ul>
+    </main>
+    <footer>
+        <p>Copyright &copy Igor Ciesielski 2023</p>
+    </footer>
 </body>
 </html>

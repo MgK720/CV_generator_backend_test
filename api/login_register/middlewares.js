@@ -64,6 +64,12 @@ async function hasCv(req){ //for route: /cv
         return true;
     }
 }
+async function setLocalCvId(req,res,next){
+    const login = req.user.login;
+    const hasCv = await pool.query('Select cv_id from account where login=$1', [login]);
+    res.locals.cv_id = hasCv.rows[0].cv_id;
+    next();
+}
 function goHome(req,res,next){
     if (req.user) {
         res.redirect('/home'); //redirect to home page
@@ -78,5 +84,6 @@ module.exports = {
     cvOwnership,
     isOwner,
     hasCvAlready,
-    hasCv
+    hasCv,
+    setLocalCvId
 }

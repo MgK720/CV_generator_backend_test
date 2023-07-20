@@ -12,7 +12,7 @@ const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
 require('./api/login_register/login')(passport);
 const {searchBySkillLike} = require('./api/search');
-const { loggedIn, goHome, cvOwnership, isOwner, hasCvAlready, hasCv } = require('./api/login_register/middlewares');
+const { loggedIn, goHome, cvOwnership, isOwner, hasCvAlready, hasCv, setLocalCvId } = require('./api/login_register/middlewares');
 
 const port = 3000
 
@@ -47,6 +47,7 @@ passport.deserializeUser(function(user, done) {
 });
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  console.log(req.user);
   next();
 });
 
@@ -54,8 +55,8 @@ app.use((req, res, next) => {
 app.get("/home",(req,res)=>{
   res.render("home/home.ejs");
 })
-app.get('/account',loggedIn, async (req,res)=>{
-  console.log(1);
+app.get('/account',loggedIn,setLocalCvId, async (req,res)=>{
+  console.log(await hasCv(req));
   res.render("account/account.ejs", {hasCv: await hasCv(req)});
 })
 app.get("/",loggedIn,hasCvAlready, (req, res) => {
@@ -66,7 +67,7 @@ app.get("/login",goHome, (req,res) =>{
 })
 app.post("/login",goHome, passport.authenticate("local-login", { failureRedirect: '/login' }), (req, res) => {
   //res.json({ user: req.user });
-  res.redirect('/');
+  res.redirect('/home');
 }
 );
 app.get("/register",goHome, (req,res)=>{
