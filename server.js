@@ -51,6 +51,10 @@ app.use((req, res, next) => {
 app.get("/home",(req,res)=>{
   res.render("home/home.ejs");
 })
+app.get('/account/:login'),(req,res)=>{
+  const login = req.params.login;
+  res.render("account/account.ejs");
+}
 app.get("/",loggedIn,hasCvAlready, (req, res) => {
   res.render('index', {outputData : 0});
   });
