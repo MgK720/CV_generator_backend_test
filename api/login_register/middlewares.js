@@ -17,6 +17,7 @@ function loggedIn(req, res, next) {
         res.redirect('/login');
     }
 }
+//TODO RENAME THIS FUNCTIONS + MAKE MORE IQ ONES
 async function cvOwnership(req,res,next){  // for buttons(update,delete) in /cv/:id
     if(req.user){
         const login = req.user.login;
