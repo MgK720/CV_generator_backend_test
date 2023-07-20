@@ -26,10 +26,10 @@ const createCv = async (request, response) => {
     try{
         console.log(request.body);
 
-        outputMessage += await assignCvToAccount(cvID, login);
-
         const cvID = await addCv(cv_url);
         outputMessage += `Cv added with ID: ${cvID} <br>\n`;
+
+        outputMessage += await assignCvToAccount(cvID, login);
 
         const personalDataID = await addPersonalData(cvID, personaldata.firstname, personaldata.lastname, personaldata.email, personaldata.phone_country, personaldata.phone, img_destination);
         outputMessage += `PersonalData added with ID: ${personalDataID}, img_destination: ${img_destination} <br>\n`;
@@ -69,8 +69,8 @@ const createCv = async (request, response) => {
 
 const assignCvToAccount = async (cvID, login) =>{
     try{
-        const isAccountHasCvAssigned = await pool.query('Select cv_id from account where login=$1', [login]).rowCount; // 0 - not assigned, 1 - assigned
-        if(isAccountHasCvAssigned == 0){
+        const resultAccountHasCvAssigned = await pool.query('Select cv_id from account where login=$1', [login]);
+        if(resultAccountHasCvAssigned.rows[0].cv_id === null){
             const assignResult = await pool.query('Update Account Set cv_id=$1 where login=$2', [cvID, login]);
             return `${cvID} assigned to ${login}`;
         }else{

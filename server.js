@@ -12,7 +12,7 @@ const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
 require('./api/login_register/login')(passport);
 const {searchBySkillLike} = require('./api/search');
-const { loggedIn, goHome, cvOwnership, isOwner, hasCvAlready } = require('./api/login_register/middlewares');
+const { loggedIn, goHome, cvOwnership, isOwner, hasCvAlready, hasCv } = require('./api/login_register/middlewares');
 
 const port = 3000
 
@@ -80,9 +80,13 @@ app.get('/cv/:id/update',loggedIn,isOwner, (req, res) => {
   }
 });
 
-app.post('/cv',loggedIn,hasCvAlready, upload_img.uploadFile, (req, res) =>{
+app.post('/cv',loggedIn, upload_img.uploadFile, async (req, res) =>{
   if(!req.body.personaldata_id){
-    db.createCv(req,res);
+    if(await hasCv(req) == false){
+      db.createCv(req,res);
+    }else{
+      res.redirect('/talentfinder')//redirect to home page
+    }
   }else{
     dbUpdate.updateCv(req,res);
   }

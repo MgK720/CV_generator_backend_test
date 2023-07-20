@@ -47,18 +47,26 @@ async function isOwner(req,res,next){ //for routes: /cv/:id/update, /cv/:id/dele
 }
 
 async function hasCvAlready(req,res,next){ // for route: /
-    const login = req.user.login;
-    const hasCv = await pool.query('Select cv_id from account where login=$1', [login]);
-    console.log(hasCv.rows[0].cv_id);
-    if(hasCv.rows[0].cv_id === null){
-        next();
+    console.log(`hasCV = ${await hasCv(req)}`);
+    if(await hasCv(req) == false){
+        next()
     }else{
         res.redirect('/talentfinder')// tutaj redirect to home page
     }
 }
+async function hasCv(req){ //for route: /cv
+    const login = req.user.login;
+    const hasCv = await pool.query('Select cv_id from account where login=$1', [login]);
+    console.log(hasCv.rows[0].cv_id);
+    if(hasCv.rows[0].cv_id === null){
+        return false;
+    }else{
+        return true;
+    }
+}
 function goHome(req,res,next){
     if (req.user) {
-        res.redirect('/');
+        res.redirect('/'); //redirect to home page
     }else{
         next();
     }
@@ -70,4 +78,5 @@ module.exports = {
     cvOwnership,
     isOwner,
     hasCvAlready,
+    hasCv
 }
