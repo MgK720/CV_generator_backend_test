@@ -1,10 +1,10 @@
 const express = require('express')
+const app = express()
 const session = require('express-session')
 const methodOverride = require('method-override')
 const passport = require('passport');
 const bodyParser = require('body-parser')
 const upload_img = require('./api/upload_img')
-const app = express()
 const db = require('./api/create')
 const dbUpdate = require('./api/update')
 const { getCv } = require('./api/get');
@@ -12,7 +12,7 @@ const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
 require('./api/login_register/login')(passport);
 const {searchBySkillLike} = require('./api/search');
-const { loggedIn, goHome } = require('./api/login_register/middlewares');
+const { loggedIn, goHome, cvOwnership, isOwner } = require('./api/login_register/middlewares');
 
 const port = 3000
 
@@ -45,13 +45,13 @@ passport.deserializeUser(function(user, done) {
 
 
 
-app.get("/",loggedIn, (req, res) => {
+app.get("/",loggedIn,isOwner, (req, res) => {
   res.render('index', {outputData : 0});
   });
 app.get("/login",goHome, (req,res) =>{
   res.render('login_register/login.ejs', {msg: 0});
 })
-app.post("/login", passport.authenticate("local-login", { failureRedirect: '/login' }), (req, res) => {
+app.post("/login",goHome, passport.authenticate("local-login", { failureRedirect: '/login' }), (req, res) => {
   //res.json({ user: req.user });
   res.redirect('/');
 }
@@ -59,20 +59,20 @@ app.post("/login", passport.authenticate("local-login", { failureRedirect: '/log
 app.get("/register",goHome, (req,res)=>{
   res.render('login_register/register.ejs', {msg : 0});
 })
-app.post("/register", (req,res)=>{
+app.post("/register",goHome, (req,res)=>{
   register(req,res);
 })
 app.get('/rules', (req,res)=>{
   res.render('login_register/rules.ejs')
 })
-app.get("/cv/:id", (req, res) => {
+app.get("/cv/:id",cvOwnership, (req, res) => {
   try{
     getCv(req, res, 'get_cv/get_cv');
   }catch(e){
     console.log(e);
   }
 });
-app.get('/cv/:id/update',loggedIn, (req, res) => {
+app.get('/cv/:id/update',loggedIn,isOwner, (req, res) => {
   try{
     getCv(req, res, 'index');
   }catch(e){
@@ -88,7 +88,7 @@ app.post('/cv',loggedIn, upload_img.uploadFile, (req, res) =>{
   }
   
 })
-app.delete('/cv/:id/delete',loggedIn, (req,res)=>{
+app.delete('/cv/:id/delete',loggedIn,isOwner, (req,res)=>{
   deleteCv(req,res);
 });
 

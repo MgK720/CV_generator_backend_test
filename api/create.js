@@ -22,8 +22,11 @@ const createCv = async (request, response) => {
     if(request.file){
         img_destination =`imgs/${request.file.filename}`;
     }
+    const {login} = request.user;
     try{
         console.log(request.body);
+
+        outputMessage += await assignCvToAccount(cvID, login);
 
         const cvID = await addCv(cv_url);
         outputMessage += `Cv added with ID: ${cvID} <br>\n`;
@@ -40,6 +43,7 @@ const createCv = async (request, response) => {
         outputMessage += await addHobbyEntries(cvID, request.body);
 
         outputMessage += await addLinkEntries(cvID, request.body);
+
     
         console.log(outputMessage);
 
@@ -62,6 +66,20 @@ const createCv = async (request, response) => {
     }
 
   }
+
+const assignCvToAccount = async (cvID, login) =>{
+    try{
+        const isAccountHasCvAssigned = await pool.query('Select cv_id from account where login=$1', [login]).rowCount; // 0 - not assigned, 1 - assigned
+        if(isAccountHasCvAssigned == 0){
+            const assignResult = await pool.query('Update Account Set cv_id=$1 where login=$2', [cvID, login]);
+            return `${cvID} assigned to ${login}`;
+        }else{
+            throw 'This account has cv already!!!';
+        }
+    }catch (e){
+        throw e;
+    }
+}
 const addCv = async (cv_url) =>{
     try{
         const cvResult = await pool.query('INSERT INTO cv(cv_id, create_date, cv_url) VALUES (DEFAULT, DEFAULT, $1) RETURNING *', [cv_url]);
