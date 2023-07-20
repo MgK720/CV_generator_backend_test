@@ -206,12 +206,13 @@ h2{
 }
 
 #cv_actions_buttons{
+    text-align: center;
     width:99%;
 }
 /* #update_cv a, #delete_cv a{
     color:white;
 } */
-#update_cv, #delete_cv{
+#update_cv, #delete_cv, .modal_buttons{
     font-family: mainFontMedium;
     font-size:1.4em;
     background-color: #061735;
@@ -223,7 +224,7 @@ h2{
     height:50px;
     transition: all 0.25s;
   }
-  #update_cv:hover,#delete_cv:hover{
+  #update_cv:hover,#delete_cv:hover, .modal_buttons:hover{
     background-color: #07264e;
     color:#F9F5EB;
     border-color:green;
@@ -231,7 +232,19 @@ h2{
     transform: translateY(-0.24em);
     cursor:pointer;
   }
-  #delete_cv:hover{
+  #show_delete_modal:hover, #delete_cv:hover{
     border-color: #AF0000;
     box-shadow: 0 0.5em 0.5em -0.4em #AF0000;
+  }
+  #delete_modal{
+    text-align: center;
+    padding:2rem;
+    border:3px solid white;
+    background-color: #07264e;
+  }
+  #delete_modal::backdrop{
+    background-color: rgba(255,255,255,0.6)
+  }
+  #delete_modal h2{
+    color:red;
   }

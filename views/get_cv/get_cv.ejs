@@ -196,8 +196,13 @@
                     <h2>what you want to do?</h2>
                     <a href="<%= '/cv/' + personalData[0].cv_id + '/update' %>"><button
                             id="update_cv">update</button></a>
-                    <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' + '?_method=DELETE' %>" id="delete_cv_href"><button
-                            id="delete_cv">delete</button></a>
+                    <dialog id="delete_modal">
+                        <h2>Are you sure? (this will result in loss of all data)</h2>
+                        <button class="modal_buttons" id="hide_modal">Cancel</button>
+                        <a href="<%= '/cv/' + personalData[0].cv_id + '/delete' + '?_method=DELETE' %>" id="delete_cv_href"><button
+                            id="delete_cv" class="modal_buttons">delete</button></a>
+                    </dialog>
+                    <button id="show_delete_modal" class="modal_buttons">delete</button>
                 </section>
                 <% } %>
     </main>
