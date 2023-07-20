@@ -11,13 +11,13 @@
             print(cvID, allSKills)
         }
     })
-6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona
-7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete)
+6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona 50% HALF DONE
+7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete) 50% HALF DONE
 
 
 TODO 14.07
-1.modal dla delete (proces bedzie nie do odwrócenia)
+1.modal dla delete (proces bedzie nie do odwrócenia) DONE 
 2.powrót do home page pod każdym h1 (cv generator) anchor tag
 3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo)
-4.logout
+4.logout DONE 
 5.delete (wtedy update account set null where cv_id=id) DONE
