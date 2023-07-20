@@ -12,6 +12,7 @@ const getCv = async (request, response, template) => {
     const id = request.params.id;
 
     try{
+        console.log(request.user);
         const getPersonalData = await pool.query('SELECT * FROM personaldata WHERE cv_id = $1 order by personaldata_id', [id]);
 
         const getKnowledgeData = await pool.query("SELECT cv_id, knowledge_id, knowledge_name, knowledgetype_id,schooltype_id,to_char(start_date_knowledge, 'YYYY-MM-DD') start_date_knowledge, to_char(end_date_knowledge, 'YYYY-MM-DD') end_date_knowledge, description FROM knowledge WHERE cv_id = $1 order by knowledge_id", [id]);

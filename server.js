@@ -12,7 +12,7 @@ const { deleteCv } = require('./api/delete');
 const {register} = require('./api/login_register/register');
 require('./api/login_register/login')(passport);
 const {searchBySkillLike} = require('./api/search');
-const { loggedIn, goHome, cvOwnership, isOwner } = require('./api/login_register/middlewares');
+const { loggedIn, goHome, cvOwnership, isOwner, hasCvAlready } = require('./api/login_register/middlewares');
 
 const port = 3000
 
@@ -45,7 +45,7 @@ passport.deserializeUser(function(user, done) {
 
 
 
-app.get("/",loggedIn, (req, res) => {
+app.get("/",loggedIn,hasCvAlready, (req, res) => {
   res.render('index', {outputData : 0});
   });
 app.get("/login",goHome, (req,res) =>{
@@ -80,7 +80,7 @@ app.get('/cv/:id/update',loggedIn,isOwner, (req, res) => {
   }
 });
 
-app.post('/cv',loggedIn, upload_img.uploadFile, (req, res) =>{
+app.post('/cv',loggedIn,hasCvAlready, upload_img.uploadFile, (req, res) =>{
   if(!req.body.personaldata_id){
     db.createCv(req,res);
   }else{

@@ -45,6 +45,17 @@ async function isOwner(req,res,next){ //for routes: /cv/:id/update, /cv/:id/dele
         res.redirect('/talentfinder') //tutaj redirect to homepage
     }
 }
+
+async function hasCvAlready(req,res,next){ // for route: /
+    const login = req.user.login;
+    const hasCv = await pool.query('Select cv_id from account where login=$1', [login]);
+    console.log(hasCv.rows[0].cv_id);
+    if(hasCv.rows[0].cv_id === null){
+        next();
+    }else{
+        res.redirect('/talentfinder')// tutaj redirect to home page
+    }
+}
 function goHome(req,res,next){
     if (req.user) {
         res.redirect('/');
@@ -57,5 +68,6 @@ module.exports = {
     loggedIn,
     goHome,
     cvOwnership,
-    isOwner
+    isOwner,
+    hasCvAlready,
 }
