@@ -64,6 +64,7 @@ _TODO_
 cd cv_generator
 npm i
 touch .env #[*]
+mkdir public/imgs
 node server.js
 ```
 
