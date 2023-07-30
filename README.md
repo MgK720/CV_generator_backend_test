@@ -28,7 +28,7 @@ _**Watch [App Overview][overwiev] video**_
 > And then i tried to resolve them.
 > My app still have some problems like "phone numbers", actually 
 > it accepts only 3 digits country code and 9 digits numbers.
-> But to resolve this with good rules like validate and store
+> But to resolve this with good rules like validation and store
 > on database i need to use someone's phone patterns datalists etc..
 > And this is not main goal for this project.
 > I wanted to make everything from scratch.
