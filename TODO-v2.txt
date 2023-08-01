@@ -21,3 +21,4 @@ TODO 14.07
 3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo) DONE 
 4.logout DONE 
 5.delete (wtedy update account set null where cv_id=id) DONE
+6. Prawdopodobnie rezygnacja z account podstrony -> elementy tej podstrony umieszczone w liscie do wysuniecia na homepage-u w navbarze/aside (jesli zalogowany)
