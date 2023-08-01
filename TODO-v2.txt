@@ -17,7 +17,7 @@
 
 TODO 14.07
 1.modal dla delete (proces bedzie nie do odwrócenia) DONE 
-2.powrót do home page pod każdym h1 (cv generator) anchor tag
+2.powrót do home page pod każdym h1 (cv generator) anchor tag DONE 
 3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo)
 4.logout DONE 
 5.delete (wtedy update account set null where cv_id=id) DONE

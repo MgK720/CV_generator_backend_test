@@ -62,7 +62,14 @@ input[type=number] {
     font-family: mainFontMedium;
     src: url(fonts/Roboto/Roboto-Medium.ttf);
 }
-
+header a{
+	text-decoration: none;
+    color:white;
+}
+header a:hover{
+    color:orange;
+    text-decoration: underline;
+}
 h1{
   font-size:3em;
   text-align: center;
