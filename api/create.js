@@ -11,6 +11,7 @@ const pool = new Pool({
 const createCv = async (request, response) => {
     let outputMessage = '';
     let img_destination = null;
+    //TODO DO ZMIANY - USUNIETA KOLUMNA CV_URL
     const cv_url = `http://cv.com/${Math.floor(Math.random() * 100000)}.cv`
     const personaldata = {
         firstname : request.body.firstname,
@@ -26,6 +27,7 @@ const createCv = async (request, response) => {
     try{
         console.log(request.body);
 
+        //TODO DO ZMIANY - USUNIETA KOLUMNA CV_URL
         const cvID = await addCv(cv_url);
         outputMessage += `Cv added with ID: ${cvID} <br>\n`;
 
@@ -82,6 +84,7 @@ const assignCvToAccount = async (cvID, login) =>{
 }
 const addCv = async (cv_url) =>{
     try{
+        //TODO DO ZMIANY - USUNIETA KOLUMNA CV_URL
         const cvResult = await pool.query('INSERT INTO cv(cv_id, create_date, cv_url) VALUES (DEFAULT, DEFAULT, $1) RETURNING *', [cv_url]);
         console.log(`cv_id = ${cvResult.rows[0].cv_id}`)
         return cvResult.rows[0].cv_id;
