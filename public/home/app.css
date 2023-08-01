@@ -1,0 +1,40 @@
+@font-face {
+    font-family: mainFontMedium;
+    src: url(/fonts/Roboto/Roboto-Medium.ttf);
+}
+body{
+    background-color: #061735;
+    letter-spacing: 1px;
+    font-family: mainFontMedium;
+    color:#F9F5EB;
+    font-size: 1.4rem;
+}
+footer{
+    text-align: center;
+    margin-bottom:0.5em;
+  }
+footer p{
+    margin-top:1em;
+    margin-bottom:2em;
+    font-size: 1rem;
+    text-transform: none;
+}
+header h1{
+    text-align: center;
+    font-size: 3em;
+    margin:0.5em 0;
+    text-transform: none;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#player_container{
+    width:70%;
+}
+#player{
+    aspect-ratio: 16/9;
+    height:auto;
+    width:100%;
+}
