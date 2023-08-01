@@ -65,11 +65,15 @@ app.get("/",loggedIn,hasCvAlready, (req, res) => {
 app.get("/login",goHome, (req,res) =>{
   res.render('login_register/login.ejs', {msg: 0});
 })
-app.post("/login",goHome, passport.authenticate("local-login", { failureRedirect: '/login' }), (req, res) => {
-  //res.json({ user: req.user });
-  res.redirect('/home');
-}
-);
+app.post("/login",goHome, function(req,res,next){passport.authenticate("local-login", function(err,user,info){
+    if(err){ next(err); }
+    if(!user){ return res.render('login_register/login', {msg: "Invalid username or password"}); }
+    req.logIn(user,function(err){
+      if(err){ return next(err) }
+      return res.redirect('/home');
+    });
+  })(req,res,next)
+});
 app.get("/register",goHome, (req,res)=>{
   res.render('login_register/register.ejs', {msg : 0});
 })
