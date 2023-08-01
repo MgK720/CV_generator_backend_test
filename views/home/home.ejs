@@ -18,15 +18,11 @@
             <% if(user){ %>
                 <li>
                     <a href="/account"><%= user.login %></a>
-                </li>
-                <li>
                     <a href="/logout?_method=POST">logout</a>
                 </li>
             <% }else{ %>
                 <li>
                     <a href="/register">register</a>
-                </li>
-                <li>
                     <a href="/login">login</a>
                 </li>
             <% } %>
