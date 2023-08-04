@@ -52,8 +52,8 @@ app.use((req, res, next) => {
 });
 
 
-app.get("/home",(req,res)=>{
-  res.render("home/home.ejs");
+app.get("/home",setLocalCvId, async (req,res)=>{
+  res.render("home/home.ejs", {hasCv: await hasCv(req)});
 })
 app.get('/account',loggedIn,setLocalCvId, async (req,res)=>{
   console.log(await hasCv(req));
