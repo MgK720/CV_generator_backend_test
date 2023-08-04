@@ -74,7 +74,7 @@ nav ul #account_section div a{
     font-size: 1.6rem;
     text-transform: none;
 }
-nav ul #account_section #logout{
+.login_logout{
     width:100%; 
     text-align:center;
     font-size: 0.9rem;
