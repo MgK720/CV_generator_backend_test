@@ -13,7 +13,7 @@ It has built in TalentFinder - as a employer you can find talented people.
 - Mobile devices compatibility (Resposnsive Web Design)
 
 _Everything on a simple web page_ <br />
-_**Watch [App Overview][overwiev] video**_
+_**Watch (TODO )[App Overview][overwiev] (TODO) video**_
 
 ## Creator Note
 
@@ -39,16 +39,17 @@ _TODO content and gifs..._
 ## Tech
 
 CV Generator uses this techs:
-- HTML5
-- CSS3
-- JavaScript
+- **HTML5**
+- **CSS3**
+- **JavaScript**
   - jQuery
   - Axios
-- PostgreSQL
-- Node.js
+- **PostgreSQL**
+- **Node.js**
   - Express
   - Multer
   - pg
+  - EJS 
   - passport
   - bcrypt
   - and more ..
