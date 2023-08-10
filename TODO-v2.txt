@@ -11,8 +11,8 @@
             print(cvID, allSKills)
         }
     })
-6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona 50% HALF DONE
-7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete) 50% HALF DONE
+6.main page w ktorym opcje : zaloguj(4. login), zarejestruj(3. register), wyszukaj(5.search) + na srodku wyjaśniony projekt - filmik z prezentacją oraz niżej wyjaśnione krok po kroku co robi ta strona  DONE
+7.Po zalogowaniu opcje: wyszukaj(5. search), utworz_cv(create), pokaz_cv(get), aktualizuj_cv(1. update), usuń_cv(2. delete)  DONE
 
 
 TODO 14.07
@@ -21,4 +21,12 @@ TODO 14.07
 3.handling errorów w login formie (tak jak w register - krotka informacja, nie zgadza sie login/ haslo) DONE 
 4.logout DONE 
 5.delete (wtedy update account set null where cv_id=id) DONE
-6. Prawdopodobnie rezygnacja z account podstrony -> elementy tej podstrony umieszczone w liscie do wysuniecia na homepage-u w navbarze/aside (jesli zalogowany)
+6. Prawdopodobnie rezygnacja z account podstrony -> elementy tej podstrony umieszczone w liscie do wysuniecia na homepage-u w navbarze/aside (jesli zalogowany) DONE
+
+7. VALIDACJA PO STRONIE DB - 
+ - minlength dla loginu i hasla
+ - brak znaku przecinka w skill_name
+
+8. Testy (jednostkowe + postman)
+9. Ostatnie poprawki
+10. Prezentacja projektu (gify i video)
