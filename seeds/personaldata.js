@@ -82,9 +82,9 @@ module.exports = [
       {
         personaldata_id: 9,
         cv_id: 9,
-        firstname: "Emma",
+        firstname: "Oliver",
         lastname: "Lopez",
-        email: "emma.lopez@example.com",
+        email: "oliver.lopez@example.com",
         phone_country: 123,
         phone: 678901234,
         img_destination: "imgs/blank9.jpg"
@@ -112,9 +112,9 @@ module.exports = [
       {
         personaldata_id: 12,
         cv_id: 12,
-        firstname: "Mia",
+        firstname: "Frank",
         lastname: "Miller",
-        email: "mia.miller@example.com",
+        email: "frank.miller@example.com",
         phone_country: 456,
         phone: 901234567,
         img_destination: "imgs/blank12.jpg"
@@ -132,9 +132,9 @@ module.exports = [
       {
         personaldata_id: 14,
         cv_id: 14,
-        firstname: "Isabella",
-        lastname: "Adams",
-        email: "isabella.adams@example.com",
+        firstname: "Adam",
+        lastname: "Isabell",
+        email: "adam.isabell@example.com",
         phone_country: 678,
         phone: 234567890,
         img_destination: "imgs/blank14.jpg"
@@ -152,9 +152,9 @@ module.exports = [
       {
         personaldata_id: 16,
         cv_id: 16,
-        firstname: "Sophia",
+        firstname: "John",
         lastname: "Johnson",
-        email: "sophia.johnson@example.com",
+        email: "john.johnson@example.com",
         phone_country: 890,
         phone: 456789012,
         img_destination: "imgs/blank16.jpg"
@@ -172,9 +172,9 @@ module.exports = [
       {
         personaldata_id: 18,
         cv_id: 18,
-        firstname: "Olivia",
+        firstname: "Liam",
         lastname: "Young",
-        email: "olivia.young@example.com",
+        email: "liam.young@example.com",
         phone_country: 123,
         phone: 678901234,
         img_destination: "imgs/blank18.jpg"
@@ -192,9 +192,9 @@ module.exports = [
       {
         personaldata_id: 20,
         cv_id: 20,
-        firstname: "Emma",
+        firstname: "Henry",
         lastname: "Turner",
-        email: "emma.turner@example.com",
+        email: "henry.turner@example.com",
         phone_country: 345,
         phone: 890123456,
         img_destination: "imgs/blank20.jpg"
