@@ -110,9 +110,9 @@ To drop database content launch:
 _TODO_
 
 ## License
-
+images in "./seeds/imgs"  - Unsplash Free License <br>
+for more information go to "./seeds/imgs/license.txt" <br>
 _TODO_
-Open Source
 
 
 
