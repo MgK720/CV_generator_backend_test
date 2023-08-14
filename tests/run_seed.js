@@ -9,8 +9,10 @@ const api = require('./api/run_seed_methods.js')
 // AND "../database/db/trigger.sql" 
 // BEFORE RUNNING THIS FILE 
 // THEN 
-// cd tests 
-// node run_seed.js
+// node tests/run_seed.js
+
+// OR JUST
+// RUN node tests/run_database.js
 
 
 const seedMyDB = async ()=>{
