@@ -98,6 +98,8 @@ To drop database content launch:
 | ./database | database info and .sql files |
 | ./public | frontend .js and .css files |
 | ./public/scripts | cv form "_logic_" |
+| ./seeds | seeds in js objects format |
+| ./seeds/imgs | images seeds in .jpg files |
 | ./thunder | postman/thunder tests |
 | ./*tests* | TODO  |
 | ./views | templates (.ejs files) |
@@ -108,9 +110,9 @@ To drop database content launch:
 _TODO_
 
 ## License
-
+images in "./seeds/imgs"  - Unsplash Free License <br>
+for more information go to "./seeds/imgs/license.txt" <br>
 _TODO_
-Open Source
 
 
 
