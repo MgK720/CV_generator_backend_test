@@ -99,7 +99,7 @@ To drop database content launch:
 | ./public | frontend .js and .css files |
 | ./public/scripts | cv form "_logic_" |
 | ./seeds | seeds in js objects format |
-| ./seeds/imgs | imgs seeds in .jpg |
+| ./seeds/imgs | images seeds in .jpg files |
 | ./thunder | postman/thunder tests |
 | ./*tests* | TODO  |
 | ./views | templates (.ejs files) |
