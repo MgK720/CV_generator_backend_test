@@ -107,6 +107,9 @@ img{
     text-transform: uppercase;
     max-width:250px;
 }
+.personaldata li:nth-of-type(2) p:nth-of-type(3){
+    font-size: 1rem;
+}
 form{
     display:flex;
     justify-content: space-evenly;

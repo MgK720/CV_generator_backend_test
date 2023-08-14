@@ -283,7 +283,7 @@ module.exports = [
       },
       {
         skill_id: 48,
-        cv_id: 15,
+        cv_id: 16,
         skill_name: "Clinical Assessment",
         level: 5
       },
@@ -303,6 +303,18 @@ module.exports = [
         skill_id: 51,
         cv_id: 11,
         skill_name: "Classroom Management",
+        level: 4
+      },
+      {
+        skill_id: 52,
+        cv_id: 1,
+        skill_name: "Photoshop",
+        level: 4
+      },
+      {
+        skill_id: 53,
+        cv_id: 4,
+        skill_name: "Photoshop",
         level: 4
       }
 ]
