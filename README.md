@@ -74,17 +74,8 @@ node server.js
 ```
 
 ### Database Configuration [*]
-
-Create database and launch files:
-
-```sh
-./database/db/create_db.sql
-./database/db/pre_insert.sql
-./database/db/trigger.sql
-```
-
-In .env file configure your connection to database.
-
+ Create database. <br>
+ In .env file configure your connection to database.
 ```sh
 DB_HOST = "localhost"
 DB_USER = "user"
@@ -93,6 +84,14 @@ DB_PASSWORD = 'password'
 DB_PORT = 5432
 ```
 
+Launch run_database.js.
+```sh
+node tests/run_database.js
+```
+If you want to take example data to your database launch:
+```sh
+node tests/run_seed.js
+```
 To drop database content launch:
 
 ```sh
@@ -112,7 +111,8 @@ To drop database content launch:
 | ./seeds/records      | seeds in js objects format                            |
 | ./seeds/imgs         | images seeds in .jpg files                            |
 | ./thunder            | postman/thunder tests                                 |
-| ./_tests_            | TODO                                                  |
+| ./tests              | tests and run_database.js, run_seed.js                |
+| ./tests/api          | tests methods                                         |
 | ./views              | templates (.ejs files)                                |
 
 ## Docker
