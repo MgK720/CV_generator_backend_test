@@ -23,7 +23,7 @@ TODO 14.07
 5.delete (wtedy update account set null where cv_id=id) DONE
 6. Prawdopodobnie rezygnacja z account podstrony -> elementy tej podstrony umieszczone w liscie do wysuniecia na homepage-u w navbarze/aside (jesli zalogowany) DONE
 
-7. VALIDACJA PO STRONIE DB - 
+7. VALIDACJA PO STRONIE DB - + poprawka schematu
  - minlength dla loginu i hasla
  - brak znaku przecinka w skill_name
 
