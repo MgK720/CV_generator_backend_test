@@ -158,7 +158,7 @@ module.exports = [
       {
         skill_id: 27,
         cv_id: 19,
-        skill_name: "Physical Education Instruction",
+        skill_name: "Physical Education",
         level: 4
       },
       {

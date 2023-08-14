@@ -66,7 +66,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 1,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2022-06-30",
         description: "Completed middle school with a focus on biology."
       },
       {
@@ -96,7 +96,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 0,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2022-06-30",
         description: "Completed primary school with a focus on geography."
       },
       {
@@ -126,7 +126,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 1,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2022-06-30",
         description: "Completed middle school with a focus on physical education."
       },
       {
@@ -146,7 +146,7 @@ module.exports = [
         knowledgetype_id: 0,
         schooltype_id: null,
         start_date_knowledge: "2020-01-15",
-        end_date_knowledge: "2024-05-10",
+        end_date_knowledge: "2021-05-10",
         description: "Studied sociology in university courses."
       },
       {
@@ -156,7 +156,7 @@ module.exports = [
         knowledgetype_id: 0,
         schooltype_id: null,
         start_date_knowledge: "2021-08-01",
-        end_date_knowledge: "2025-05-15",
+        end_date_knowledge: "2022-05-15",
         description: "Studied economics in university courses."
       },
       {
@@ -166,7 +166,7 @@ module.exports = [
         knowledgetype_id: 0,
         schooltype_id: null,
         start_date_knowledge: "2022-01-15",
-        end_date_knowledge: "2026-05-10",
+        end_date_knowledge: "2023-05-10",
         description: "Studied political science in university courses."
       },
       {
@@ -176,7 +176,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 2,
         start_date_knowledge: "2019-09-01",
-        end_date_knowledge: "2025-06-30",
+        end_date_knowledge: "2022-06-30",
         description: "Completed high school with a focus on medicine."
       },
       {
@@ -186,7 +186,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 1,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2023-06-30",
         description: "Completed middle school with a focus on engineering."
       },
       {
@@ -196,7 +196,7 @@ module.exports = [
         knowledgetype_id: 0,
         schooltype_id: null,
         start_date_knowledge: "2021-08-15",
-        end_date_knowledge: "2025-07-10",
+        end_date_knowledge: "2023-07-10",
         description: "Studied computer science in college courses."
       },
       {
@@ -276,7 +276,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 2,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2023-06-30",
         description: "Completed high school with a focus on psychology."
       },
       {
@@ -316,7 +316,7 @@ module.exports = [
         knowledgetype_id: 0,
         schooltype_id: null,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2023-06-30",
         description: "Studied mathematics in university courses."
       },
       {
@@ -346,7 +346,7 @@ module.exports = [
         knowledgetype_id: 0,
         schooltype_id: null,
         start_date_knowledge: "2020-08-15",
-        end_date_knowledge: "2024-07-10",
+        end_date_knowledge: "2023-07-10",
         description: "Studied chemistry in college courses."
       },
       {
@@ -356,7 +356,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 2,
         start_date_knowledge: "2019-09-01",
-        end_date_knowledge: "2025-06-30",
+        end_date_knowledge: "2023-06-30",
         description: "Completed high school with a focus on history."
       },
       {
@@ -386,7 +386,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 1,
         start_date_knowledge: "2020-09-01",
-        end_date_knowledge: "2024-06-30",
+        end_date_knowledge: "2023-06-30",
         description: "Completed middle school with a focus on geography."
       },
       {
@@ -396,7 +396,7 @@ module.exports = [
         knowledgetype_id: 1,
         schooltype_id: 0,
         start_date_knowledge: "2021-08-15",
-        end_date_knowledge: "2025-07-10",
+        end_date_knowledge: "2023-07-10",
         description: "Completed primary school with a focus on literature."
       }
 ]

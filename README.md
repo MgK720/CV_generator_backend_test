@@ -1,12 +1,14 @@
 # CV Generator
+
 ## _Make your cv and share it to employer_
 
 CV Generator is simple web tool for making cv. <br />
 It has built in TalentFinder - as a employer you can find talented people.
 
 ## Features
+
 - Create account and login to portal
-- Create your own CV 
+- Create your own CV
 - Upload your Image
 - Update and Delete your CV whenever you want
 - Use TalentFinder for searching another persons CVs
@@ -26,7 +28,7 @@ _**Watch (TODO )[App Overview][overwiev] (TODO) video**_
 > features wasn't easy to implement for me.
 > I made some coding problems which ones at first look i cant resolve.
 > And then i tried to resolve them.
-> My app still have some problems like "phone numbers", actually 
+> My app still have some problems like "phone numbers", actually
 > it accepts only 3 digits country code and 9 digits numbers.
 > But to resolve this with good rules like validation and store
 > on database i need to use someone's phone patterns datalists etc..
@@ -34,11 +36,13 @@ _**Watch (TODO )[App Overview][overwiev] (TODO) video**_
 > I wanted to make everything from scratch.
 
 ## Overview
+
 _TODO content and gifs..._
 
 ## Tech
 
 CV Generator uses this techs:
+
 - **HTML5**
 - **CSS3**
 - **JavaScript**
@@ -49,12 +53,12 @@ CV Generator uses this techs:
   - Express
   - Multer
   - pg
-  - EJS 
+  - EJS
   - passport
   - bcrypt
   - and more ..
 
-CV Generator is open source with a [public repository][repo] on GitHub.  <br />
+CV Generator is open source with a [public repository][repo] on GitHub. <br />
 And another [repository][repo_test] for my tests.
 
 ## Installation
@@ -70,13 +74,17 @@ node server.js
 ```
 
 ### Database Configuration [*]
-Create database and launch files: 
+
+Create database and launch files:
+
 ```sh
 ./database/db/create_db.sql
 ./database/db/pre_insert.sql
 ./database/db/trigger.sql
 ```
+
 In .env file configure your connection to database.
+
 ```sh
 DB_HOST = "localhost"
 DB_USER = "user"
@@ -86,36 +94,37 @@ DB_PORT = 5432
 ```
 
 To drop database content launch:
+
 ```sh
 ./database/db/drop_db.sql
 ```
-## Directory Tree
-| Directory | Content |
-| ------ | ------ |
-| ./ | server.js (main file), package.json, .gitignore, .env |
-| ./api | backend CRUD |
-| ./api/login_register | backend Authentication and Authorization |
-| ./database | database info and .sql files |
-| ./public | frontend .js and .css files |
-| ./public/scripts | cv form "_logic_" |
-| ./seeds | seeds in js objects format |
-| ./seeds/imgs | images seeds in .jpg files |
-| ./thunder | postman/thunder tests |
-| ./*tests* | TODO  |
-| ./views | templates (.ejs files) |
 
+## Directory Tree
+
+| Directory            | Content                                               |
+| -------------------- | ----------------------------------------------------- |
+| ./                   | server.js (main file), package.json, .gitignore, .env |
+| ./api                | backend CRUD                                          |
+| ./api/login_register | backend Authentication and Authorization              |
+| ./database           | database info and .sql files                          |
+| ./public             | frontend .js and .css files                           |
+| ./public/scripts     | cv form "_logic_"                                     |
+| ./seeds/records      | seeds in js objects format                            |
+| ./seeds/imgs         | images seeds in .jpg files                            |
+| ./thunder            | postman/thunder tests                                 |
+| ./_tests_            | TODO                                                  |
+| ./views              | templates (.ejs files)                                |
 
 ## Docker
 
 _TODO_
 
 ## License
-images in "./seeds/imgs"  - Unsplash Free License <br>
+
+images in "./seeds/imgs" - Unsplash Free License <br>
 for more information go to "./seeds/imgs/license.txt" <br>
 _TODO_
 
-
-
-   [repo]: <https://github.com/MgK720/CV_generator>
-   [repo_test]: <https://github.com/MgK720/CV_generator_backend_test>
-   [overwiev]: <youtube.com>
+[repo]: https://github.com/MgK720/CV_generator
+[repo_test]: https://github.com/MgK720/CV_generator_backend_test
+[overwiev]: youtube.com

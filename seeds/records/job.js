@@ -88,7 +88,7 @@ module.exports = [
         cv_id: 10,
         job_name: "Fitness Instructor",
         start_date_job: "2020-06-01",
-        end_date_job: "2024-04-30"
+        end_date_job: "2023-04-30"
       },
       {
         job_id: 14,
@@ -116,7 +116,7 @@ module.exports = [
         cv_id: 12,
         job_name: "Frontend Developer",
         start_date_job: "2023-01-15",
-        end_date_job: "2024-05-31"
+        end_date_job: "2023-05-31"
       },
       {
         job_id: 18,
@@ -130,21 +130,21 @@ module.exports = [
         cv_id: 14,
         job_name: "Mechanical Engineer",
         start_date_job: "2019-07-15",
-        end_date_job: "2023-04-30"
+        end_date_job: "2022-04-30"
       },
       {
         job_id: 20,
         cv_id: 14,
         job_name: "Product Designer",
         start_date_job: "2020-09-01",
-        end_date_job: "2024-03-31"
+        end_date_job: "2021-03-31"
       },
       {
         job_id: 21,
         cv_id: 15,
         job_name: "History Teacher",
         start_date_job: "2021-03-15",
-        end_date_job: "2024-07-31"
+        end_date_job: "2022-07-31"
       },
       {
         job_id: 22,
@@ -158,14 +158,14 @@ module.exports = [
         cv_id: 17,
         job_name: "Mathematics Teacher",
         start_date_job: "2020-08-15",
-        end_date_job: "2024-05-31"
+        end_date_job: "2023-05-31"
       },
       {
         job_id: 24,
         cv_id: 17,
         job_name: "Chemistry Teacher",
         start_date_job: "2021-09-01",
-        end_date_job: "2025-06-30"
+        end_date_job: "2023-06-30"
       },
       {
         job_id: 25,
@@ -179,21 +179,21 @@ module.exports = [
         cv_id: 19,
         job_name: "Music Teacher",
         start_date_job: "2020-08-01",
-        end_date_job: "2024-03-31"
+        end_date_job: "2023-03-31"
       },
       {
         job_id: 27,
         cv_id: 19,
         job_name: "Physical Education Teacher",
         start_date_job: "2021-09-15",
-        end_date_job: "2025-05-31"
+        end_date_job: "2023-05-31"
       },
       {
         job_id: 28,
         cv_id: 20,
         job_name: "Psychiatrist",
-        start_date_job: "2022-05-01",
-        end_date_job: "2025-08-31"
+        start_date_job: "2021-05-01",
+        end_date_job: "2022-08-31"
       },
       {
         job_id: 29,
@@ -207,6 +207,76 @@ module.exports = [
         cv_id: 20,
         job_name: "Geography Researcher",
         start_date_job: "2020-06-01",
-        end_date_job: "2024-09-30"
+        end_date_job: "2022-09-30"
+      },
+      {
+        job_id: 31,
+        cv_id: 8,
+        job_name: "Data Scientist",
+        start_date_job: "2021-03-15",
+        end_date_job: "2023-06-30"
+      },
+      {
+        job_id: 32,
+        cv_id: 7,
+        job_name: "Machine Learning Engineer",
+        start_date_job: "2021-09-01",
+        end_date_job: "2022-12-31"
+      },
+      {
+        job_id: 33,
+        cv_id: 6,
+        job_name: "Nurse",
+        start_date_job: "2020-08-01",
+        end_date_job: "2022-11-30"
+      },
+      {
+        job_id: 34,
+        cv_id: 1,
+        job_name: "Civil Engineer",
+        start_date_job: "2019-09-15",
+        end_date_job: "2022-12-31"
+      },
+      {
+        job_id: 35,
+        cv_id: 10,
+        job_name: "Architect",
+        start_date_job: "2021-01-01",
+        end_date_job: "2023-04-30"
+      },
+      {
+        job_id: 36,
+        cv_id: 12,
+        job_name: "English Teacher",
+        start_date_job: "2020-05-15",
+        end_date_job: "2022-08-31"
+      },
+      {
+        job_id: 37,
+        cv_id: 14,
+        job_name: "Clinical Psychologist",
+        start_date_job: "2019-04-01",
+        end_date_job: "2022-07-31"
+      },
+      {
+        job_id: 38,
+        cv_id: 16,
+        job_name: "Therapist",
+        start_date_job: "2021-02-15",
+        end_date_job: "2023-05-31"
+      },
+      {
+        job_id: 39,
+        cv_id: 18,
+        job_name: "History Researcher",
+        start_date_job: "2020-03-01",
+        end_date_job: "2023-06-30"
+      },
+      {
+        job_id: 40,
+        cv_id: 15,
+        job_name: "Elementary School Teacher",
+        start_date_job: "2021-07-15",
+        end_date_job: "2023-07-31"
       }
 ]
