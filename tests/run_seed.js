@@ -37,7 +37,7 @@ const seedMyDB = async ()=>{
 
         const dataList = [allCvRecords, allAccountRecords, allPersonaldataRecords, allKnowledgeRecords, allJobRecords, allHobbyRecords, allSkillRecords, allLinkRecords]
         for(let i = 0; i < dataList.length; i++ ){
-            console.log(`DATALIST - ${i} INSERTING`);
+            console.log(`DATALIST - ${i} INSERTING...`);
             for(record of dataList[i]){
                 switch (i) {
                     case 0: // allCvRecords
