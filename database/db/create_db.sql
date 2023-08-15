@@ -4,7 +4,7 @@ COMMENT ON DOMAIN url IS 'match URLs (http or https)';
 
 
 CREATE TABLE cv(
-    cv_id serial,
+    cv_id serial, 
     create_date TIMESTAMPTZ DEFAULT Now(), --on insert DONE
     CONSTRAINT cv_pk PRIMARY KEY(cv_id)
 );

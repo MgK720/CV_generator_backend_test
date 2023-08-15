@@ -41,8 +41,11 @@ function getKnowledgeData(index){
     $(`#knowledge_id${index}`).val(knowledge.knowledge_id)
     $(`#knowledge_name${index}`).val(knowledge.knowledge_name)
     $(`#knowledge_type${index}`).val(knowledge.knowledgetype_id)
-    if(knowledge.schooltype_id >= 0){
+    if(knowledge.schooltype_id == 0 || knowledge.schooltype_id == 1 || knowledge.schooltype_id == 2){
+      console.log(knowledge.schooltype_id + "dsahjndhskahdlajshdjhsaldsa");
       $(`#school_type${index}`).val(knowledge.schooltype_id)
+    }else if(knowledge.schooltype_id == null){
+      $(`#school_type${index}`).removeAttr("required")
     }
     $(`#start_date_knowledge${index}`).val(knowledge.start_date_knowledge)
     $(`#end_date_knowledge${index}`).val(knowledge.end_date_knowledge)

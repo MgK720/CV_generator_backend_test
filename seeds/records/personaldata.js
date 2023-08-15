@@ -1,6 +1,6 @@
 module.exports = [
     {
-        personaldata_id: 1,
+        //personaldata_id: 1,
         cv_id: 1,
         firstname: "John",
         lastname: "Doe",
@@ -10,7 +10,7 @@ module.exports = [
         img_destination: "imgs/blank1.jpg"
       },
       {
-        personaldata_id: 2,
+        //personaldata_id: 2,
         cv_id: 2,
         firstname: "Jane",
         lastname: "Smith",
@@ -20,7 +20,7 @@ module.exports = [
         img_destination: "imgs/blank2.jpg"
       },
       {
-        personaldata_id: 3,
+        //personaldata_id: 3,
         cv_id: 3,
         firstname: "Michael",
         lastname: "Johnson",
@@ -30,7 +30,7 @@ module.exports = [
         img_destination: "imgs/blank3.jpg"
       },
       {
-        personaldata_id: 4,
+        //personaldata_id: 4,
         cv_id: 4,
         firstname: "Emily",
         lastname: "Brown",
@@ -40,7 +40,7 @@ module.exports = [
         img_destination: "imgs/blank4.jpg"
       },
       {
-        personaldata_id: 5,
+        //personaldata_id: 5,
         cv_id: 5,
         firstname: "William",
         lastname: "Jones",
@@ -50,7 +50,7 @@ module.exports = [
         img_destination: "imgs/blank5.jpg"
       },
       {
-        personaldata_id: 6,
+        //personaldata_id: 6,
         cv_id: 6,
         firstname: "Oliver",
         lastname: "Walker",
@@ -60,7 +60,7 @@ module.exports = [
         img_destination: "imgs/blank6.jpg"
       },
       {
-        personaldata_id: 7,
+        //personaldata_id: 7,
         cv_id: 7,
         firstname: "Sophia",
         lastname: "Garcia",
@@ -70,7 +70,7 @@ module.exports = [
         img_destination: "imgs/blank7.jpg"
       },
       {
-        personaldata_id: 8,
+        //personaldata_id: 8,
         cv_id: 8,
         firstname: "Liam",
         lastname: "Hernandez",
@@ -80,7 +80,7 @@ module.exports = [
         img_destination: "imgs/blank8.jpg"
       },
       {
-        personaldata_id: 9,
+        //personaldata_id: 9,
         cv_id: 9,
         firstname: "Oliver",
         lastname: "Lopez",
@@ -90,7 +90,7 @@ module.exports = [
         img_destination: "imgs/blank9.jpg"
       },
       {
-        personaldata_id: 10,
+        //personaldata_id: 10,
         cv_id: 10,
         firstname: "Noah",
         lastname: "Martinez",
@@ -100,7 +100,7 @@ module.exports = [
         img_destination: "imgs/blank10.jpg"
       },
       {
-        personaldata_id: 11,
+        //personaldata_id: 11,
         cv_id: 11,
         firstname: "Aiden",
         lastname: "Gonzalez",
@@ -110,7 +110,7 @@ module.exports = [
         img_destination: "imgs/blank11.jpg"
       },
       {
-        personaldata_id: 12,
+        //personaldata_id: 12,
         cv_id: 12,
         firstname: "Frank",
         lastname: "Miller",
@@ -120,7 +120,7 @@ module.exports = [
         img_destination: "imgs/blank12.jpg"
       },
       {
-        personaldata_id: 13,
+        //personaldata_id: 13,
         cv_id: 13,
         firstname: "Lucas",
         lastname: "Jackson",
@@ -130,7 +130,7 @@ module.exports = [
         img_destination: "imgs/blank13.jpg"
       },
       {
-        personaldata_id: 14,
+        //personaldata_id: 14,
         cv_id: 14,
         firstname: "Adam",
         lastname: "Isabell",
@@ -140,7 +140,7 @@ module.exports = [
         img_destination: "imgs/blank14.jpg"
       },
       {
-        personaldata_id: 15,
+        //personaldata_id: 15,
         cv_id: 15,
         firstname: "Henry",
         lastname: "King",
@@ -150,7 +150,7 @@ module.exports = [
         img_destination: "imgs/blank15.jpg"
       },
       {
-        personaldata_id: 16,
+        //personaldata_id: 16,
         cv_id: 16,
         firstname: "John",
         lastname: "Johnson",
@@ -160,7 +160,7 @@ module.exports = [
         img_destination: "imgs/blank16.jpg"
       },
       {
-        personaldata_id: 17,
+        //personaldata_id: 17,
         cv_id: 17,
         firstname: "Jackson",
         lastname: "Lee",
@@ -170,7 +170,7 @@ module.exports = [
         img_destination: "imgs/blank17.jpg"
       },
       {
-        personaldata_id: 18,
+        //personaldata_id: 18,
         cv_id: 18,
         firstname: "Liam",
         lastname: "Young",
@@ -180,7 +180,7 @@ module.exports = [
         img_destination: "imgs/blank18.jpg"
       },
       {
-        personaldata_id: 19,
+        //personaldata_id: 19,
         cv_id: 19,
         firstname: "Liam",
         lastname: "Wright",
@@ -190,7 +190,7 @@ module.exports = [
         img_destination: "imgs/blank19.jpg"
       },
       {
-        personaldata_id: 20,
+        //personaldata_id: 20,
         cv_id: 20,
         firstname: "Henry",
         lastname: "Turner",
