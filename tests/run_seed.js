@@ -9,10 +9,12 @@ const api = require('./api/run_seed_methods.js')
 // AND "../database/db/trigger.sql" 
 // BEFORE RUNNING THIS FILE 
 // THEN 
-// node tests/run_seed.js
+// RUN node tests/run_seed.js
 
 // OR JUST
 // RUN node tests/run_database.js
+// THEN 
+// RUN node tests/run_seed.js
 
 
 const seedMyDB = async ()=>{
@@ -35,7 +37,7 @@ const seedMyDB = async ()=>{
 
         const dataList = [allCvRecords, allAccountRecords, allPersonaldataRecords, allKnowledgeRecords, allJobRecords, allHobbyRecords, allSkillRecords, allLinkRecords]
         for(let i = 0; i < dataList.length; i++ ){
-            console.log(`DATALIST - ${i} INSERTED`);
+            console.log(`DATALIST - ${i} INSERTING`);
             for(record of dataList[i]){
                 switch (i) {
                     case 0: // allCvRecords
