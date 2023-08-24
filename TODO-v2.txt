@@ -23,9 +23,9 @@ TODO 14.07
 5.delete (wtedy update account set null where cv_id=id) DONE
 6. Prawdopodobnie rezygnacja z account podstrony -> elementy tej podstrony umieszczone w liscie do wysuniecia na homepage-u w navbarze/aside (jesli zalogowany) DONE
 
-7. VALIDACJA PO STRONIE DB - + poprawka schematu
- - minlength dla loginu i hasla
- - brak znaku przecinka w skill_name
+7. VALIDACJA PO STRONIE DB - + poprawka schematu DONE
+ - minlength dla loginu i hasla DONE
+ - brak znaku przecinka w skill_name DONE 
     VALIDACJA PO STRONIE "JS" - W PRZYSZŁEj WERSJI (problem z update formem - musiałbym sprawdzać ile jest aktualnie danych przypisanych do dodanego id i ile uzytkownik wstawił poza limit - dodatkowe selecty dluzsza praca update'a)
                                                     [ pomysł - przechowywanie ilosci rekordów knowledge, job itd... w tabeli cv - wtedy nie trzeba robić selecta do kazdej tabeli tylko do jednej - 2/10]
                  - sprawdzać limit entries dla kazdej tabeli ( sprawdzanie limitów konkretnych danych  - jesli powyzej limitu (ominięcie client side limit check) to throw error )

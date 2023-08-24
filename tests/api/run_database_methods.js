@@ -51,7 +51,7 @@ const runTrigger = async () => {
         console.log('RUN: "../database/db/trigger.sql')
         await dbClient.query(trigger);
         console.log("DONE")
-    }catch{
+    }catch(e){
         throw e;
     }
 }
