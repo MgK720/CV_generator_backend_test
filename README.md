@@ -12,6 +12,7 @@ It has built in TalentFinder - as a employer you can find talented people.
 - Upload your Image
 - Update and Delete your CV whenever you want
 - Use TalentFinder for searching another persons CVs
+  ![](https://github.com/MgK720/CV_generator_backend_test/blob/main/readme_src/photoEN.gif)
 - Mobile devices compatibility (Resposnsive Web Design)
 
 _Everything on a simple web page_ <br />
