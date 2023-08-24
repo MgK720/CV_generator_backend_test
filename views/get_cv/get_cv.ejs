@@ -76,8 +76,8 @@
                                                         <% } %>
                                         </li>
                                         <li>
-                                            <p>From: <%= knowledgeRecord.start_date_knowledge %> To: <%=
-                                                        knowledgeRecord.end_date_knowledge %>
+                                            <p>From: <span><%= knowledgeRecord.start_date_knowledge %></span> To: <span><%=
+                                                        knowledgeRecord.end_date_knowledge %></span>   
                                             </p>
                                         </li>
                                         <% if(knowledgeRecord.description){ %>
@@ -108,7 +108,7 @@
                                                 </span></p>
                                         </li>
                                         <li>
-                                            <p>From: <%= jobRecord.start_date_job %> To: <%= jobRecord.end_date_job %>
+                                            <p>From: <span><%= jobRecord.start_date_job %></span> To: <span><%= jobRecord.end_date_job %></span>
                                             </p>
                                         </li>
                                     </ul>
