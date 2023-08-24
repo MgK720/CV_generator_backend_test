@@ -29,7 +29,7 @@ TODO 14.07
     VALIDACJA PO STRONIE "JS" - W PRZYSZŁEj WERSJI (problem z update formem - musiałbym sprawdzać ile jest aktualnie danych przypisanych do dodanego id i ile uzytkownik wstawił poza limit - dodatkowe selecty dluzsza praca update'a)
                                                     [ pomysł - przechowywanie ilosci rekordów knowledge, job itd... w tabeli cv - wtedy nie trzeba robić selecta do kazdej tabeli tylko do jednej - 2/10]
                  - sprawdzać limit entries dla kazdej tabeli ( sprawdzanie limitów konkretnych danych  - jesli powyzej limitu (ominięcie client side limit check) to throw error )
-
+7a. Poprawka cssa w homepage - nie działa pawidłowo na małych ekranach
 8. Testy (jednostkowe + postman)
 9. Ostatnie poprawki
 10. Prezentacja projektu (gify i video)

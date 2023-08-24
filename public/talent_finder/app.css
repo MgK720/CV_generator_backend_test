@@ -208,14 +208,18 @@ form{
     }
     #verb_like{
         width:97%;
+        font-size:0.75em;
     }
 }
 @media (max-width:500px){
-    header h1{
+    header h1 a{
         font-size:2.8rem;
     }
     a{
         font-size:1.3rem;
+    }
+    p:nth-of-type(3) a{
+        font-size:0.9rem;
     }
     img{
         width:100px;
