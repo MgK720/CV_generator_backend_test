@@ -10,8 +10,10 @@ It has built in TalentFinder - as a employer you can find talented people.
 - Create account and login to portal
   ![](https://github.com/MgK720/CV_generator_backend_test/blob/main/readme_src/registerlogin.gif)
 - Create your own CV
+  ![](https://github.com/MgK720/CV_generator_backend_test/blob/main/readme_src/create.gif)
 - Upload your Image
 - Update and Delete your CV whenever you want
+  ![](https://github.com/MgK720/CV_generator_backend_test/blob/main/readme_src/udpateUpload.gif)
 - Use TalentFinder for searching another persons CVs
   ![](https://github.com/MgK720/CV_generator_backend_test/blob/main/readme_src/photoEN.gif)
 - Mobile devices compatibility (Resposnsive Web Design)
